@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NEXA — Unlock The World</title>
+<title>NEXA — Unlock Location</title>
 
 <style>
 
@@ -18,20 +19,23 @@ body {
   background: #080b12;
   color: white;
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 .container {
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
   margin: auto;
-  padding: 25px 15px 40px;
 }
 
 /* HEADER */
 
 .header {
   text-align: center;
-  padding: 25px 10px 20px;
+  margin-bottom: 25px;
 }
 
 .logo {
@@ -42,32 +46,33 @@ body {
 
 .tagline {
   color: #aeb4c0;
-  margin-top: 8px;
+  margin-top: 10px;
   font-size: 15px;
+  line-height: 1.5;
 }
 
-/* SEARCH */
+/* SEARCH CARD */
 
 .search-card {
   background: #111722;
   border: 1px solid #202938;
   border-radius: 22px;
-  padding: 22px;
+  padding: 25px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.35);
 }
 
 .unlock-title {
   text-align: center;
-  font-size: 21px;
+  font-size: 22px;
   font-weight: bold;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .unlock-subtitle {
   text-align: center;
   color: #9da5b3;
   font-size: 14px;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 input {
@@ -103,50 +108,6 @@ input:focus {
   transform: scale(0.98);
 }
 
-/* FEATURED */
-
-.section-title {
-  margin: 30px 0 12px;
-  font-size: 20px;
-}
-
-.featured {
-  background: #111722;
-  border: 1px solid #202938;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.featured-image {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-  display: block;
-}
-
-.featured-info {
-  padding: 18px;
-}
-
-.badge {
-  display: inline-block;
-  padding: 6px 10px;
-  border-radius: 8px;
-  background: #1b2c55;
-  color: #8fb0ff;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.featured h2 {
-  margin: 12px 0 8px;
-}
-
-.featured p {
-  color: #b4bac5;
-  line-height: 1.5;
-}
-
 /* RESULT */
 
 #result {
@@ -159,6 +120,7 @@ input:focus {
   border: 1px solid #202938;
   border-radius: 22px;
   overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
 }
 
 .location-image {
@@ -239,6 +201,7 @@ input:focus {
   padding: 18px;
   text-align: center;
   color: #ff9b9b;
+  line-height: 1.5;
 }
 
 /* FOOTER */
@@ -247,7 +210,7 @@ input:focus {
   text-align: center;
   color: #697180;
   font-size: 13px;
-  margin-top: 35px;
+  margin-top: 25px;
 }
 
 </style>
@@ -257,7 +220,7 @@ input:focus {
 
 <div class="container">
 
-  <!-- HEADER -->
+  <!-- NEXA HEADER -->
 
   <div class="header">
 
@@ -266,7 +229,8 @@ input:focus {
     </div>
 
     <div class="tagline">
-      कुछ जगहें सिर्फ देखने के लिए नहीं… खोजने के लिए होती हैं।
+      कुछ जगहें सिर्फ देखने के लिए नहीं…<br>
+      खोजने के लिए होती हैं।
     </div>
 
   </div>
@@ -281,7 +245,7 @@ input:focus {
     </div>
 
     <div class="unlock-subtitle">
-      अपना NEXA Code डालकर जगह खोजें
+      अपना NEXA Code डालकर location unlock करें
     </div>
 
     <input
@@ -302,50 +266,13 @@ input:focus {
   </div>
 
 
-  <!-- FEATURED STORY -->
-
-  <div class="section-title">
-    ⭐ Featured NEXA
-  </div>
-
-  <div class="featured">
-
-    <img
-      class="featured-image"
-      src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Taj-Mahal_CC0.jpg"
-      alt="Taj Mahal"
-    >
-
-    <div class="featured-info">
-
-      <span class="badge">
-        NEXA-001
-      </span>
-
-      <h2>
-        Taj Mahal, Agra
-      </h2>
-
-      <p>
-        दुनिया की सबसे प्रसिद्ध ऐतिहासिक इमारतों में से एक।
-        NEXA Code डालकर इसकी पूरी जानकारी explore करें।
-      </p>
-
-    </div>
-
-  </div>
-
-
-  <!-- RESULT -->
+  <!-- RESULT ONLY AFTER CODE -->
 
   <div id="result"></div>
 
 
-  <!-- FOOTER -->
-
   <div class="footer">
-    NEXA © 2026<br>
-    Discover • Verify • Explore
+    NEXA © 2026
   </div>
 
 </div>
@@ -353,10 +280,9 @@ input:focus {
 
 <script>
 
-
 /*
 ========================================
-NEXA LOCATION DATABASE
+NEXA LOCATION DATA
 ========================================
 */
 
@@ -371,7 +297,7 @@ const locations = {
     "Dharmapuri, Forest Colony, Agra, Uttar Pradesh, India",
 
     fact:
-    "ताजमहल मुगल सम्राट शाहजहाँ ने अपनी पत्नी मुमताज़ महल की याद में बनवाया था। इसका निर्माण 17वीं शताब्दी में हुआ था और यह आज दुनिया के सबसे प्रसिद्ध स्मारकों में से एक है।",
+    "ताजमहल मुगल सम्राट शाहजहाँ ने अपनी पत्नी मुमताज़ महल की याद में बनवाया था। यह भारत के सबसे प्रसिद्ध ऐतिहासिक स्मारकों में से एक है।",
 
     lat: 27.1751,
 
@@ -394,7 +320,7 @@ const locations = {
     "Kartavya Path, New Delhi, Delhi, India",
 
     fact:
-    "India Gate नई दिल्ली में स्थित एक प्रसिद्ध युद्ध स्मारक है और शहर के सबसे पहचाने जाने वाले landmarks में से एक है।",
+    "India Gate नई दिल्ली में स्थित एक प्रसिद्ध युद्ध स्मारक है।",
 
     lat: 28.6129,
 
@@ -417,7 +343,7 @@ const locations = {
     "Apollo Bandar, Colaba, Mumbai, Maharashtra, India",
 
     fact:
-    "Gateway of India मुंबई के Apollo Bunder क्षेत्र में स्थित एक प्रसिद्ध ऐतिहासिक monument है।",
+    "Gateway of India मुंबई के सबसे प्रसिद्ध ऐतिहासिक landmarks में से एक है।",
 
     lat: 18.9220,
 
@@ -488,7 +414,6 @@ OPEN LOCATION
 
 function openLocation() {
 
-
   const code =
     document
     .getElementById("code")
@@ -496,10 +421,8 @@ function openLocation() {
     .trim()
     .toUpperCase();
 
-
   const result =
     document.getElementById("result");
-
 
   const location =
     locations[code];
@@ -526,7 +449,7 @@ function openLocation() {
     result.innerHTML =
       '<div class="error">' +
       '❌ यह NEXA Code मौजूद नहीं है।<br><br>' +
-      'Code दोबारा check करें।' +
+      'कृपया Code दोबारा check करें।' +
       '</div>';
 
     return;
@@ -565,7 +488,7 @@ function openLocation() {
 
 
   /*
-  VIDEO BUTTON
+  VIDEO
   */
 
   let videoButton = "";
@@ -584,7 +507,7 @@ function openLocation() {
 
 
   /*
-  RESULT
+  RESULT CARD
   */
 
   result.style.display = "block";
@@ -637,7 +560,7 @@ function openLocation() {
 
 /*
 ========================================
-CLOSE LOCATION
+CLOSE RESULT
 ========================================
 */
 
