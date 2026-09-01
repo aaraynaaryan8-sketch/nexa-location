@@ -3,113 +3,293 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>NEXA Location</title>
 
 <style>
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #f1f3f4;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+  padding: 25px 15px;
 }
 
-.box {
+.container {
   width: 100%;
-  max-width: 420px;
-  background: white;
-  padding: 25px;
-  border-radius: 20px;
-  text-align: center;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+  max-width: 500px;
+  margin: auto;
 }
 
-h1 {
-  margin-bottom: 10px;
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.header p {
+  color: #666;
+  margin-top: 8px;
+}
+
+.search-box {
+  background: white;
+  padding: 22px;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.12);
 }
 
 input {
   width: 100%;
   padding: 15px;
-  margin: 12px 0;
-  box-sizing: border-box;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 12px;
   font-size: 18px;
   text-align: center;
+  outline: none;
 }
 
-button {
+input:focus {
+  border-color: #1a73e8;
+}
+
+.search-btn {
   width: 100%;
   padding: 15px;
+  margin-top: 12px;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   background: #1a73e8;
   color: white;
   font-size: 17px;
   font-weight: bold;
+  cursor: pointer;
+}
+
+.search-btn:active {
+  transform: scale(0.98);
 }
 
 #result {
-  margin-top: 20px;
   display: none;
+  background: white;
+  margin-top: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.12);
 }
 
 .photo {
   width: 100%;
-  border-radius: 12px;
-  margin-bottom: 15px;
+  height: 250px;
+  object-fit: cover;
+  display: block;
 }
+
+.info {
+  padding: 20px;
+}
+
+.code {
+  display: inline-block;
+  background: #e8f0fe;
+  color: #1a73e8;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+h2 {
+  margin: 5px 0 12px;
+}
+
+.address {
+  color: #555;
+  line-height: 1.5;
+}
+
+.fact {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 12px;
+  line-height: 1.5;
+  margin: 15px 0;
+}
+
+.maps-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: #34a853;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.error {
+  background: white;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 15px;
+  text-align: center;
+  color: #d93025;
+  font-weight: bold;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 25px;
+  color: #888;
+  font-size: 13px;
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="box">
+<div class="container">
 
-  <h1>📍 NEXA Location</h1>
+  <div class="header">
+    <h1>📍 NEXA Location</h1>
+    <p>दुनिया की खास जगहें खोजें</p>
+  </div>
 
-  <p>अपना Location Code डालें</p>
+  <div class="search-box">
 
-  <input
-    id="code"
-    type="text"
-    placeholder="NEXA-001"
-    autocomplete="off"
-  >
+    <input
+      id="code"
+      type="text"
+      placeholder="जैसे NEXA-001"
+      autocomplete="off"
+      onkeydown="if(event.key === 'Enter') openLocation()"
+    >
 
-  <button onclick="openLocation()">
-    🗺️ Open Location
-  </button>
+    <button class="search-btn" onclick="openLocation()">
+      🔎 Search Location
+    </button>
+
+  </div>
 
   <div id="result"></div>
 
+  <div class="footer">
+    © 2026 NEXA Location
+  </div>
+
 </div>
+
 
 <script>
 
 const locations = {
 
   "NEXA-001": {
+
     name: "Taj Mahal, Agra",
+
+    address:
+    "Dharmapuri, Forest Colony, Agra, Uttar Pradesh, India",
+
+    fact:
+    "ताजमहल मुगल सम्राट शाहजहाँ ने अपनी पत्नी मुमताज़ महल की याद में बनवाया था। यह दुनिया की सबसे प्रसिद्ध ऐतिहासिक इमारतों में से एक है।",
+
     lat: 27.1751,
+
     lon: 78.0421,
-    image: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Taj-Mahal_CC0.jpg"
+
+    image:
+    "https://commons.wikimedia.org/wiki/Special:Redirect/file/Taj-Mahal_CC0.jpg"
+
   },
+
 
   "NEXA-002": {
+
     name: "India Gate, New Delhi",
+
+    address:
+    "Kartavya Path, New Delhi, Delhi, India",
+
+    fact:
+    "India Gate नई दिल्ली में स्थित एक प्रसिद्ध युद्ध स्मारक है।",
+
     lat: 28.6129,
-    lon: 77.2295
+
+    lon: 77.2295,
+
+    image: ""
+
   },
 
+
   "NEXA-003": {
+
     name: "Gateway of India, Mumbai",
+
+    address:
+    "Apollo Bandar, Colaba, Mumbai, Maharashtra, India",
+
+    fact:
+    "Gateway of India मुंबई के सबसे प्रसिद्ध ऐतिहासिक landmarks में से एक है।",
+
     lat: 18.9220,
-    lon: 72.8347
+
+    lon: 72.8347,
+
+    image: ""
+
+  },
+
+
+  "NEXA-004": {
+
+    name: "Eiffel Tower, Paris",
+
+    address:
+    "Champ de Mars, 5 Avenue Anatole France, Paris, France",
+
+    fact:
+    "Eiffel Tower 1889 में Paris में आयोजित World's Fair के लिए बनाया गया था।",
+
+    lat: 48.8584,
+
+    lon: 2.2945,
+
+    image: ""
+
+  },
+
+
+  "NEXA-005": {
+
+    name: "Statue of Liberty, New York",
+
+    address:
+    "Liberty Island, New York, USA",
+
+    fact:
+    "Statue of Liberty अमेरिका की सबसे प्रसिद्ध symbols में से एक है और 1886 में समर्पित की गई थी।",
+
+    lat: 40.6892,
+
+    lon: -74.0445,
+
+    image: ""
+
   }
 
 };
@@ -118,7 +298,10 @@ const locations = {
 function openLocation() {
 
   const code =
-    document.getElementById("code").value.trim().toUpperCase();
+    document.getElementById("code")
+    .value
+    .trim()
+    .toUpperCase();
 
   const result =
     document.getElementById("result");
@@ -132,7 +315,7 @@ function openLocation() {
     result.style.display = "block";
 
     result.innerHTML =
-      "⚠️ पहले Location Code डालें।";
+      '<div class="error">⚠️ पहले NEXA Code डालें।</div>';
 
     return;
   }
@@ -143,7 +326,10 @@ function openLocation() {
     result.style.display = "block";
 
     result.innerHTML =
-      "❌ यह NEXA Code मौजूद नहीं है।";
+      '<div class="error">' +
+      '❌ यह NEXA Code मौजूद नहीं है।<br><br>' +
+      'Code दोबारा check करें।' +
+      '</div>';
 
     return;
   }
@@ -152,9 +338,6 @@ function openLocation() {
   const mapsURL =
     "https://www.google.com/maps/search/?api=1&query=" +
     location.lat + "," + location.lon;
-
-
-  result.style.display = "block";
 
 
   let photo = "";
@@ -171,16 +354,41 @@ function openLocation() {
   }
 
 
+  result.style.display = "block";
+
+
   result.innerHTML =
+
     photo +
-    "<h2>📍 " +
+
+    '<div class="info">' +
+
+    '<div class="code">' +
+    code +
+    '</div>' +
+
+    '<h2>📍 ' +
     location.name +
-    "</h2>" +
-    '<button onclick="window.open(\'' +
+    '</h2>' +
+
+    '<div class="address">' +
+    '📌 <b>Address:</b><br>' +
+    location.address +
+    '</div>' +
+
+    '<div class="fact">' +
+    '🧠 <b>Interesting Fact</b><br><br>' +
+    location.fact +
+    '</div>' +
+
+    '<button class="maps-btn" ' +
+    'onclick="window.open(\'' +
     mapsURL +
-    "', '_blank')\">" +
-    "🗺️ Open in Google Maps" +
-    "</button>";
+    '\', \'_blank\')">' +
+    '🗺️ Open in Google Maps' +
+    '</button>' +
+
+    '</div>';
 
 }
 
