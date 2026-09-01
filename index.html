@@ -3,259 +3,188 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>NEXA Location</title>
 
 <style>
-* {
-    box-sizing: border-box;
-}
-
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f1f3f4;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f1f3f4;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 .box {
-    width: 100%;
-    max-width: 420px;
-    background: white;
-    padding: 25px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 420px;
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
 }
 
 h1 {
-    margin: 0 0 10px;
-}
-
-p {
-    color: #666;
+  margin-bottom: 10px;
 }
 
 input {
-    width: 100%;
-    padding: 15px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 18px;
-    text-align: center;
-    text-transform: uppercase;
+  width: 100%;
+  padding: 15px;
+  margin: 12px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 18px;
+  text-align: center;
 }
 
 button {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 10px;
-    background: #1a73e8;
-    color: white;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-button:active {
-    transform: scale(0.98);
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  background: #1a73e8;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
 }
 
 #result {
-    margin-top: 20px;
-    padding: 15px;
-    background: #f5f5f5;
-    border-radius: 10px;
-    display: none;
+  margin-top: 20px;
+  display: none;
 }
 
-.code-list {
-    margin-top: 20px;
-    text-align: left;
-    font-size: 14px;
-}
-
-.code-list div {
-    padding: 7px 0;
+.photo {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 15px;
 }
 </style>
-
 </head>
 
 <body>
 
 <div class="box">
 
-    <h1>📍 NEXA Location</h1>
+  <h1>📍 NEXA Location</h1>
 
-    <p>अपना Location Code डालें</p>
+  <p>अपना Location Code डालें</p>
 
-    <input
-        id="code"
-        type="text"
-        placeholder="NEXA-001"
-        autocomplete="off"
-    >
+  <input
+    id="code"
+    type="text"
+    placeholder="NEXA-001"
+    autocomplete="off"
+  >
 
-    <button onclick="openLocation()">
-        🗺️ Open Location
-    </button>
+  <button onclick="openLocation()">
+    🗺️ Open Location
+  </button>
 
-    <div id="result"></div>
-
-    <div class="code-list">
-        <b>Demo Codes:</b>
-
-        <div>📍 NEXA-001 → Taj Mahal, Agra</div>
-        <div>📍 NEXA-002 → India Gate, New Delhi</div>
-        <div>📍 NEXA-003 → Gateway of India, Mumbai</div>
-    </div>
+  <div id="result"></div>
 
 </div>
 
-
 <script>
 
+const locations = {
 
+  "NEXA-001": {
+    name: "Taj Mahal, Agra",
+    lat: 27.1751,
+    lon: 78.0421,
+    image: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Taj-Mahal_CC0.jpg"
+  },
 
-    
-        
-        
-        
+  "NEXA-002": {
+    name: "India Gate, New Delhi",
+    lat: 28.6129,
+    lon: 77.2295
+  },
 
-
-    "NEXA-002": {
-        name: "India Gate, New Delhi",
-        lat: 28.6129,
-        lon: 77.2295
-    },
-
-    "NEXA-003": {
-        name: "Gateway of India, Mumbai",
-        lat: 18.9220,
-        lon: 72.8347
-    }
+  "NEXA-003": {
+    name: "Gateway of India, Mumbai",
+    lat: 18.9220,
+    lon: 72.8347
+  }
 
 };
 
 
 function openLocation() {
 
-    const input =
-        document.getElementById("code");
+  const code =
+    document.getElementById("code").value.trim().toUpperCase();
 
-    const result =
-        document.getElementById("result");
+  const result =
+    document.getElementById("result");
 
-    const code =
-        input.value.trim().toUpperCase();
-
-
-    if (!code) {
-
-        result.style.display = "block";
-
-        result.innerHTML =
-            "⚠️ पहले Location Code डालें।";
-
-        return;
-    }
+  const location =
+    locations[code];
 
 
-    const location =
-        locations[code];
-
-
-    if (!location) {
-
-        result.style.display = "block";
-
-        result.innerHTML =
-            "❌ यह NEXA Code मौजूद नहीं है।";
-
-        return;
-    }
-
-
-    const mapsURL =
-        "https://www.google.com/maps/search/?api=1" +
-        "&query=" +
-        encodeURIComponent(
-            location.lat + "," + location.lon
-        );
-
+  if (!code) {
 
     result.style.display = "block";
 
+    result.innerHTML =
+      "⚠️ पहले Location Code डालें।";
+
+    return;
+  }
+
+
+  if (!location) {
+
     result.style.display = "block";
 
-result.innerHTML = `
-    <img
-        src="${location.image}"
-        alt="${location.name}"
-        style="width:100%; border-radius:12px; margin-bottom:15px;"
-    >
+    result.innerHTML =
+      "❌ यह NEXA Code मौजूद नहीं है।";
 
-    <h2>📍 ${location.name}</h2>
-
-    <button onclick="window.open('${mapsURL}', '_blank')">
-        🗺️ Open in Google Maps
-    </button>
-`;
-        
-        
-        
-        
+    return;
+  }
 
 
-    /*
-       Google Maps खोलें
-    */
-
-    const newWindow =
-        window.open(mapsURL, "_blank");
+  const mapsURL =
+    "https://www.google.com/maps/search/?api=1&query=" +
+    location.lat + "," + location.lon;
 
 
-    /*
-       अगर browser popup रोक दे,
-       तो उसी page पर Google Maps खोलें
-    */
+  result.style.display = "block";
 
-    if (!newWindow) {
 
-        window.location.href = mapsURL;
+  let photo = "";
 
-    }
+  if (location.image) {
+
+    photo =
+      '<img class="photo" src="' +
+      location.image +
+      '" alt="' +
+      location.name +
+      '">';
+
+  }
+
+
+  result.innerHTML =
+    photo +
+    "<h2>📍 " +
+    location.name +
+    "</h2>" +
+    '<button onclick="window.open(\'' +
+    mapsURL +
+    "', '_blank')\">" +
+    "🗺️ Open in Google Maps" +
+    "</button>";
 
 }
 
-
-/*
-   Enter दबाने पर भी location खुले
-*/
-
-document
-.getElementById("code")
-.addEventListener(
-    "keydown",
-    function(event) {
-
-        if (event.key === "Enter") {
-
-            openLocation();
-
-        }
-
-    }
-);
-
 </script>
-<script src="locations.js"></script>
+
 </body>
 </html>
