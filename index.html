@@ -193,11 +193,25 @@ function openLocation() {
 
     result.style.display = "block";
 
-    result.innerHTML =
-        "📍 <b>" +
-        location.name +
-        "</b><br><br>" +
-        "Google Maps खोला जा रहा है...";
+    result.style.display = "block";
+
+result.innerHTML = `
+    <img
+        src="${location.image}"
+        alt="${location.name}"
+        style="width:100%; border-radius:12px; margin-bottom:15px;"
+    >
+
+    <h2>📍 ${location.name}</h2>
+
+    <button onclick="window.open('${mapsURL}', '_blank')">
+        🗺️ Open in Google Maps
+    </button>
+`;
+        
+        
+        
+        
 
 
     /*
