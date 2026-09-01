@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NEXA Location</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f3f4;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    width: 90%;
+    max-width: 400px;
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 17px;
+    text-align: center;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #1a73e8;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#result {
+    margin-top: 20px;
+    padding: 12px;
+    background: #f5f5f5;
+    border-radius: 8px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>📍 NEXA Location</h1>
+
+<p>अपना Location Code डालें</p>
+
+<input
+    id="code"
+    type="text"
+    placeholder="NEXA-001"
+>
+
+<button onclick="openLocation()">
+    🗺️ Open Location
+</button>
+
+<div id="result"></div>
+
+</div>
+
+
+<script>
+
+const locations = {
+
+    "NEXA-001": {
+        name: "Taj Mahal, Agra",
+        lat: 27.1751,
+        lon: 78.0421
+    },
+
+    "NEXA-002": {
+        name: "India Gate, New Delhi",
+        lat: 28.6129,
+        lon: 77.2295
+    },
+
+    "NEXA
