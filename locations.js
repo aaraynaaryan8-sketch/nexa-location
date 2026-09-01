@@ -3,7 +3,7 @@ const locations = {
     name: "Taj Mahal, Agra",
     lat: 27.1751,
     lon: 78.0421
-  },
+  },image: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Taj-Mahal_CC0.jpg"
 
   "NEXA-002": {
     name: "India Gate, New Delhi",
