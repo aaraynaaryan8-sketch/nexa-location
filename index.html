@@ -7,419 +7,189 @@
 <title>NEXA 🌍 | AtoNexa</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-body{
-  font-family:Arial, sans-serif;
-  background:#05070d;
-  color:#fff;
-  min-height:100vh;
+body {
+  font-family: Arial, sans-serif;
+  background: #05070d;
+  color: #ffffff;
+  min-height: 100vh;
 }
 
-.container{
-  width:92%;
-  max-width:700px;
-  margin:auto;
+.container {
+  width: 92%;
+  max-width: 700px;
+  margin: auto;
 }
 
-header{
-  text-align:center;
-  padding:55px 10px 30px;
+header {
+  text-align: center;
+  padding: 55px 10px 30px;
 }
 
-.logo{
-  font-size:48px;
-  font-weight:900;
-  letter-spacing:2px;
+.logo {
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: 2px;
 }
 
-.brand{
-  font-size:18px;
-  margin-top:8px;
-  opacity:.8;
+.brand {
+  font-size: 18px;
+  margin-top: 8px;
+  opacity: 0.8;
 }
 
-.tagline{
-  margin-top:18px;
-  font-size:16px;
-  line-height:1.5;
-  color:#ddd;
+.tagline {
+  margin-top: 18px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #dddddd;
 }
 
-.old-line{
-  margin-top:20px;
-  font-size:14px;
-  color:#aaa;
-  font-style:italic;
+.old-line {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #aaaaaa;
+  font-style: italic;
+  line-height: 1.5;
 }
 
-.box{
-  background:#0d111c;
-  border:1px solid #252c3d;
-  border-radius:20px;
-  padding:25px;
-  margin-top:25px;
-  box-shadow:0 10px 35px rgba(0,0,0,.35);
+.box {
+  background: #0d111c;
+  border: 1px solid #252c3d;
+  border-radius: 20px;
+  padding: 25px;
+  margin-top: 25px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.35);
 }
 
-.box h2{
-  font-size:22px;
-  margin-bottom:8px;
+.box h2 {
+  font-size: 22px;
+  margin-bottom: 8px;
 }
 
-.box p{
-  color:#aaa;
-  margin-bottom:18px;
+.box p {
+  color: #aaaaaa;
+  margin-bottom: 18px;
+  line-height: 1.5;
 }
 
-input{
-  width:100%;
-  padding:16px;
-  border-radius:12px;
-  border:1px solid #343c50;
-  background:#070a12;
-  color:#fff;
-  font-size:18px;
-  text-align:center;
-  outline:none;
-  text-transform:uppercase;
+input {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #343c50;
+  background: #070a12;
+  color: #ffffff;
+  font-size: 18px;
+  text-align: center;
+  outline: none;
+  text-transform: uppercase;
 }
 
-button{
-  width:100%;
-  margin-top:14px;
-  padding:16px;
-  border:none;
-  border-radius:12px;
-  background:#fff;
-  color:#000;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
+input::placeholder {
+  color: #777777;
+  text-transform: none;
 }
 
-button:active{
-  transform:scale(.98);
+input:focus {
+  border-color: #ffffff;
 }
 
-.error{
-  display:none;
-  text-align:center;
-  color:#ff6b6b;
-  margin-top:18px;
+button {
+  width: 100%;
+  margin-top: 14px;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #000000;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.location{
-  display:none;
-  margin-top:25px;
+button:active {
+  transform: scale(0.98);
 }
 
-.location img{
-  width:100%;
-  border-radius:16px;
-  display:block;
-  max-height:360px;
-  object-fit:cover;
+.error {
+  display: none;
+  text-align: center;
+  color: #ff6b6b;
+  margin-top: 18px;
+  line-height: 1.5;
 }
 
-.location h2{
-  margin-top:20px;
-  font-size:27px;
+.location {
+  display: none;
+  margin-top: 25px;
 }
 
-.info{
-  margin-top:12px;
-  color:#ccc;
-  line-height:1.7;
+.location img {
+  width: 100%;
+  border-radius: 16px;
+  display: block;
+  max-height: 360px;
+  object-fit: cover;
 }
 
-.facts-title{
-  margin-top:25px;
-  margin-bottom:12px;
-  font-size:20px;
+.code-badge {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  background: #171d2b;
+  border: 1px solid #30384c;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
-ol{
-  padding-left:22px;
+.location h2 {
+  margin-top: 20px;
+  font-size: 27px;
+  line-height: 1.3;
 }
 
-li{
-  margin-bottom:12px;
-  line-height:1.5;
-  color:#ddd;
+.info {
+  margin-top: 12px;
+  color: #cccccc;
+  line-height: 1.7;
 }
 
-.maps{
-  display:block;
-  text-align:center;
-  text-decoration:none;
-  background:#fff;
-  color:#000;
-  padding:15px;
-  border-radius:12px;
-  margin-top:22px;
-  font-weight:bold;
+.facts-title {
+  margin-top: 25px;
+  margin-bottom: 12px;
+  font-size: 20px;
 }
 
-.code-badge{
-  display:inline-block;
-  margin-top:15px;
-  padding:8px 14px;
-  border-radius:20px;
-  background:#171d2b;
-  border:1px solid #30384c;
-  font-weight:bold;
-  letter-spacing:1px;
+ol {
+  padding-left: 22px;
 }
 
-footer{
-  text-align:center;
-  padding:35px 10px;
-  color:#666;
-  font-size:13px;
+li {
+  margin-bottom: 12px;
+  line-height: 1.5;
+  color: #dddddd;
 }
 
-.credit{
-  margin-top:10px;
-  font-size:11px;
-  color:#555;
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-<header>
-  <div class="logo">NEXA 🌍</div>
-  <div class="brand">AtoNexa</div>
-
-  <div class="tagline">
-    दुनिया को जानो, हर जानकारी को Verify करो।
-  </div>
-
-  <div class="old-line">
-    “कुछ जगहें सिर्फ देखने के लिए नहीं… खोजने के लिए होती हैं।”
-  </div>
-</header>
-
-<div class="box">
-
-  <h2>🔐 Unlock a Location</h2>
-
-  <p>
-    अपना NEXA Code डालकर location unlock करें
-  </p>
-
-  <input
-    id="codeInput"
-    type="text"
-    placeholder="NEXA583"
-    maxlength="7"
-    autocomplete="off"
-  >
-
-  <button onclick="unlockLocation()">
-    🔓 UNLOCK LOCATION
-  </button>
-
-  <div class="error" id="error">
-    ❌ यह NEXA Code मौजूद नहीं है।
-  </div>
-
-  <div class="location" id="locationResult">
-
-    <img id="locationImage" src="" alt="Location">
-
-    <div class="code-badge" id="locationCode"></div>
-
-    <h2 id="locationName"></h2>
-
-    <p class="info" id="locationInfo"></p>
-
-    <h3 class="facts-title">
-      🔟 10 खास बातें
-    </h3>
-
-    <ol id="factsList"></ol>
-
-    <a
-      id="mapsButton"
-      class="maps"
-      href="#"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      🗺️ GOOGLE MAPS पर देखें
-    </a>
-
-  </div>
-
-</div>
-
-<footer>
-  NEXA © 2026
-  <div class="credit">
-    Powered by AtoNexa
-  </div>
-</footer>
-
-</div>
-
-<script>
-
-const locations = {
-
-  "NEXA583": {
-
-    name: "Bengaluru, Karnataka, India",
-
-    image:
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bengaluru_Skyline_from_Tata_Promont.jpg/1280px-Bengaluru_Skyline_from_Tata_Promont.jpg",
-
-    info:
-    "Bengaluru भारत का एक प्रमुख technology और innovation hub है। यह अपने technology sector, gardens, historic landmarks, art scene और diverse culture के लिए जाना जाता है। इसे अक्सर Garden City भी कहा जाता है।",
-
-    facts: [
-
-      "Bengaluru को भारत की technology capital के रूप में जाना जाता है।",
-
-      "इसे अक्सर Garden City of India कहा जाता है।",
-
-      "Lalbagh Botanical Garden लगभग 240 acres में फैला हुआ है।",
-
-      "Lalbagh की शुरुआत लगभग 1760 में Hyder Ali ने करवाई थी और बाद में Tipu Sultan ने इसका विकास आगे बढ़ाया।",
-
-      "Cubbon Park लगभग 300 acres में फैला हुआ Bengaluru का प्रसिद्ध green space है।",
-
-      "Cubbon Park की स्थापना 1870 में हुई थी।",
-
-      "Vidhana Soudha Karnataka की legislature का एक प्रमुख landmark है।",
-
-      "Bengaluru Palace एक 19वीं सदी का royal residence है, जिसकी architecture Windsor Castle से inspired है।",
-
-      "Tipu Sultan’s Summer Palace Bengaluru की महत्वपूर्ण late-18th-century historical buildings में से एक है।",
-
-      "KR Market Bengaluru के प्रमुख wholesale markets में से एक है।"
-
-    ],
-
-    maps:
-    "https://www.google.com/maps/search/?api=1&query=Bengaluru%2C%20Karnataka%2C%20India"
-  }
-
-};
-
-
-function unlockLocation(){
-
-  const input =
-    document.getElementById("codeInput");
-
-  const code =
-    input.value.trim().toUpperCase();
-
-  const error =
-    document.getElementById("error");
-
-  const result =
-    document.getElementById("locationResult");
-
-  if(!code){
-
-    error.innerText =
-      "⚠️ पहले NEXA Code डालें।";
-
-    error.style.display = "block";
-    result.style.display = "none";
-
-    return;
-  }
-
-  const location = locations[code];
-
-  if(!location){
-
-    error.innerText =
-      "❌ यह NEXA Code मौजूद नहीं है।";
-
-    error.style.display = "block";
-    result.style.display = "none";
-
-    return;
-  }
-
-  error.style.display = "none";
-  result.style.display = "block";
-
-  document.getElementById("locationImage").src =
-    location.image;
-
-  document.getElementById("locationCode").innerText =
-    code;
-
-  document.getElementById("locationName").innerText =
-    location.name;
-
-  document.getElementById("locationInfo").innerText =
-    location.info;
-
-  const factsList =
-    document.getElementById("factsList");
-
-  factsList.innerHTML = "";
-
-  location.facts.forEach(function(fact){
-
-    const li = document.createElement("li");
-
-    li.innerText = fact;
-
-    factsList.appendChild(li);
-
-  });
-
-  document.getElementById("mapsButton").href =
-    location.maps;
-
-  setTimeout(function(){
-
-    result.scrollIntoView({
-      behavior:"smooth",
-      block:"start"
-    });
-
-  },100);
-
+.maps {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  background: #ffffff;
+  color: #000000;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 22px;
+  font-weight: bold;
 }
 
-
-document
-.getElementById("codeInput")
-.addEventListener("keydown", function(event){
-
-  if(event.key === "Enter"){
-    unlockLocation();
-  }
-
-});
-
-
-document
-.getElementById("codeInput")
-.addEventListener("input", function(){
-
-  this.value =
-    this.value.toUpperCase();
-
-});
-
-</script>
-
-</body>
-</html>
+footer {
+  text-align: center;
+  padding: 35px 10px;
+  color: #666
