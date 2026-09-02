@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Ataoullah | NEXA</title>
 
   <style>
@@ -17,14 +16,13 @@
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #050505, #111827);
       color: white;
-      display: flex;
-      justify-content: center;
       padding: 25px 15px;
     }
 
     .container {
       width: 100%;
       max-width: 600px;
+      margin: auto;
     }
 
     h1 {
@@ -44,7 +42,6 @@
       border-radius: 18px;
       padding: 20px;
       margin-bottom: 20px;
-      backdrop-filter: blur(10px);
     }
 
     h2 {
@@ -69,12 +66,11 @@
       padding: 14px;
       border: none;
       border-radius: 10px;
-      background: #ffffff;
-      color: #000;
+      background: white;
+      color: black;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
-      margin-top: 5px;
     }
 
     button:active {
@@ -90,12 +86,12 @@
       display: none;
     }
 
-    .error {
-      color: #ff6b6b;
-    }
-
     .success {
       color: #7CFF9B;
+    }
+
+    .error {
+      color: #ff6b6b;
     }
 
     .message-view {
@@ -105,396 +101,329 @@
       padding: 20px;
       border-radius: 12px;
       margin-top: 15px;
-    }
-
-    .small {
-      color: #999;
-      font-size: 13px;
-      margin-top: 10px;
+      white-space: pre-wrap;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <h1>🌐 Ataoullah</h1>
-    <div class="subtitle">NEXA • One-Time Message</div>
-
-
-    <!-- ========================= -->
-    <!-- ONE TIME MESSAGE -->
-    <!-- ========================= -->
-
-    <div class="box" id="oneTimeBox">
-
-      <h2>🔐 One-Time Message</h2>
-
-      <p>
-        ऐसा message बनाओ जिसे link खोलने के बाद
-        एक बार देखने पर दोबारा नहीं देखा जा सके।
-      </p>
-
-      <textarea
-        id="messageInput"
-        rows="5"
-        placeholder="अपना secret message यहाँ लिखें..."
-      ></textarea>
-
-      <button onclick="createMessage()">
-        🔗 One-Time Link बनाओ
-      </button>
-
-      <div id="linkResult" class="result"></div>
-
-    </div>
+  <h1>🌐 Ataoullah</h1>
+  <div class="subtitle">NEXA • One-Time Message</div>
 
 
-    <!-- ========================= -->
-    <!-- VIEW ONE TIME MESSAGE -->
-    <!-- ========================= -->
+  <!-- ONE TIME MESSAGE -->
 
-    <div class="box" id="viewBox" style="display:none;">
+  <div class="box" id="oneTimeBox">
 
-      <h2>📩 One-Time Message</h2>
+    <h2>🔐 One-Time Message</h2>
 
-      <div id="messageView" class="message-view">
-        Message loading...
-      </div>
+    <p>
+      ऐसा message बनाओ जिसे link खोलने के बाद
+      एक बार देखने पर दोबारा नहीं देखा जा सके।
+    </p>
 
-    </div>
+    <textarea
+      id="messageInput"
+      rows="5"
+      placeholder="अपना message यहाँ लिखें..."
+    ></textarea>
+
+    <button onclick="createMessage()">
+      🔗 One-Time Link बनाओ
+    </button>
+
+    <div id="linkResult" class="result"></div>
+
+  </div>
 
 
-    <!-- ========================= -->
-    <!-- NEXA LOCATION -->
-    <!-- ========================= -->
+  <!-- VIEW MESSAGE -->
 
-    <div class="box" id="locationBox">
+  <div class="box" id="viewBox" style="display:none;">
 
-      <h2>🌍 NEXA Location</h2>
+    <h2>📩 One-Time Message</h2>
 
-      <p>
-        अपना NEXA access code डालें।
-      </p>
-
-      <input
-        type="text"
-        id="nexaCode"
-        placeholder="Enter NEXA Code"
-      >
-
-      <button onclick="unlockNexa()">
-        🔓 Unlock NEXA
-      </button>
-
-      <div id="nexaResult" class="result"></div>
-
+    <div id="messageView" class="message-view">
+      Message loading...
     </div>
 
   </div>
 
 
-  <!-- SUPABASE -->
+  <!-- NEXA -->
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <div class="box" id="locationBox">
 
-  <script>
+    <h2>🌍 NEXA Location</h2>
 
-    /* =====================================
-       SUPABASE SETTINGS
-       ===================================== */
+    <p>अपना NEXA access code डालें।</p>
 
-    const SUPABASE_URL =
-      "https://crtoxfnqfyhorcxypxem.supabase.co";
+    <input
+      type="text"
+      id="nexaCode"
+      placeholder="Enter NEXA Code"
+    >
 
-    /*
-      भाई 👇 यहाँ अपनी Supabase
-      Publishable Key डालना।
-    */
+    <button onclick="unlockNexa()">
+      🔓 Unlock NEXA
+    </button>
 
-    const SUPABASE_KEY =
-      sb_publishable_8q9uqlafK4f6BctsrRLnjg_0PG3K5lu
+    <div id="nexaResult" class="result"></div>
+
+  </div>
+
+</div>
 
 
-    const db = supabase.createClient(
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+  /* ==================================
+     SUPABASE
+  ================================== */
+
+  const SUPABASE_URL =
+    "https://crtoxfnqfyhorcxypxem.supabase.co";
+
+  const SUPABASE_KEY =
+    sb_publishable_8q9uqlafK4f6BctsrRLnjg_0PG3K5lu
+
+
+  /* IMPORTANT:
+     db की जगह supabaseClient
+  */
+
+  const supabaseClient =
+    window.supabase.createClient(
       SUPABASE_URL,
       SUPABASE_KEY
     );
 
 
-    /* =====================================
-       ONE TIME MESSAGE CREATE
-       ===================================== */
+  /* ==================================
+     CREATE ONE-TIME MESSAGE
+  ================================== */
 
-    async function createMessage() {
+  async function createMessage() {
 
-      const input =
-        document.getElementById("messageInput");
+    const messageInput =
+      document.getElementById("messageInput");
 
-      const result =
-        document.getElementById("linkResult");
+    const linkResult =
+      document.getElementById("linkResult");
 
-      const message =
-        input.value.trim();
-
-
-      result.style.display = "block";
-      result.className = "result";
+    const message =
+      messageInput.value.trim();
 
 
-      if (!message) {
-
-        result.innerHTML =
-          '<span class="error">❌ पहले message लिखो।</span>';
-
-        return;
-      }
+    linkResult.style.display = "block";
+    linkResult.className = "result";
 
 
-      result.innerHTML =
-        "⏳ Link बनाया जा रहा है...";
+    if (!message) {
+
+      linkResult.innerHTML =
+        '<span class="error">❌ पहले message लिखो।</span>';
+
+      return;
+    }
 
 
-      try {
-
-        /*
-          Random token
-        */
-
-        const randomBytes =
-          new Uint8Array(24);
-
-        crypto.getRandomValues(randomBytes);
+    linkResult.innerHTML =
+      "⏳ Link बनाया जा रहा है...";
 
 
-        const token =
-          Array.from(randomBytes)
-            .map(
-              b => b.toString(16).padStart(2, "0")
-            )
-            .join("");
+    try {
+
+      /* Random token */
+
+      const randomBytes =
+        new Uint8Array(24);
+
+      crypto.getRandomValues(randomBytes);
 
 
-        /*
-          IMPORTANT:
-          तुम्हारी असली table का नाम
-          Messages One Table है।
-        */
-
-        const { data, error } =
-          await db
-            .from("Messages One Table")
-            .insert([
-              {
-                Message: message,
-                Token: token,
-                Viewed: false
-              }
-            ])
-            .select();
+      const token =
+        Array.from(randomBytes)
+          .map(
+            b => b.toString(16).padStart(2, "0")
+          )
+          .join("");
 
 
-        if (error) {
+      /* INSERT */
 
-          console.error(error);
-
-          result.innerHTML =
-            '<span class="error">' +
-            "❌ Supabase Error:<br>" +
-            error.message +
-            "</span>";
-
-          return;
-        }
-
-
-        /*
-          Link बनाना
-        */
-
-        const link =
-          window.location.origin +
-          window.location.pathname +
-          "?token=" +
-          token;
+      const { data, error } =
+        await supabaseClient
+          .from("Messages One Table")
+          .insert([
+            {
+              Message: message,
+              Token: token,
+              Viewed: false
+            }
+          ])
+          .select();
 
 
-        result.innerHTML = `
-          <div class="success">
-            ✅ One-Time Link तैयार है!
-          </div>
+      if (error) {
 
-          <br>
+        console.error(
+          "Supabase INSERT Error:",
+          error
+        );
 
-          <input
-            id="generatedLink"
-            value="${link}"
-            readonly
-          >
-
-          <button onclick="copyLink()">
-            📋 Link Copy करो
-          </button>
-        `;
-
-
-        input.value = "";
-
-      }
-
-      catch (error) {
-
-        console.error(error);
-
-        result.innerHTML =
+        linkResult.innerHTML =
           '<span class="error">' +
           "❌ Error: " +
           error.message +
           "</span>";
-      }
 
-    }
-
-
-    /* =====================================
-       COPY LINK
-       ===================================== */
-
-    function copyLink() {
-
-      const link =
-        document.getElementById("generatedLink");
-
-      link.select();
-
-      navigator.clipboard
-        .writeText(link.value)
-        .then(() => {
-
-          alert("✅ Link Copy हो गया!");
-
-        })
-        .catch(() => {
-
-          alert("Link को manually copy कर लो।");
-
-        });
-
-    }
-
-
-    /* =====================================
-       OPEN ONE TIME MESSAGE
-       ===================================== */
-
-    async function openOneTimeMessage() {
-
-      const params =
-        new URLSearchParams(
-          window.location.search
-        );
-
-      const token =
-        params.get("token");
-
-
-      if (!token) {
         return;
       }
 
 
+      /* LINK */
+
+      const link =
+        window.location.origin +
+        window.location.pathname +
+        "?token=" +
+        token;
+
+
+      linkResult.innerHTML = `
+        <div class="success">
+          ✅ One-Time Link तैयार है!
+        </div>
+
+        <br>
+
+        <input
+          id="generatedLink"
+          value="${link}"
+          readonly
+        >
+
+        <button onclick="copyLink()">
+          📋 Link Copy करो
+        </button>
+      `;
+
+
+      messageInput.value = "";
+
+    }
+
+    catch (error) {
+
+      console.error(error);
+
+      linkResult.innerHTML =
+        '<span class="error">' +
+        "❌ Error: " +
+        error.message +
+        "</span>";
+
+    }
+
+  }
+
+
+  /* ==================================
+     COPY LINK
+  ================================== */
+
+  function copyLink() {
+
+    const link =
+      document.getElementById("generatedLink");
+
+    if (!link) return;
+
+    link.select();
+
+    navigator.clipboard
+      .writeText(link.value)
+      .then(() => {
+
+        alert("✅ Link Copy हो गया!");
+
+      })
+      .catch(() => {
+
+        alert("Link को manually copy कर लो।");
+
+      });
+
+  }
+
+
+  /* ==================================
+     OPEN ONE-TIME MESSAGE
+  ================================== */
+
+  async function openOneTimeMessage() {
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+    const token =
+      params.get("token");
+
+
+    if (!token) {
+      return;
+    }
+
+
+    document.getElementById(
+      "oneTimeBox"
+    ).style.display = "none";
+
+
+    document.getElementById(
+      "locationBox"
+    ).style.display = "none";
+
+
+    document.getElementById(
+      "viewBox"
+    ).style.display = "block";
+
+
+    const messageView =
       document.getElementById(
-        "oneTimeBox"
-      ).style.display = "none";
+        "messageView"
+      );
 
 
-      document.getElementById(
-        "locationBox"
-      ).style.display = "none";
+    messageView.innerHTML =
+      "⏳ Message खुल रहा है...";
 
 
-      document.getElementById(
-        "viewBox"
-      ).style.display = "block";
+    try {
+
+      /* GET MESSAGE */
+
+      const { data, error } =
+        await supabaseClient
+          .from("Messages One Table")
+          .select("id, Message, Viewed")
+          .eq("Token", token)
+          .eq("Viewed", false)
+          .maybeSingle();
 
 
-      const messageView =
-        document.getElementById(
-          "messageView"
-        );
-
-
-      messageView.innerHTML =
-        "⏳ Message खुल रहा है...";
-
-
-      try {
-
-        const { data, error } =
-          await db
-            .from("Messages One Table")
-            .select("id,Message,Viewed")
-            .eq("Token", token)
-            .eq("Viewed", false)
-            .maybeSingle();
-
-
-        if (error) {
-
-          console.error(error);
-
-          messageView.innerHTML =
-            '<span class="error">' +
-            "❌ Error: " +
-            error.message +
-            "</span>";
-
-          return;
-        }
-
-
-        if (!data) {
-
-          messageView.innerHTML =
-            '<span class="error">' +
-            "❌ यह message पहले ही देखा जा चुका है या मौजूद नहीं है।" +
-            "</span>";
-
-          return;
-        }
-
-
-        /*
-          पहले message दिखाओ
-        */
-
-        messageView.innerText =
-          data.Message;
-
-
-        /*
-          फिर Viewed = true
-        */
-
-        const { error: updateError } =
-          await db
-            .from("Messages One Table")
-            .update({
-              Viewed: true
-            })
-            .eq("id", data.id);
-
-
-        if (updateError) {
-
-          console.error(updateError);
-
-        }
-
-      }
-
-      catch (error) {
+      if (error) {
 
         console.error(error);
 
@@ -504,74 +433,122 @@
           error.message +
           "</span>";
 
+        return;
       }
 
-    }
 
+      if (!data) {
 
-    /* =====================================
-       NEXA LOCATION
-       ===================================== */
-
-    function unlockNexa() {
-
-      const code =
-        document.getElementById(
-          "nexaCode"
-        ).value.trim();
-
-
-      const result =
-        document.getElementById(
-          "nexaResult"
-        );
-
-
-      result.style.display = "block";
-      result.className = "result";
-
-
-      /*
-        पुराना NEXA CODE
-      */
-
-      if (code === "NEXA583") {
-
-        result.innerHTML = `
-          <div class="success">
-            <h3>🌍 NEXA Unlocked</h3>
-
-            <p>
-              📍 Bengaluru, Karnataka
-            </p>
-
-            <p>
-              NEXA Location system active.
-            </p>
-          </div>
-        `;
-
-      }
-
-      else {
-
-        result.innerHTML =
+        messageView.innerHTML =
           '<span class="error">' +
-          "❌ गलत NEXA Code" +
+          "❌ यह message पहले ही देखा जा चुका है या मौजूद नहीं है।" +
           "</span>";
 
+        return;
+      }
+
+
+      /* SHOW MESSAGE */
+
+      messageView.innerText =
+        data.Message;
+
+
+      /* MARK VIEWED */
+
+      const { error: updateError } =
+        await supabaseClient
+          .from("Messages One Table")
+          .update({
+            Viewed: true
+          })
+          .eq("id", data.id);
+
+
+      if (updateError) {
+
+        console.error(
+          "Update Error:",
+          updateError
+        );
+
       }
 
     }
 
+    catch (error) {
 
-    /* =====================================
-       START
-       ===================================== */
+      console.error(error);
 
-    openOneTimeMessage();
+      messageView.innerHTML =
+        '<span class="error">' +
+        "❌ Error: " +
+        error.message +
+        "</span>";
 
-  </script>
+    }
+
+  }
+
+
+  /* ==================================
+     NEXA
+  ================================== */
+
+  function unlockNexa() {
+
+    const code =
+      document.getElementById(
+        "nexaCode"
+      ).value.trim();
+
+    const result =
+      document.getElementById(
+        "nexaResult"
+      );
+
+
+    result.style.display = "block";
+    result.className = "result";
+
+
+    if (code === "NEXA583") {
+
+      result.innerHTML = `
+        <div class="success">
+
+          <h3>🌍 NEXA Unlocked</h3>
+
+          <p>📍 Bengaluru, Karnataka</p>
+
+          <p>
+            NEXA Location system active.
+          </p>
+
+        </div>
+      `;
+
+    }
+
+    else {
+
+      result.innerHTML =
+        '<span class="error">' +
+        "❌ गलत NEXA Code" +
+        "</span>";
+
+    }
+
+  }
+
+
+  /* ==================================
+     START
+  ================================== */
+
+  openOneTimeMessage();
+
+</script>
 
 </body>
 </html>
