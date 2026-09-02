@@ -418,7 +418,7 @@ const locations = {
 ========================================
 OPEN LOCATION
 ========================================
-/+
+*/
 function openCodeLab() {
 
   const result = document.getElementById("result");
@@ -620,14 +620,22 @@ function clearNexaCode() {
 
 
 
-function runNexaCode() {
+function clearNexaCode() {
 
-  const code = document.getElementById("nexaCode").value;
+  document.getElementById("nexaHTML").value = "";
 
-  const output = document.getElementById("nexaOutput");
+  document.getElementById("nexaCSS").value = "";
 
-  output.srcdoc = code;
+  document.getElementById("nexaJS").value = "";
+
+  document.getElementById("nexaOutput").srcdoc = "";
+
 }
+
+</script>
+
+</body>
+</html>
 </script>
 
 </body>
