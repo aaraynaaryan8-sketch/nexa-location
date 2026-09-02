@@ -1,121 +1,159 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ataoullah | NEXA</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<title>NEXA 🌍</title>
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #050505, #111827);
-      color: white;
-      padding: 25px 15px;
-    }
+<style>
+*{
+  box-sizing:border-box;
+}
 
-    .container {
-      width: 100%;
-      max-width: 600px;
-      margin: auto;
-    }
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Arial,sans-serif;
+  background:#05070d;
+  color:white;
+  padding:20px 14px;
+}
 
-    h1 {
-      text-align: center;
-      margin-bottom: 5px;
-    }
+.container{
+  width:100%;
+  max-width:600px;
+  margin:auto;
+}
 
-    .subtitle {
-      text-align: center;
-      color: #aaa;
-      margin-bottom: 25px;
-    }
+/* NEXA HEADER */
+.header{
+  text-align:center;
+  padding:25px 10px 20px;
+}
 
-    .box {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 18px;
-      padding: 20px;
-      margin-bottom: 20px;
-    }
+.logo{
+  font-size:42px;
+  font-weight:bold;
+  letter-spacing:2px;
+}
 
-    h2 {
-      margin-top: 0;
-    }
+.tagline{
+  color:#aaa;
+  margin-top:8px;
+  font-size:14px;
+}
 
-    textarea,
-    input {
-      width: 100%;
-      padding: 14px;
-      border-radius: 10px;
-      border: 1px solid #555;
-      background: #111;
-      color: white;
-      font-size: 16px;
-      margin-bottom: 12px;
-      outline: none;
-    }
+.quote{
+  text-align:center;
+  color:#b8c0d0;
+  font-size:14px;
+  margin:5px 0 25px;
+  line-height:1.6;
+}
 
-    button {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 10px;
-      background: white;
-      color: black;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+/* BOX */
+.box{
+  background:#0d111c;
+  border:1px solid #293247;
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:20px;
+}
 
-    button:active {
-      transform: scale(0.98);
-    }
+h2{
+  margin-top:0;
+}
 
-    .result {
-      margin-top: 15px;
-      padding: 12px;
-      border-radius: 10px;
-      background: #050505;
-      word-break: break-all;
-      display: none;
-    }
+p{
+  color:#c4c9d4;
+  line-height:1.6;
+}
 
-    .success {
-      color: #7CFF9B;
-    }
+/* INPUT */
+textarea,
+input{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:1px solid #39445a;
+  background:#05070d;
+  color:white;
+  font-size:16px;
+  margin-bottom:12px;
+  outline:none;
+}
 
-    .error {
-      color: #ff6b6b;
-    }
+textarea{
+  resize:vertical;
+}
 
-    .message-view {
-      font-size: 20px;
-      line-height: 1.6;
-      background: #050505;
-      padding: 20px;
-      border-radius: 12px;
-      margin-top: 15px;
-      white-space: pre-wrap;
-    }
-  </style>
+/* BUTTON */
+button{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:10px;
+  background:white;
+  color:#05070d;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:active{
+  transform:scale(.98);
+}
+
+.result{
+  margin-top:15px;
+  padding:13px;
+  border-radius:10px;
+  background:#05070d;
+  word-break:break-word;
+  display:none;
+}
+
+.success{
+  color:#7CFF9B;
+}
+
+.error{
+  color:#ff6b6b;
+}
+
+.message-view{
+  font-size:20px;
+  line-height:1.6;
+  background:#05070d;
+  padding:20px;
+  border-radius:12px;
+  margin-top:15px;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+</style>
 </head>
 
 <body>
 
 <div class="container">
 
-  <h1>🌐 Ataoullah</h1>
-  <div class="subtitle">NEXA • One-Time Message</div>
+  <!-- NEXA BRANDING -->
+  <div class="header">
+    <div class="logo">🌍 NEXA</div>
+
+    <div class="tagline">
+      दुनिया को जानो, हर जानकारी को Verify करो।
+    </div>
+  </div>
+
+  <div class="quote">
+    “कुछ जगहें सिर्फ देखने के लिए नहीं… खोजने के लिए होती हैं।”
+  </div>
 
 
   <!-- ONE TIME MESSAGE -->
-
   <div class="box" id="oneTimeBox">
 
     <h2>🔐 One-Time Message</h2>
@@ -140,8 +178,7 @@
   </div>
 
 
-  <!-- VIEW MESSAGE -->
-
+  <!-- MESSAGE VIEW -->
   <div class="box" id="viewBox" style="display:none;">
 
     <h2>📩 One-Time Message</h2>
@@ -153,13 +190,14 @@
   </div>
 
 
-  <!-- NEXA -->
-
+  <!-- NEXA LOCATION -->
   <div class="box" id="locationBox">
 
     <h2>🌍 NEXA Location</h2>
 
-    <p>अपना NEXA access code डालें।</p>
+    <p>
+      अपना NEXA access code डालें।
+    </p>
 
     <input
       type="text"
@@ -179,374 +217,393 @@
 
 
 <!-- SUPABASE -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
-  /* ==================================
-     SUPABASE
-  ================================== */
+/* =========================
+   SUPABASE SETTINGS
+========================= */
 
-  const SUPABASE_URL =
-    "https://crtoxfnqfyhorcxypxem.supabase.co";
+const SUPABASE_URL =
+"https://crtoxfnqfyhorcxypxem.supabase.co";
 
-  const SUPABASE_KEY =
-    sb_publishable_8q9uqlafK4f6BctsrRLnjg_0PG3K5lu
+/*
+  यहाँ अपनी Supabase Publishable / anon key डालो।
+  Service Role / Secret key मत डालना।
+*/
 
-
-  /* IMPORTANT:
-     db की जगह supabaseClient
-  */
-
-  const supabaseClient =
-    window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    );
+const SUPABASE_KEY =
+"sb_publishable_8q9uqlafK4f6BctsrRLnjg_0PG3K5lu";
 
 
-  /* ==================================
-     CREATE ONE-TIME MESSAGE
-  ================================== */
+/*
+  IMPORTANT:
+  पुराने supabaseClient नाम की जगह
+  unique नाम रखा गया है ताकि
+  initialization error न आए।
+*/
 
-  async function createMessage() {
-
-    const messageInput =
-      document.getElementById("messageInput");
-
-    const linkResult =
-      document.getElementById("linkResult");
-
-    const message =
-      messageInput.value.trim();
+const nexasbClient =
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
 
-    linkResult.style.display = "block";
-    linkResult.className = "result";
+/* =========================
+   CREATE ONE-TIME MESSAGE
+========================= */
 
+async function createMessage(){
 
-    if (!message) {
+  const messageInput =
+    document.getElementById("messageInput");
 
-      linkResult.innerHTML =
-        '<span class="error">❌ पहले message लिखो।</span>';
+  const linkResult =
+    document.getElementById("linkResult");
 
-      return;
-    }
+  const message =
+    messageInput.value.trim();
 
+  linkResult.style.display = "block";
+  linkResult.className = "result";
+
+  if(!message){
 
     linkResult.innerHTML =
-      "⏳ Link बनाया जा रहा है...";
+      '<span class="error">❌ पहले message लिखो।</span>';
+
+    return;
+  }
+
+  linkResult.innerHTML =
+    "⏳ Link बनाया जा रहा है...";
 
 
-    try {
+  try{
 
-      /* Random token */
+    /* Random secure token */
 
-      const randomBytes =
-        new Uint8Array(24);
+    const randomBytes =
+      new Uint8Array(24);
 
-      crypto.getRandomValues(randomBytes);
+    crypto.getRandomValues(randomBytes);
 
-
-      const token =
-        Array.from(randomBytes)
-          .map(
-            b => b.toString(16).padStart(2, "0")
-          )
-          .join("");
-
-
-      /* INSERT */
-
-      const { data, error } =
-        await supabaseClient
-          .from("Messages One Table")
-          .insert([
-            {
-              Message: message,
-              Token: token,
-              Viewed: false
-            }
-          ])
-          .select();
+    const token =
+      Array.from(randomBytes)
+      .map(function(b){
+        return b.toString(16).padStart(2,"0");
+      })
+      .join("");
 
 
-      if (error) {
+    /* Supabase INSERT */
 
-        console.error(
-          "Supabase INSERT Error:",
-          error
-        );
-
-        linkResult.innerHTML =
-          '<span class="error">' +
-          "❌ Error: " +
-          error.message +
-          "</span>";
-
-        return;
-      }
+    const response =
+      await nexasbClient
+      .from("Messages One Table")
+      .insert([
+        {
+          Message: message,
+          Token: token,
+          Viewed: false
+        }
+      ])
+      .select();
 
 
-      /* LINK */
-
-      const link =
-        window.location.origin +
-        window.location.pathname +
-        "?token=" +
-        token;
+    const data = response.data;
+    const error = response.error;
 
 
-      linkResult.innerHTML = `
-        <div class="success">
-          ✅ One-Time Link तैयार है!
-        </div>
+    if(error){
 
-        <br>
-
-        <input
-          id="generatedLink"
-          value="${link}"
-          readonly
-        >
-
-        <button onclick="copyLink()">
-          📋 Link Copy करो
-        </button>
-      `;
-
-
-      messageInput.value = "";
-
-    }
-
-    catch (error) {
-
-      console.error(error);
+      console.error(
+        "Supabase INSERT Error:",
+        error
+      );
 
       linkResult.innerHTML =
-        '<span class="error">' +
-        "❌ Error: " +
+        '<span class="error">❌ Error: ' +
         error.message +
         "</span>";
 
-    }
-
-  }
-
-
-  /* ==================================
-     COPY LINK
-  ================================== */
-
-  function copyLink() {
-
-    const link =
-      document.getElementById("generatedLink");
-
-    if (!link) return;
-
-    link.select();
-
-    navigator.clipboard
-      .writeText(link.value)
-      .then(() => {
-
-        alert("✅ Link Copy हो गया!");
-
-      })
-      .catch(() => {
-
-        alert("Link को manually copy कर लो।");
-
-      });
-
-  }
-
-
-  /* ==================================
-     OPEN ONE-TIME MESSAGE
-  ================================== */
-
-  async function openOneTimeMessage() {
-
-    const params =
-      new URLSearchParams(
-        window.location.search
-      );
-
-    const token =
-      params.get("token");
-
-
-    if (!token) {
       return;
     }
 
 
+    /* Create URL */
+
+    const link =
+      window.location.origin +
+      window.location.pathname +
+      "?token=" +
+      encodeURIComponent(token);
+
+
+    linkResult.innerHTML = `
+      <div class="success">
+        ✅ One-Time Link तैयार है!
+      </div>
+
+      <br>
+
+      <input
+        id="generatedLink"
+        value="${link}"
+        readonly
+      >
+
+      <button onclick="copyLink()">
+        📋 Link Copy करो
+      </button>
+    `;
+
+
+    messageInput.value = "";
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    linkResult.innerHTML =
+      '<span class="error">❌ Error: ' +
+      error.message +
+      "</span>";
+  }
+}
+
+
+/* =========================
+   COPY LINK
+========================= */
+
+function copyLink(){
+
+  const link =
+    document.getElementById("generatedLink");
+
+  if(!link) return;
+
+  link.select();
+  link.setSelectionRange(0,99999);
+
+
+  if(
+    navigator.clipboard &&
+    navigator.clipboard.writeText
+  ){
+
+    navigator.clipboard
+    .writeText(link.value)
+    .then(function(){
+
+      alert("✅ Link Copy हो गया!");
+
+    })
+    .catch(function(){
+
+      alert("Link को manually copy कर लो।");
+
+    });
+
+  }
+  else{
+
+    document.execCommand("copy");
+
+    alert("✅ Link Copy हो गया!");
+
+  }
+}
+
+
+/* =========================
+   OPEN ONE-TIME MESSAGE
+========================= */
+
+async function openOneTimeMessage(){
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  const token =
+    params.get("token");
+
+
+  if(!token) return;
+
+
+  /* Hide other sections */
+
+  document.getElementById(
+    "oneTimeBox"
+  ).style.display = "none";
+
+  document.getElementById(
+    "locationBox"
+  ).style.display = "none";
+
+  document.getElementById(
+    "viewBox"
+  ).style.display = "block";
+
+
+  const messageView =
     document.getElementById(
-      "oneTimeBox"
-    ).style.display = "none";
+      "messageView"
+    );
+
+  messageView.innerHTML =
+    "⏳ Message खुल रहा है...";
 
 
-    document.getElementById(
-      "locationBox"
-    ).style.display = "none";
+  try{
+
+    /* Find unread message */
+
+    const response =
+      await nexasbClient
+      .from("Messages One Table")
+      .select("id, Message, Viewed")
+      .eq("Token", token)
+      .eq("Viewed", false)
+      .maybeSingle();
 
 
-    document.getElementById(
-      "viewBox"
-    ).style.display = "block";
+    const data = response.data;
+    const error = response.error;
 
 
-    const messageView =
-      document.getElementById(
-        "messageView"
-      );
-
-
-    messageView.innerHTML =
-      "⏳ Message खुल रहा है...";
-
-
-    try {
-
-      /* GET MESSAGE */
-
-      const { data, error } =
-        await supabaseClient
-          .from("Messages One Table")
-          .select("id, Message, Viewed")
-          .eq("Token", token)
-          .eq("Viewed", false)
-          .maybeSingle();
-
-
-      if (error) {
-
-        console.error(error);
-
-        messageView.innerHTML =
-          '<span class="error">' +
-          "❌ Error: " +
-          error.message +
-          "</span>";
-
-        return;
-      }
-
-
-      if (!data) {
-
-        messageView.innerHTML =
-          '<span class="error">' +
-          "❌ यह message पहले ही देखा जा चुका है या मौजूद नहीं है।" +
-          "</span>";
-
-        return;
-      }
-
-
-      /* SHOW MESSAGE */
-
-      messageView.innerText =
-        data.Message;
-
-
-      /* MARK VIEWED */
-
-      const { error: updateError } =
-        await supabaseClient
-          .from("Messages One Table")
-          .update({
-            Viewed: true
-          })
-          .eq("id", data.id);
-
-
-      if (updateError) {
-
-        console.error(
-          "Update Error:",
-          updateError
-        );
-
-      }
-
-    }
-
-    catch (error) {
+    if(error){
 
       console.error(error);
 
       messageView.innerHTML =
-        '<span class="error">' +
-        "❌ Error: " +
+        '<span class="error">❌ Error: ' +
         error.message +
         "</span>";
 
+      return;
     }
 
-  }
+
+    if(!data){
+
+      messageView.innerHTML =
+        '<span class="error">' +
+        '❌ यह message पहले ही देखा जा चुका है या मौजूद नहीं है।' +
+        '</span>';
+
+      return;
+    }
 
 
-  /* ==================================
-     NEXA
-  ================================== */
+    /* Show message */
 
-  function unlockNexa() {
+    messageView.innerText =
+      data.Message;
 
-    const code =
-      document.getElementById(
-        "nexaCode"
-      ).value.trim();
 
-    const result =
-      document.getElementById(
-        "nexaResult"
+    /*
+      Mark as viewed
+    */
+
+    const updateResponse =
+      await nexasbClient
+      .from("Messages One Table")
+      .update({
+        Viewed: true
+      })
+      .eq("id", data.id);
+
+
+    if(updateResponse.error){
+
+      console.error(
+        "Update Error:",
+        updateResponse.error
       );
 
-
-    result.style.display = "block";
-    result.className = "result";
-
-
-    if (code === "NEXA583") {
-
-      result.innerHTML = `
-        <div class="success">
-
-          <h3>🌍 NEXA Unlocked</h3>
-
-          <p>📍 Bengaluru, Karnataka</p>
-
-          <p>
-            NEXA Location system active.
-          </p>
-
-        </div>
-      `;
-
-    }
-
-    else {
-
-      result.innerHTML =
-        '<span class="error">' +
-        "❌ गलत NEXA Code" +
-        "</span>";
-
     }
 
   }
+  catch(error){
+
+    console.error(error);
+
+    messageView.innerHTML =
+      '<span class="error">❌ Error: ' +
+      error.message +
+      "</span>";
+  }
+}
 
 
-  /* ==================================
-     START
-  ================================== */
+/* =========================
+   NEXA LOCATION
+========================= */
 
-  openOneTimeMessage();
+function unlockNexa(){
+
+  const code =
+    document
+    .getElementById("nexaCode")
+    .value
+    .trim();
+
+
+  const result =
+    document.getElementById(
+      "nexaResult"
+    );
+
+
+  result.style.display = "block";
+  result.className = "result";
+
+
+  if(code === "NEXA583"){
+
+    result.innerHTML = `
+
+      <div class="success">
+
+        <h3>🌍 NEXA Unlocked</h3>
+
+        <p>
+          📍 Bengaluru, Karnataka
+        </p>
+
+        <p>
+          NEXA Location system active.
+        </p>
+
+      </div>
+
+    `;
+
+  }
+  else{
+
+    result.innerHTML =
+      '<span class="error">' +
+      '❌ गलत NEXA Code' +
+      '</span>';
+
+  }
+}
+
+
+/* =========================
+   START
+========================= */
+
+openOneTimeMessage();
 
 </script>
 
