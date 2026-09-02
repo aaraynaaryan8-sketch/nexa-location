@@ -619,7 +619,6 @@ function clearNexaCode() {
 
 }
 
-
 function saveNexaProject() {
 
   const project = {
@@ -631,6 +630,25 @@ function saveNexaProject() {
   localStorage.setItem("NEXA_PROJECT", JSON.stringify(project));
 
   alert("✅ NEXA Project Saved!");
+}
+
+
+function loadNexaProject() {
+
+  const saved = localStorage.getItem("NEXA_PROJECT");
+
+  if (!saved) {
+    alert("❌ कोई saved project नहीं मिला!");
+    return;
+  }
+
+  const project = JSON.parse(saved);
+
+  document.getElementById("nexaHTML").value = project.html;
+  document.getElementById("nexaCSS").value = project.css;
+  document.getElementById("nexaJS").value = project.js;
+
+  alert("📂 NEXA Project Loaded!");
 }
 
 
