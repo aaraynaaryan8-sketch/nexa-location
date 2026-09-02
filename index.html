@@ -1,988 +1,366 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
+  <title>NEXA | AtoNexa</title>
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-<title>NEXA — Unlock Location</title>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: white;
+      min-height: 100vh;
+    }
 
-<style>
+    .container {
+      width: 92%;
+      max-width: 700px;
+      margin: auto;
+      padding: 30px 0 50px;
+    }
 
-* {
-  box-sizing: border-box;
-}
+    .header {
+      text-align: center;
+      padding: 25px 10px;
+    }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #080b12;
-  color: white;
-  min-height: 100vh;
-  padding: 20px;
-}
+    .logo {
+      font-size: 42px;
+      font-weight: 800;
+    }
 
-.container {
-  width: 100%;
-  max-width: 500px;
-  margin: 30px auto;
-}
+    .channel {
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
 
-.header {
-  text-align: center;
-  margin-bottom: 25px;
-}
+    .tagline {
+      margin-top: 12px;
+      font-size: 16px;
+      line-height: 1.5;
+      opacity: 0.9;
+    }
 
-.logo {
-  font-size: 42px;
-  font-weight: 900;
-  letter-spacing: 2px;
-}
+    .category {
+      margin-top: 12px;
+      font-size: 13px;
+      opacity: 0.7;
+    }
 
-.tagline {
-  color: #aeb4c0;
-  margin-top: 10px;
-  font-size: 15px;
-  line-height: 1.5;
-}
+    .old-line {
+      text-align: center;
+      margin: 25px 0;
+      font-size: 17px;
+      line-height: 1.5;
+    }
 
-.search-card,
-.location-card {
-  background: #111722;
-  border: 1px solid #202938;
-  border-radius: 22px;
-  padding: 25px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-}
+    .card {
+      background: #151c32;
+      border-radius: 18px;
+      padding: 25px;
+      margin-top: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
 
-.unlock-title {
-  text-align: center;
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
+    .card h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
 
-.unlock-subtitle {
-  text-align: center;
-  color: #9da5b3;
-  font-size: 14px;
-  margin-bottom: 20px;
-}
+    .subtitle {
+      text-align: center;
+      opacity: 0.7;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
 
-input,
-textarea {
-  width: 100%;
-  border-radius: 12px;
-  border: 1px solid #374151;
-  background: #080b12;
-  color: white;
-  outline: none;
-}
+    input {
+      width: 100%;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #39435f;
+      background: #0d1325;
+      color: white;
+      font-size: 17px;
+      text-align: center;
+      outline: none;
+    }
 
-input {
-  padding: 16px;
-  font-size: 18px;
-  text-align: center;
-}
+    button {
+      width: 100%;
+      margin-top: 14px;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #111827;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-input:focus,
-textarea:focus {
-  border-color: #5b8cff;
-}
+    button:active {
+      transform: scale(0.98);
+    }
 
-.unlock-btn {
-  width: 100%;
-  margin-top: 12px;
-  padding: 16px;
-  border: none;
-  border-radius: 12px;
-  background: #356cff;
-  color: white;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
-}
+    .result {
+      display: none;
+      margin-top: 25px;
+    }
 
-.unlock-btn:active,
-.button:active {
-  transform: scale(0.98);
-}
+    .location-photo {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 14px;
+      display: block;
+    }
 
-#result {
-  display: none;
-  margin-top: 20px;
-}
+    .location-name {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 18px;
+    }
 
-.location-card {
-  padding: 0;
-  overflow: hidden;
-}
+    .location-info {
+      margin-top: 12px;
+      line-height: 1.7;
+      color: #d8def0;
+    }
 
-.location-info {
-  padding: 20px;
-}
+    .map-button {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      background: #ffffff;
+      color: #111827;
+      padding: 14px;
+      border-radius: 10px;
+      margin-top: 18px;
+      font-weight: bold;
+    }
 
-.location-image {
-  width: 100%;
-  height: 270px;
-  object-fit: cover;
-  display: block;
-}
+    .error {
+      display: none;
+      text-align: center;
+      margin-top: 15px;
+      color: #ffb4b4;
+    }
 
-.code-badge {
-  display: inline-block;
-  background: #1b2c55;
-  color: #8fb0ff;
-  padding: 7px 10px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.location-info h2 {
-  margin: 12px 0;
-  font-size: 25px;
-}
-
-.address {
-  color: #b5bbc5;
-  line-height: 1.5;
-}
-
-.fact {
-  background: #0b1019;
-  border-radius: 14px;
-  padding: 16px;
-  margin: 18px 0;
-  color: #d5d9e0;
-  line-height: 1.55;
-}
-
-.button {
-  display: block;
-  width: 100%;
-  padding: 14px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 12px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  color: white;
-}
-
-.maps-button {
-  background: #34a853;
-}
-
-.video-button {
-  background: #ff0000;
-}
-
-.back-button {
-  background: #252d3a;
-}
-
-.error {
-  background: #251315;
-  border: 1px solid #572326;
-  border-radius: 14px;
-  padding: 18px;
-  text-align: center;
-  color: #ff9b9b;
-  line-height: 1.5;
-}
-
-.footer {
-  text-align: center;
-  color: #697180;
-  font-size: 13px;
-  margin-top: 25px;
-}
-
-.lab-title {
-  margin-top: 22px;
-  margin-bottom: 8px;
-}
-
-.lab-textarea {
-  padding: 14px;
-  min-height: 130px;
-  resize: vertical;
-  font-family: monospace;
-  font-size: 14px;
-}
-
-.preview-title {
-  margin-top: 20px;
-  color: #9da5b3;
-  font-weight: bold;
-}
-
-#nexaOutput {
-  width: 100%;
-  height: 350px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 12px;
-  background: white;
-}
-
-</style>
-
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 13px;
+      opacity: 0.6;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
+  <div class="container">
 
-  <div class="header">
+    <!-- NEXA / AtoNexa -->
+    <header class="header">
 
-    <div class="logo">
-      NEXA 🌍
-    </div>
-
-    <div class="tagline">
-      कुछ जगहें सिर्फ देखने के लिए नहीं…<br>
-      खोजने के लिए होती हैं।
-    </div>
-
-  </div>
-
-
-  <div class="search-card">
-
-    <div class="unlock-title">
-      🔐 Unlock a Location
-    </div>
-
-    <div class="unlock-subtitle">
-      अपना NEXA Code डालकर location unlock करें
-    </div>
-
-    <input
-      id="code"
-      type="text"
-      placeholder="NEXA-001"
-      autocomplete="off"
-      onkeydown="if(event.key === 'Enter') openLocation()"
-    >
-
-    <button
-      class="unlock-btn"
-      onclick="openLocation()"
-    >
-      🔓 UNLOCK LOCATION
-    </button>
-
-  </div>
-
-
-  <button
-    class="unlock-btn"
-    onclick="openCodeLab()"
-    style="background:#7c3aed;"
-  >
-    🧪 NEXA CODE LAB
-  </button>
-
-
-  <div id="result"></div>
-
-
-  <div class="footer">
-    NEXA © 2026
-  </div>
-
-</div>
-
-
-<script>
-
-/* ================================
-   NEXA LOCATION DATA
-================================ */
-
-const locations = {
-
-  "NEXA-001": {
-    name: "Taj Mahal, Agra",
-    address:
-      "Dharmapuri, Forest Colony, Agra, Uttar Pradesh, India",
-    fact:
-      "ताजमहल मुगल सम्राट शाहजहाँ ने अपनी पत्नी मुमताज़ महल की याद में बनवाया था। यह भारत के सबसे प्रसिद्ध ऐतिहासिक स्मारकों में से एक है।",
-    lat: 27.1751,
-    lon: 78.0421,
-    image:
-      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Taj-Mahal_CC0.jpg",
-    video: ""
-  },
-
-  "NEXA-002": {
-    name: "India Gate, New Delhi",
-    address:
-      "Kartavya Path, New Delhi, Delhi, India",
-    fact:
-      "India Gate नई दिल्ली में स्थित एक प्रसिद्ध युद्ध स्मारक है।",
-    lat: 28.6129,
-    lon: 77.2295,
-    image: "",
-    video: ""
-  },
-
-  "NEXA-003": {
-    name: "Gateway of India, Mumbai",
-    address:
-      "Apollo Bandar, Colaba, Mumbai, Maharashtra, India",
-    fact:
-      "Gateway of India मुंबई के सबसे प्रसिद्ध ऐतिहासिक landmarks में से एक है।",
-    lat: 18.9220,
-    lon: 72.8347,
-    image: "",
-    video: ""
-  },
-
-  "NEXA-004": {
-    name: "Eiffel Tower, Paris",
-    address:
-      "Champ de Mars, Paris, France",
-    fact:
-      "Eiffel Tower 1889 में Paris में आयोजित Exposition Universelle के लिए बनाया गया था और आज Paris की सबसे प्रसिद्ध पहचान में से एक है।",
-    lat: 48.8584,
-    lon: 2.2945,
-    image: "",
-    video: ""
-  },
-
-  "NEXA-005": {
-    name: "Statue of Liberty, New York",
-    address:
-      "Liberty Island, New York, USA",
-    fact:
-      "Statue of Liberty New York Harbor में स्थित एक प्रसिद्ध monument है। इसे 1886 में officially dedicate किया गया था।",
-    lat: 40.6892,
-    lon: -74.0445,
-    image: "",
-    video: ""
-  }
-
-};
-
-
-/* ================================
-   OPEN LOCATION
-================================ */
-
-function openLocation() {
-
-  const code =
-    document.getElementById("code")
-      .value
-      .trim()
-      .toUpperCase();
-
-  const result =
-    document.getElementById("result");
-
-  const location =
-    locations[code];
-
-  if (!location) {
-
-    result.style.display = "block";
-
-    result.innerHTML = `
-      <div class="error">
-        ❌ Invalid NEXA Code<br><br>
-        सही code डालें, जैसे NEXA-001
+      <div class="logo">
+        🌍 NEXA
       </div>
-    `;
 
-    return;
-  }
+      <div class="channel">
+        AtoNexa
+      </div>
 
-  result.style.display = "block";
+      <div class="tagline">
+        दुनिया को जानो, हर जानकारी को Verify करो।
+      </div>
 
-  const imageHTML =
-    location.image
-      ? `<img
-           class="location-image"
-           src="${location.image}"
-           alt="${location.name}"
-         >`
-      : "";
+      <div class="category">
+        Interesting Facts • Mystery • Technology • World Information
+      </div>
 
-  const mapURL =
-    "https://www.google.com/maps/search/?api=1&query="
-    + location.lat
-    + ","
-    + location.lon;
+    </header>
 
-  const videoHTML =
-    location.video
-      ? `
-        <a
-          class="button video-button"
-          href="${location.video}"
-          target="_blank"
+
+    <!-- आपकी पुरानी लाइन -->
+    <div class="old-line">
+      “कुछ जगहें सिर्फ देखने के लिए नहीं…<br>
+      खोजने के लिए होती हैं।”
+    </div>
+
+
+    <!-- Code Section -->
+    <section class="card">
+
+      <h2>🔐 Unlock a Location</h2>
+
+      <div class="subtitle">
+        अपना NEXA Code डालकर location unlock करें
+      </div>
+
+      <input
+        type="text"
+        id="codeInput"
+        placeholder="जैसे NEXA583"
+        autocomplete="off"
+      >
+
+      <button onclick="unlockLocation()">
+        🗺️ UNLOCK LOCATION
+      </button>
+
+      <div class="error" id="errorMessage">
+        ❌ यह NEXA Code नहीं मिला।
+      </div>
+
+
+      <!-- Location Result -->
+      <div class="result" id="result">
+
+        <img
+          id="locationPhoto"
+          class="location-photo"
+          src=""
+          alt="Location Photo"
         >
-          ▶️ WATCH VIDEO
-        </a>
-      `
-      : "";
 
-  result.innerHTML = `
+        <div
+          id="locationName"
+          class="location-name">
+        </div>
 
-    <div class="location-card">
-
-      ${imageHTML}
-
-      <div class="location-info">
-
-        <span class="code-badge">
-          ${code}
-        </span>
-
-        <h2>
-          ${location.name}
-        </h2>
-
-        <p class="address">
-          📍 ${location.address}
-        </p>
-
-        <div class="fact">
-          💡 ${location.fact}
+        <div
+          id="locationInfo"
+          class="location-info">
         </div>
 
         <a
-          class="button maps-button"
-          href="${mapURL}"
+          id="mapButton"
+          class="map-button"
+          href="#"
           target="_blank"
-        >
-          🗺️ OPEN IN GOOGLE MAPS
+          rel="noopener noreferrer">
+          📍 Open in Google Maps
         </a>
 
-        ${videoHTML}
-
-        <button
-          class="button back-button"
-          onclick="closeLocation()"
-        >
-          ← Back
-        </button>
-
       </div>
 
-    </div>
+    </section>
 
-  `;
-}
 
+    <footer class="footer">
+      NEXA © 2026 • AtoNexa
+    </footer>
 
-/* ================================
-   CLOSE LOCATION
-================================ */
+  </div>
 
-function closeLocation() {
 
-  const result =
-    document.getElementById("result");
+  <script>
 
-  result.style.display = "none";
+    /*
+      ==========================================
+      NEXA LOCATION DATABASE
+      ==========================================
 
-  result.innerHTML = "";
+      यहां हर NEXA Code को एक location से जोड़ा जाएगा।
 
-}
+      अभी ये DEMO locations हैं।
+      बाद में इन्हें आपकी असली locations से बदलेंगे।
 
+      Format:
 
-/* ================================
-   OPEN CODE LAB
-================================ */
-
-function openCodeLab() {
-
-  const result =
-    document.getElementById("result");
-
-  result.style.display = "block";
-
-  result.innerHTML = `
-
-    <div class="location-card">
-
-      <div class="location-info">
-
-        <h2>
-          🧪 NEXA Code Lab 2.0
-        </h2>
-
-        <p class="address">
-          HTML + CSS + JavaScript लिखें और
-          अपना project यहीं run करें।
-        </p>
-
-
-        <h3 class="lab-title">
-          HTML
-        </h3>
-
-        <textarea
-          id="nexaHTML"
-          class="lab-textarea"
-          placeholder="<h1>Hello NEXA 🚀</h1>"
-        ></textarea>
-
-
-        <h3 class="lab-title">
-          CSS
-        </h3>
-
-        <textarea
-          id="nexaCSS"
-          class="lab-textarea"
-          placeholder="h1 { color: blue; }"
-        ></textarea>
-
-
-        <h3 class="lab-title">
-          JavaScript
-        </h3>
-
-        <textarea
-          id="nexaJS"
-          class="lab-textarea"
-          placeholder="console.log('Hello NEXA');"
-        ></textarea>
-
-
-        <button
-          class="button maps-button"
-          onclick="runNexaCode()"
-        >
-          ▶️ RUN CODE
-        </button>
-
-
-        <button
-          class="button back-button"
-          onclick="clearNexaCode()"
-        >
-          🗑️ CLEAR
-        </button>
-
-
-        <button
-          class="button"
-          style="background:#7c3aed;"
-          onclick="saveNexaProject()"
-        >
-          💾 SAVE PROJECT
-        </button>
-
-
-        <button
-          class="button"
-          style="background:#059669;"
-          onclick="exportNexaProject()"
-        >
-          📥 EXPORT / DOWNLOAD PROJECT
-        </button>
-
-
-        <button
-          class="button"
-          style="background:#2563eb;"
-          onclick="loadNexaProject()"
-        >
-          📂 LOAD PROJECT
-        </button>
-
-
-        <button
-          class="button"
-          style="background:#f59e0b;"
-          onclick="importNexaProject()"
-        >
-          📤 IMPORT PROJECT
-        </button>
-
-
-        <button
-          class="button"
-          style="background:#dc2626;"
-          onclick="openNexaFullscreen()"
-        >
-          ⛶ FULL SCREEN PREVIEW
-        </button>
-
-
-        <div class="preview-title">
-          OUTPUT / LIVE PREVIEW
-        </div>
-
-
-        <iframe
-          id="nexaOutput"
-          sandbox="allow-scripts"
-        ></iframe>
-
-
-        <button
-          class="button back-button"
-          onclick="closeLocation()"
-        >
-          ← Back
-        </button>
-
-      </div>
-
-    </div>
-
-  `;
-
-}
-
-
-/* ================================
-   RUN CODE
-================================ */
-
-function runNexaCode() {
-
-  const html =
-    document.getElementById("nexaHTML").value;
-
-  const css =
-    document.getElementById("nexaCSS").value;
-
-  const js =
-    document.getElementById("nexaJS").value;
-
-  const output =
-    document.getElementById("nexaOutput");
-
-  const finalCode = `
-
-<!DOCTYPE html>
-
-<html>
-
-<head>
-
-<meta charset="UTF-8">
-
-<style>
-
-${css}
-
-</style>
-
-</head>
-
-<body>
-
-${html}
-
-<script>
-
-${js}
-
-<\/script>
-
-</body>
-
-</html>
-
-`;
-
-  output.srcdoc = finalCode;
-
-}
-
-
-/* ================================
-   CLEAR
-================================ */
-
-function clearNexaCode() {
-
-  document.getElementById("nexaHTML").value = "";
-
-  document.getElementById("nexaCSS").value = "";
-
-  document.getElementById("nexaJS").value = "";
-
-  document.getElementById("nexaOutput").srcdoc = "";
-
-}
-
-
-/* ================================
-   SAVE
-================================ */
-
-function saveNexaProject() {
-
-  const project = {
-
-    html:
-      document.getElementById("nexaHTML").value,
-
-    css:
-      document.getElementById("nexaCSS").value,
-
-    js:
-      document.getElementById("nexaJS").value
-
-  };
-
-  localStorage.setItem(
-    "NEXA_PROJECT",
-    JSON.stringify(project)
-  );
-
-  alert("✅ NEXA Project Saved!");
-
-}
-
-
-/* ================================
-   LOAD
-================================ */
-
-function loadNexaProject() {
-
-  const saved =
-    localStorage.getItem("NEXA_PROJECT");
-
-  if (!saved) {
-
-    alert("❌ कोई saved project नहीं मिला!");
-
-    return;
-
-  }
-
-  const project =
-    JSON.parse(saved);
-
-  document.getElementById("nexaHTML").value =
-    project.html || "";
-
-  document.getElementById("nexaCSS").value =
-    project.css || "";
-
-  document.getElementById("nexaJS").value =
-    project.js || "";
-
-  alert("📂 NEXA Project Loaded!");
-
-}
-
-
-/* ================================
-   EXPORT
-================================ */
-
-function exportNexaProject() {
-
-  const html =
-    document.getElementById("nexaHTML").value;
-
-  const css =
-    document.getElementById("nexaCSS").value;
-
-  const js =
-    document.getElementById("nexaJS").value;
-
-  const finalCode = `
-
-<!DOCTYPE html>
-
-<html>
-
-<head>
-
-<meta charset="UTF-8">
-
-<title>NEXA Project</title>
-
-<style>
-
-${css}
-
-</style>
-
-</head>
-
-<body>
-
-${html}
-
-<script>
-
-${js}
-
-<\/script>
-
-</body>
-
-</html>
-
-`;
-
-  const blob =
-    new Blob(
-      [finalCode],
-      { type: "text/html" }
-    );
-
-  const url =
-    URL.createObjectURL(blob);
-
-  const a =
-    document.createElement("a");
-
-  a.href = url;
-
-  a.download =
-    "NEXA-Project.html";
-
-  document.body.appendChild(a);
-
-  a.click();
-
-  document.body.removeChild(a);
-
-  URL.revokeObjectURL(url);
-
-}
-
-
-/* ================================
-   IMPORT
-================================ */
-
-function importNexaProject() {
-
-  const input =
-    document.createElement("input");
-
-  input.type = "file";
-
-  input.accept =
-    ".html,.htm";
-
-  input.onchange =
-    function(event) {
-
-      const file =
-        event.target.files[0];
-
-      if (!file) {
-        return;
+      "NEXA583": {
+        name: "Location Name",
+        photo: "Photo URL",
+        info: "Location Information",
+        map: "Google Maps URL"
       }
+    */
 
-      const reader =
-        new FileReader();
 
-      reader.onload =
-        function(e) {
+    const locations = {
 
-          const code =
-            e.target.result;
+      "NEXA583": {
+        name: "Demo Location",
+        photo: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
+        info: "यह एक demo location है। बाद में यहां आपकी चुनी हुई जगह की verified जानकारी दिखाई जाएगी।",
+        map: "https://www.google.com/maps"
+      },
 
-          const htmlMatch =
-            code.match(
-              /<body[^>]*>([\s\S]*?)<\/body>/i
-            );
 
-          const cssMatch =
-            code.match(
-              /<style[^>]*>([\s\S]*?)<\/style>/i
-            );
-
-          const jsMatch =
-            code.match(
-              /<script[^>]*>([\s\S]*?)<\/script>/i
-            );
-
-          document.getElementById("nexaHTML").value =
-            htmlMatch
-              ? htmlMatch[1].trim()
-              : "";
-
-          document.getElementById("nexaCSS").value =
-            cssMatch
-              ? cssMatch[1].trim()
-              : "";
-
-          document.getElementById("nexaJS").value =
-            jsMatch
-              ? jsMatch[1].trim()
-              : "";
-
-          alert("✅ NEXA Project Imported!");
-
-        };
-
-      reader.readAsText(file);
+      "NEXA021": {
+        name: "Demo Location 2",
+        photo: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
+        info: "यह दूसरा demo location है। इसे बाद में आपकी दूसरी location से replace किया जा सकता है।",
+        map: "https://www.google.com/maps"
+      }
 
     };
 
-  input.click();
 
-}
+    function unlockLocation() {
+
+      const input = document
+        .getElementById("codeInput")
+        .value
+        .trim()
+        .toUpperCase();
+
+      const result = document.getElementById("result");
+      const error = document.getElementById("errorMessage");
+
+      if (locations[input]) {
+
+        const location = locations[input];
+
+        document.getElementById("locationPhoto").src =
+          location.photo;
+
+        document.getElementById("locationName").textContent =
+          location.name;
+
+        document.getElementById("locationInfo").textContent =
+          location.info;
+
+        document.getElementById("mapButton").href =
+          location.map;
+
+        error.style.display = "none";
+        result.style.display = "block";
+
+      } else {
+
+        result.style.display = "none";
+        error.style.display = "block";
+
+      }
+    }
 
 
-/* ================================
-   FULL SCREEN
-================================ */
+    /*
+      ENTER दबाने पर भी Code Unlock होगा
+    */
 
-function openNexaFullscreen() {
+    document
+      .getElementById("codeInput")
+      .addEventListener("keydown", function(event) {
 
-  const output =
-    document.getElementById("nexaOutput");
+        if (event.key === "Enter") {
+          unlockLocation();
+        }
 
-  if (!output) {
+      });
 
-    alert("❌ Preview नहीं मिला!");
-
-    return;
-
-  }
-
-  if (output.requestFullscreen) {
-
-    output.requestFullscreen();
-
-  }
-
-  else if (output.webkitRequestFullscreen) {
-
-    output.webkitRequestFullscreen();
-
-  }
-
-  else {
-
-    alert(
-      "❌ Full Screen इस browser में supported नहीं है!"
-    );
-
-  }
-
-}
-
-</script>
+  </script>
 
 </body>
-
 </html>
