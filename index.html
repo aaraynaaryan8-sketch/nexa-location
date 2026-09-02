@@ -610,9 +610,16 @@ function runNexaCode() {
 
   output.srcdoc = finalCode;
 }
-
-
 function clearNexaCode() {
+
+  document.getElementById("nexaHTML").value = "";
+  document.getElementById("nexaCSS").value = "";
+  document.getElementById("nexaJS").value = "";
+  document.getElementById("nexaOutput").srcdoc = "";
+
+}
+
+
 function saveNexaProject() {
 
   const project = {
@@ -624,15 +631,6 @@ function saveNexaProject() {
   localStorage.setItem("NEXA_PROJECT", JSON.stringify(project));
 
   alert("✅ NEXA Project Saved!");
-}
-  document.getElementById("nexaHTML").value = "";
-
-  document.getElementById("nexaCSS").value = "";
-
-  document.getElementById("nexaJS").value = "";
-
-  document.getElementById("nexaOutput").srcdoc = "";
-
 }
 
 
