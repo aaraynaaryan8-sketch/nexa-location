@@ -760,34 +760,6 @@ function saveNexaProject() {
 
   alert("✅ NEXA Project Saved!");
 }
-
-
-function loadNexaProject() {
-
-  const saved = localStorage.getItem("NEXA_PROJECT");
-
-  if (!saved) {
-    alert("❌ कोई saved project नहीं मिला!");
-    return;
-  }
-
-  const project = JSON.parse(saved);
-
-  document.getElementById("nexaHTML").value = project.html;
-  document.getElementById("nexaCSS").value = project.css;
-  document.getElementById("nexaJS").value = project.js;
-
-  alert("📂 NEXA Project Loaded!");
-}
-function loadNexaProject() {
-
-  const saved = localStorage.getItem("NEXA_PROJECT");
-
-  if (!saved) {
-    alert("❌ कोई saved project नहीं मिला!");
-    return;
-  }
-
 function openNexaFullscreen() {
 
   const output = document.getElementById("nexaOutput");
@@ -799,11 +771,13 @@ function openNexaFullscreen() {
 
   if (output.requestFullscreen) {
     output.requestFullscreen();
-  } else{ if (output.webkitRequestFullscreen) {
+  } else if (output.webkitRequestFullscreen) {
     output.webkitRequestFullscreen();
   } else {
     alert("❌ Full Screen इस browser में supported नहीं है!");
   }
+
+}
 
 
 
