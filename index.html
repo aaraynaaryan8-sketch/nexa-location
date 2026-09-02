@@ -9,15 +9,13 @@
 <style>
 *{
   box-sizing:border-box;
-  margin:0;
-  padding:0;
 }
 
 body{
-  font-family:Arial,sans-serif;
+  margin:0;
   background:#05070d;
-  color:#fff;
-  min-height:100vh;
+  color:white;
+  font-family:Arial,sans-serif;
 }
 
 .container{
@@ -28,169 +26,126 @@ body{
 
 header{
   text-align:center;
-  padding:55px 10px 30px;
+  padding:50px 10px 30px;
 }
 
 .logo{
   font-size:48px;
-  font-weight:900;
-  letter-spacing:2px;
+  font-weight:bold;
 }
 
 .brand{
-  font-size:18px;
   margin-top:8px;
-  opacity:.8;
+  font-size:18px;
 }
 
 .tagline{
   margin-top:18px;
-  font-size:16px;
-  line-height:1.5;
   color:#ddd;
+  line-height:1.5;
 }
 
-.old-line{
-  margin-top:20px;
+.oldline{
+  margin-top:18px;
+  color:#999;
   font-size:14px;
-  color:#aaa;
   font-style:italic;
   line-height:1.5;
 }
 
 .box{
   background:#0d111c;
-  border:1px solid #252c3d;
+  border:1px solid #293247;
   border-radius:20px;
   padding:25px;
-  margin-top:25px;
-  box-shadow:0 10px 35px rgba(0,0,0,.35);
 }
 
 .box h2{
-  font-size:22px;
-  margin-bottom:8px;
+  margin-top:0;
 }
 
-.box p{
+.description{
   color:#aaa;
-  margin-bottom:18px;
   line-height:1.5;
 }
 
 input{
   width:100%;
   padding:16px;
-  border-radius:12px;
-  border:1px solid #343c50;
   background:#070a12;
-  color:#fff;
+  color:white;
+  border:1px solid #394258;
+  border-radius:12px;
   font-size:18px;
   text-align:center;
   outline:none;
-  text-transform:uppercase;
-}
-
-input::placeholder{
-  color:#777;
-  text-transform:none;
 }
 
 button{
   width:100%;
-  margin-top:14px;
   padding:16px;
-  border:none;
+  margin-top:14px;
+  border:0;
   border-radius:12px;
-  background:#fff;
-  color:#000;
+  background:white;
+  color:black;
   font-size:16px;
   font-weight:bold;
-  cursor:pointer;
 }
 
-.error{
+#error{
   display:none;
+  color:#ff6666;
   text-align:center;
-  color:#ff6b6b;
   margin-top:18px;
 }
 
-.location{
+#result{
   display:none;
   margin-top:25px;
 }
 
-.location img{
+#result img{
   width:100%;
-  border-radius:16px;
-  display:block;
-  max-height:360px;
-  object-fit:cover;
+  border-radius:15px;
 }
 
-.code-badge{
+.code{
   display:inline-block;
   margin-top:15px;
   padding:8px 14px;
+  background:#192033;
   border-radius:20px;
-  background:#171d2b;
-  border:1px solid #30384c;
-  font-weight:bold;
-  letter-spacing:1px;
-}
-
-.location h2{
-  margin-top:20px;
-  font-size:27px;
-  line-height:1.3;
 }
 
 .info{
-  margin-top:12px;
   color:#ccc;
   line-height:1.7;
 }
 
-.facts-title{
-  margin-top:25px;
-  margin-bottom:12px;
-  font-size:20px;
-}
-
-ol{
-  padding-left:22px;
-}
-
 li{
+  color:#ddd;
   margin-bottom:12px;
   line-height:1.5;
-  color:#ddd;
 }
 
 .maps{
   display:block;
+  margin-top:20px;
+  padding:15px;
+  background:white;
+  color:black;
   text-align:center;
   text-decoration:none;
-  background:#fff;
-  color:#000;
-  padding:15px;
   border-radius:12px;
-  margin-top:22px;
   font-weight:bold;
 }
 
 footer{
   text-align:center;
-  padding:35px 10px;
   color:#666;
+  padding:35px 10px;
   font-size:13px;
-}
-
-.credit{
-  margin-top:10px;
-  font-size:11px;
-  color:#555;
 }
 </style>
 </head>
@@ -201,94 +156,111 @@ footer{
 
 <header>
 
-  <div class="logo">NEXA 🌍</div>
+<div class="logo">NEXA 🌍</div>
 
-  <div class="brand">AtoNexa</div>
+<div class="brand">AtoNexa</div>
 
-  <div class="tagline">
-    दुनिया को जानो, हर जानकारी को Verify करो।
-  </div>
+<div class="tagline">
+दुनिया को जानो, हर जानकारी को Verify करो।
+</div>
 
-  <div class="old-line">
-    “कुछ जगहें सिर्फ देखने के लिए नहीं… खोजने के लिए होती हैं।”
-  </div>
+<div class="oldline">
+“कुछ जगहें सिर्फ देखने के लिए नहीं… खोजने के लिए होती हैं।”
+</div>
 
 </header>
 
 
 <div class="box">
 
-  <h2>🔐 Unlock a Location</h2>
+<h2>🔐 Unlock a Location</h2>
 
-  <p>
-    अपना NEXA Code डालकर location unlock करें
-  </p>
+<p class="description">
+अपना NEXA Code डालकर location unlock करें
+</p>
 
-  <input
-    id="codeInput"
-    type="text"
-    placeholder="Enter NEXA Code"
-    maxlength="7"
-    autocomplete="off"
-    spellcheck="false"
-  >
+<input
+id="code"
+type="text"
+placeholder="Enter NEXA Code"
+maxlength="7"
+autocomplete="off"
+>
 
-  <button onclick="unlockLocation()">
-    🔓 UNLOCK LOCATION
-  </button>
+<button type="button" onclick="unlockLocation()">
+🔓 UNLOCK LOCATION
+</button>
 
-  <div class="error" id="error"></div>
+<div id="error">
+❌ यह NEXA Code मौजूद नहीं है।
+</div>
 
 
-  <div class="location" id="locationResult">
+<div id="result">
 
-    <img
-      id="locationImage"
-      src=""
-      alt="NEXA Location"
-    >
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bengaluru_Skyline_from_Tata_Promont.jpg/1280px-Bengaluru_Skyline_from_Tata_Promont.jpg"
+alt="Bengaluru"
+>
 
-    <div
-      class="code-badge"
-      id="locationCode">
-    </div>
+<div class="code">
+NEXA583
+</div>
 
-    <h2 id="locationName"></h2>
+<h2>
+Bengaluru, Karnataka, India
+</h2>
 
-    <p
-      class="info"
-      id="locationInfo">
-    </p>
+<p class="info">
+Bengaluru भारत का एक प्रमुख technology और innovation hub है।
+यह technology sector, gardens, historic landmarks और diverse culture
+के लिए जाना जाता है। इसे अक्सर Garden City भी कहा जाता है।
+</p>
 
-    <h3 class="facts-title">
-      🔟 10 खास बातें
-    </h3>
+<h3>🔟 10 खास बातें</h3>
 
-    <ol id="factsList"></ol>
+<ol>
 
-    <a
-      id="mapsButton"
-      class="maps"
-      href="#"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      🗺️ GOOGLE MAPS पर देखें
-    </a>
+<li>Bengaluru को भारत की technology capital के रूप में जाना जाता है।</li>
 
-  </div>
+<li>इसे अक्सर Garden City of India कहा जाता है।</li>
+
+<li>Lalbagh Botanical Garden लगभग 240 acres में फैला हुआ है।</li>
+
+<li>Lalbagh की शुरुआत लगभग 1760 में Hyder Ali ने करवाई थी।</li>
+
+<li>बाद में Tipu Sultan ने Lalbagh के विकास को आगे बढ़ाया।</li>
+
+<li>Cubbon Park लगभग 300 acres में फैला हुआ है।</li>
+
+<li>Cubbon Park की स्थापना 1870 में हुई थी।</li>
+
+<li>Vidhana Soudha Karnataka का प्रमुख landmark है।</li>
+
+<li>Bengaluru Palace एक 19वीं सदी का royal residence है।</li>
+
+<li>KR Market Bengaluru के प्रमुख wholesale markets में से एक है।</li>
+
+</ol>
+
+<a
+class="maps"
+href="https://www.google.com/maps/search/?api=1&query=Bengaluru%2C%20Karnataka%2C%20India"
+target="_blank"
+rel="noopener"
+>
+🗺️ GOOGLE MAPS पर देखें
+</a>
+
+</div>
 
 </div>
 
 
 <footer>
-
-  NEXA © 2026
-
-  <div class="credit">
-    Powered by AtoNexa
-  </div>
-
+NEXA © 2026
+<br><br>
+Powered by AtoNexa
 </footer>
 
 </div>
@@ -296,13 +268,39 @@ footer{
 
 <script>
 
-/* =========================================
-   NEXA DATABASE
+function unlockLocation(){
 
-   नए Codes आगे इसी database में जुड़ेंगे।
-   पुराने Codes कभी delete नहीं होंगे।
-   ========================================= */
+var code =
+document.getElementById("code").value.trim().toUpperCase();
 
-const locations = {
+var result =
+document.getElementById("result");
 
-  "NEXA
+var error =
+document.getElementById("error");
+
+
+if(code === "NEXA583"){
+
+error.style.display = "none";
+
+result.style.display = "block";
+
+result.scrollIntoView({
+behavior:"smooth"
+});
+
+}else{
+
+result.style.display = "none";
+
+error.style.display = "block";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
