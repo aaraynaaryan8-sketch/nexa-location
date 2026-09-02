@@ -420,184 +420,6 @@ OPEN LOCATION
 ========================================
 */
 
-function openLocation() {
-
-  const code =
-    document
-    .getElementById("code")
-    .value
-    .trim()
-    .toUpperCase();
-
-  const result =
-    document.getElementById("result");
-
-  const location =
-    locations[code];
-
-
-  if (!code) {
-
-    result.style.display = "block";
-
-    result.innerHTML =
-      '<div class="error">' +
-      '⚠️ पहले NEXA Code डालें।' +
-      '</div>';
-
-    return;
-
-  }
-
-
-  if (!location) {
-
-    result.style.display = "block";
-
-    result.innerHTML =
-      '<div class="error">' +
-      '❌ यह NEXA Code मौजूद नहीं है।<br><br>' +
-      'कृपया Code दोबारा check करें।' +
-      '</div>';
-
-    return;
-
-  }
-
-
-  /*
-  GOOGLE MAPS
-  */
-
-  const mapsURL =
-    "https://www.google.com/maps/search/?api=1&query=" +
-    location.lat +
-    "," +
-    location.lon;
-
-
-  /*
-  PHOTO
-  */
-
-  let photo = "";
-
-
-  if (location.image) {
-
-    photo =
-      '<img class="location-image" src="' +
-      location.image +
-      '" alt="' +
-      location.name +
-      '">';
-
-  }
-
-
-  /*
-  VIDEO
-  */
-
-  let videoButton = "";
-
-
-  if (location.video) {
-
-    videoButton =
-      '<a class="button video-button" href="' +
-      location.video +
-      '" target="_blank">' +
-      '▶️ Watch NEXA Video' +
-      '</a>';
-
-  }
-
-
-  /*
-  RESULT CARD
-  */
-
-  result.style.display = "block";
-
-
-  result.innerHTML =
-
-    '<div class="location-card">' +
-
-      photo +
-
-      '<div class="location-info">' +
-
-        '<span class="code-badge">' +
-        code +
-        '</span>' +
-
-        '<h2>📍 ' +
-        location.name +
-        '</h2>' +
-
-        '<div class="address">' +
-        '📌 <b>Address</b><br>' +
-        location.address +
-        '</div>' +
-
-        '<div class="fact">' +
-        '🧠 <b>Interesting Fact</b><br><br>' +
-        location.fact +
-        '</div>' +
-
-        videoButton +
-
-        '<a class="button maps-button" href="' +
-        mapsURL +
-        '" target="_blank">' +
-        '🗺️ Open in Google Maps' +
-        '</a>' +
-
-        '<button class="button back-button" onclick="closeLocation()">' +
-        '← Back' +
-        '</button>' +
-
-      '</div>' +
-
-    '</div>';
-
-}
-
-
-/*
-========================================
-CLOSE RESULT
-========================================
-*/
-
-function closeLocation() {
-
-  const result =
-    document.getElementById("result");
-
-  result.style.display = "none";
-
-  result.innerHTML = "";
-
-}
-
-
-/*
-========================================
-AUTO UPPERCASE
-========================================
-*/
-
-document
-.getElementById("code")
-.addEventListener("input", function() {
-
-  this.value =
-    this.value.toUpperCase();
-
-});
 function openCodeLab() {
 
   const result = document.getElementById("result");
@@ -609,19 +431,20 @@ function openCodeLab() {
 
       <div class="location-info">
 
-        <h2>🧪 NEXA Code Lab</h2>
+        <h2>🧪 NEXA Code Lab 2.0</h2>
 
         <p class="address">
-          अपना HTML code यहाँ डालो और Run दबाकर preview देखो।
+          HTML + CSS + JavaScript लिखें और अपना project यहीं run करें।
         </p>
 
+        <h3>HTML</h3>
+
         <textarea
-          id="nexaCode"
+          id="nexaHTML"
           style="
             width:100%;
-            height:220px;
-            margin-top:15px;
-            padding:15px;
+            height:150px;
+            padding:14px;
             border-radius:12px;
             border:1px solid #374151;
             background:#080b12;
@@ -630,8 +453,49 @@ function openCodeLab() {
             font-size:14px;
             resize:vertical;
           "
-          placeholder="<h1>Hello NEXA!</h1>"
+          placeholder="<h1>Hello NEXA 🚀</h1>"
         ></textarea>
+
+
+        <h3>CSS</h3>
+
+        <textarea
+          id="nexaCSS"
+          style="
+            width:100%;
+            height:130px;
+            padding:14px;
+            border-radius:12px;
+            border:1px solid #374151;
+            background:#080b12;
+            color:#fff;
+            font-family:monospace;
+            font-size:14px;
+            resize:vertical;
+          "
+          placeholder="h1 { color: blue; }"
+        ></textarea>
+
+
+        <h3>JavaScript</h3>
+
+        <textarea
+          id="nexaJS"
+          style="
+            width:100%;
+            height:130px;
+            padding:14px;
+            border-radius:12px;
+            border:1px solid #374151;
+            background:#080b12;
+            color:#fff;
+            font-family:monospace;
+            font-size:14px;
+            resize:vertical;
+          "
+          placeholder="console.log('Hello NEXA');"
+        ></textarea>
+
 
         <button
           class="button maps-button"
@@ -640,12 +504,14 @@ function openCodeLab() {
           ▶️ RUN CODE
         </button>
 
+
         <button
           class="button back-button"
-          onclick="closeLocation()"
+          onclick="clearNexaCode()"
         >
-          ← Back
+          🗑️ CLEAR
         </button>
+
 
         <div
           style="
@@ -654,14 +520,16 @@ function openCodeLab() {
             font-weight:bold;
           "
         >
-          OUTPUT
+          OUTPUT / LIVE PREVIEW
         </div>
+
 
         <iframe
           id="nexaOutput"
+          sandbox="allow-scripts"
           style="
             width:100%;
-            height:300px;
+            height:350px;
             margin-top:10px;
             border:none;
             border-radius:12px;
@@ -669,11 +537,88 @@ function openCodeLab() {
           "
         ></iframe>
 
+
+        <button
+          class="button back-button"
+          onclick="closeLocation()"
+        >
+          ← Back
+        </button>
+
       </div>
 
     </div>
   `;
 }
+
+
+function runNexaCode() {
+
+  const html =
+    document.getElementById("nexaHTML").value;
+
+  const css =
+    document.getElementById("nexaCSS").value;
+
+  const js =
+    document.getElementById("nexaJS").value;
+
+
+  const output =
+    document.getElementById("nexaOutput");
+
+
+  const finalCode = `
+
+    <!DOCTYPE html>
+
+    <html>
+
+    <head>
+
+      <meta charset="UTF-8">
+
+      <style>
+
+        ${css}
+
+      </style>
+
+    </head>
+
+    <body>
+
+      ${html}
+
+      <script>
+
+        ${js}
+
+      <\/script>
+
+    </body>
+
+    </html>
+
+  `;
+
+
+  output.srcdoc = finalCode;
+}
+
+
+function clearNexaCode() {
+
+  document.getElementById("nexaHTML").value = "";
+
+  document.getElementById("nexaCSS").value = "";
+
+  document.getElementById("nexaJS").value = "";
+
+  document.getElementById("nexaOutput").srcdoc = "";
+
+}
+
 
 
 function runNexaCode() {
