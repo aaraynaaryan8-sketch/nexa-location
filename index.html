@@ -631,7 +631,58 @@ function clearNexaCode() {
   document.getElementById("nexaOutput").srcdoc = "";
 
 }
+function exportNexaProject() {
 
+  const html =
+    document.getElementById("nexaHTML").value;
+
+  const css =
+    document.getElementById("nexaCSS").value;
+
+  const js =
+    document.getElementById("nexaJS").value;
+
+  const finalCode = `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>NEXA Project</title>
+
+<style>
+${css}
+</style>
+
+</head>
+
+<body>
+
+${html}
+
+<script>
+${js}
+<\/script>
+
+</body>
+</html>
+`;
+
+  const blob =
+    new Blob([finalCode], { type: "text/html" });
+
+  const url =
+    URL.createObjectURL(blob);
+
+  const a =
+    document.createElement("a");
+
+  a.href = url;
+  a.download = "NEXA-Project.html";
+
+  a.click();
+
+  URL.revokeObjectURL(url);
+}
 function saveNexaProject() {
 
   const project = {
