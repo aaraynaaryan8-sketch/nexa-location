@@ -510,7 +510,13 @@ function openCodeLab() {
         >
           🗑️ CLEAR
         </button>
-
+<button
+  class="button"
+  style="background:#7c3aed;"
+  onclick="saveNexaProject()"
+>
+  💾 SAVE PROJECT
+</button>
 
         <div
           style="
@@ -607,7 +613,18 @@ function runNexaCode() {
 
 
 function clearNexaCode() {
+function saveNexaProject() {
 
+  const project = {
+    html: document.getElementById("nexaHTML").value,
+    css: document.getElementById("nexaCSS").value,
+    js: document.getElementById("nexaJS").value
+  };
+
+  localStorage.setItem("NEXA_PROJECT", JSON.stringify(project));
+
+  alert("✅ NEXA Project Saved!");
+}
   document.getElementById("nexaHTML").value = "";
 
   document.getElementById("nexaCSS").value = "";
