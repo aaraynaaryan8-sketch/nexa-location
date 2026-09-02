@@ -514,11 +514,7 @@ function openCodeLab() {
   class="button"
   style="background:#7c3aed;"
   onclick="saveNexaProject()"
->
-  <button
-  class="button"
-  style="background:#7c3aed;"
-  onclick="saveNexaProject()"
+
 >
   💾 SAVE PROJECT
 </button>
@@ -529,13 +525,6 @@ function openCodeLab() {
   onclick="exportNexaProject()"
 >
   📥 EXPORT / DOWNLOAD PROJECT
-</button>
-<button
-  class="button"
-  style="background:#dc2626;"
-  onclick="openNexaFullscreen()"
->
-  ⛶ FULL SCREEN PREVIEW
 </button>
 <button
   class="button"
@@ -799,14 +788,6 @@ function loadNexaProject() {
     return;
   }
 
-  const project = JSON.parse(saved);
-
-  document.getElementById("nexaHTML").value = project.html;
-  document.getElementById("nexaCSS").value = project.css;
-  document.getElementById("nexaJS").value = project.js;
-
-  alert("📂 NEXA Project Loaded!");
-}
 function openNexaFullscreen() {
 
   const output = document.getElementById("nexaOutput");
@@ -818,7 +799,7 @@ function openNexaFullscreen() {
 
   if (output.requestFullscreen) {
     output.requestFullscreen();
-  } else if (output.webkitRequestFullscreen) {
+  } else{ if (output.webkitRequestFullscreen) {
     output.webkitRequestFullscreen();
   } else {
     alert("❌ Full Screen इस browser में supported नहीं है!");
