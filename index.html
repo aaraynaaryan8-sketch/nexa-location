@@ -1,4 +1,4 @@
-
+c
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -530,7 +530,13 @@ function openCodeLab() {
 >
   📥 EXPORT / DOWNLOAD PROJECT
 </button>
-
+<button
+  class="button"
+  style="background:#dc2626;"
+  onclick="openNexaFullscreen()"
+>
+  ⛶ FULL SCREEN PREVIEW
+</button>
     <button
   class="button"
   style="background:#2563eb;"
@@ -777,6 +783,40 @@ function loadNexaProject() {
 
   alert("📂 NEXA Project Loaded!");
 }
+function loadNexaProject() {
+
+  const saved = localStorage.getItem("NEXA_PROJECT");
+
+  if (!saved) {
+    alert("❌ कोई saved project नहीं मिला!");
+    return;
+  }
+
+  const project = JSON.parse(saved);
+
+  document.getElementById("nexaHTML").value = project.html;
+  document.getElementById("nexaCSS").value = project.css;
+  document.getElementById("nexaJS").value = project.js;
+
+  alert("📂 NEXA Project Loaded!");
+}
+function openNexaFullscreen() {
+
+  const output = document.getElementById("nexaOutput");
+
+  if (!output) {
+    alert("❌ Preview नहीं मिला!");
+    return;
+  }
+
+  if (output.requestFullscreen) {
+    output.requestFullscreen();
+  } else if (output.webkitRequestFullscreen) {
+    output.webkitRequestFullscreen();
+  } else {
+    alert("❌ Full Screen इस browser में supported नहीं है!");
+  }
+
 
 
 </script>
