@@ -536,6 +536,13 @@ function openCodeLab() {
   style="background:#2563eb;"
   onclick="loadNexaProject()"
 >
+<button
+  class="button"
+  style="background:#f59e0b;"
+  onclick="importNexaProject()"
+>
+  📤 IMPORT PROJECT
+</button>
   📂 LOAD PROJECT
 </button>
         <div
@@ -629,6 +636,53 @@ function runNexaCode() {
 
 
   output.srcdoc = finalCode;
+}
+  function importNexaProject() {
+
+  const input = document.createElement("input");
+
+  input.type = "file";
+  input.accept = ".html,.htm";
+
+  input.onchange = function(event) {
+
+    const file = event.target.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+
+      const code = e.target.result;
+
+      const htmlMatch =
+        code.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+
+      const cssMatch =
+        code.match(/<style[^>]*>([\s\S]*?)<\/style>/i);
+
+      const jsMatch =
+        code.match(/<script[^>]*>([\s\S]*?)<\/script>/i);
+
+      document.getElementById("nexaHTML").value =
+        htmlMatch ? htmlMatch[1].trim() : "";
+
+      document.getElementById("nexaCSS").value =
+        cssMatch ? cssMatch[1].trim() : "";
+
+      document.getElementById("nexaJS").value =
+        jsMatch ? jsMatch[1].trim() : "";
+
+      alert("✅ NEXA Project Imported!");
+
+    };
+
+    reader.readAsText(file);
+
+  };
+
+  input.click();
 }
 function clearNexaCode() {
 
