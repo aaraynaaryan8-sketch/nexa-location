@@ -8,107 +8,159 @@
 <title>NEXA 🌍 | AtoNexa</title>
 
 <style>
-body{
+*{
+  box-sizing:border-box;
   margin:0;
+  padding:0;
+}
+
+body{
   font-family:Arial,sans-serif;
   background:#05070d;
-  color:white;
+  color:#fff;
+  min-height:100vh;
 }
 
 .container{
-  max-width:650px;
+  width:92%;
+  max-width:700px;
   margin:auto;
-  padding:20px;
 }
 
 header{
   text-align:center;
-  padding:35px 10px;
+  padding:55px 10px 30px;
 }
 
 .logo{
-  font-size:45px;
-  font-weight:bold;
+  font-size:48px;
+  font-weight:900;
+  letter-spacing:2px;
 }
 
 .brand{
-  margin-top:8px;
   font-size:18px;
+  margin-top:8px;
+  opacity:.8;
 }
 
 .tagline{
   margin-top:18px;
+  font-size:16px;
+  line-height:1.5;
   color:#ddd;
+}
+
+.old-line{
+  margin-top:20px;
+  font-size:14px;
+  color:#aaa;
+  font-style:italic;
   line-height:1.5;
 }
 
-.oldline{
-  margin-top:18px;
-  color:#999;
-  font-size:14px;
-}
-
 .box{
-  background:#101522;
-  padding:22px;
-  border-radius:18px;
-  border:1px solid #293247;
+  background:#0d111c;
+  border:1px solid #252c3d;
+  border-radius:20px;
+  padding:25px;
+  margin-top:25px;
+  box-shadow:0 10px 35px rgba(0,0,0,.35);
 }
 
-h2{
-  margin-top:0;
+.box h2{
+  font-size:22px;
+  margin-bottom:8px;
 }
 
-.description{
+.box p{
   color:#aaa;
+  margin-bottom:18px;
   line-height:1.5;
 }
 
 input{
   width:100%;
-  padding:15px;
-  box-sizing:border-box;
-  background:#070a10;
-  color:white;
-  border:1px solid #394258;
-  border-radius:10px;
-  font-size:17px;
+  padding:16px;
+  border-radius:12px;
+  border:1px solid #343c50;
+  background:#070a12;
+  color:#fff;
+  font-size:18px;
   text-align:center;
   outline:none;
+  text-transform:uppercase;
+}
+
+input::placeholder{
+  color:#777;
+  text-transform:none;
 }
 
 button{
   width:100%;
-  padding:15px;
-  margin-top:12px;
-  border:0;
-  border-radius:10px;
+  margin-top:14px;
+  padding:16px;
+  border:none;
+  border-radius:12px;
+  background:#fff;
+  color:#000;
   font-size:16px;
   font-weight:bold;
   cursor:pointer;
 }
 
-.result{
+.error{
   display:none;
-  margin-top:20px;
+  text-align:center;
+  color:#ff6b6b;
+  margin-top:18px;
 }
 
-.result img{
+.location{
+  display:none;
+  margin-top:25px;
+}
+
+.location img{
   width:100%;
-  border-radius:15px;
+  border-radius:16px;
+  display:block;
+  max-height:360px;
+  object-fit:cover;
 }
 
-.code{
+.code-badge{
   display:inline-block;
   margin-top:15px;
-  padding:7px 12px;
+  padding:8px 14px;
   border-radius:20px;
-  background:#1c2434;
+  background:#171d2b;
+  border:1px solid #30384c;
+  font-weight:bold;
+  letter-spacing:1px;
+}
+
+.location h2{
+  margin-top:20px;
+  font-size:27px;
+  line-height:1.3;
 }
 
 .info{
+  margin-top:12px;
   color:#ccc;
   line-height:1.7;
+}
+
+.facts-title{
+  margin-top:25px;
+  margin-bottom:12px;
+  font-size:20px;
+}
+
+ol{
+  padding-left:22px;
 }
 
 li{
@@ -120,27 +172,26 @@ li{
 .maps{
   display:block;
   text-align:center;
-  padding:15px;
-  margin-top:20px;
-  background:white;
-  color:black;
   text-decoration:none;
-  border-radius:10px;
+  background:#fff;
+  color:#000;
+  padding:15px;
+  border-radius:12px;
+  margin-top:22px;
   font-weight:bold;
-}
-
-.error{
-  display:none;
-  color:#ff6666;
-  text-align:center;
-  margin-top:15px;
 }
 
 footer{
   text-align:center;
+  padding:35px 10px;
   color:#666;
-  padding:30px 10px;
   font-size:13px;
+}
+
+.credit{
+  margin-top:10px;
+  font-size:11px;
+  color:#555;
 }
 </style>
 </head>
@@ -151,78 +202,94 @@ footer{
 
 <header>
 
-<div class="logo">NEXA 🌍</div>
+  <div class="logo">NEXA 🌍</div>
 
-<div class="brand">AtoNexa</div>
+  <div class="brand">AtoNexa</div>
 
-<div class="tagline">
-दुनिया को जानो, हर जानकारी को Verify करो।
-</div>
+  <div class="tagline">
+    दुनिया को जानो, हर जानकारी को Verify करो।
+  </div>
 
-<div class="oldline">
-“कुछ जगहें सिर्फ देखने के लिए नहीं… खोजने के लिए होती हैं।”
-</div>
+  <div class="old-line">
+    “कुछ जगहें सिर्फ देखने के लिए नहीं… खोजने के लिए होती हैं।”
+  </div>
 
 </header>
 
 
 <div class="box">
 
-<h2>🔐 Unlock a Location</h2>
+  <h2>🔐 Unlock a Location</h2>
 
-<p class="description">
-अपना NEXA Code डालकर location unlock करें
-</p>
+  <p>
+    अपना NEXA Code डालकर location unlock करें
+  </p>
 
-<input
-id="codeInput"
-type="text"
-placeholder="Enter NEXA Code"
-maxlength="7"
-autocomplete="off"
->
+  <input
+    id="codeInput"
+    type="text"
+    placeholder="Enter NEXA Code"
+    maxlength="7"
+    autocomplete="off"
+    spellcheck="false"
+  >
 
-<button onclick="unlock()">
-🔓 UNLOCK LOCATION
-</button>
+  <button onclick="unlockLocation()">
+    🔓 UNLOCK LOCATION
+  </button>
 
-<div class="error" id="error">
-❌ यह NEXA Code मौजूद नहीं है।
-</div>
+  <div class="error" id="error"></div>
 
 
-<div class="result" id="result">
+  <div class="location" id="locationResult">
 
-<img id="photo" src="" alt="NEXA Location">
+    <img
+      id="locationImage"
+      src=""
+      alt="NEXA Location"
+    >
 
-<div class="code" id="showCode"></div>
+    <div
+      class="code-badge"
+      id="locationCode">
+    </div>
 
-<h2 id="name"></h2>
+    <h2 id="locationName"></h2>
 
-<p class="info" id="info"></p>
+    <p
+      class="info"
+      id="locationInfo">
+    </p>
 
-<h3>🔟 10 खास बातें</h3>
+    <h3 class="facts-title">
+      🔟 10 खास बातें
+    </h3>
 
-<ol id="facts"></ol>
+    <ol id="factsList"></ol>
 
-<a
-id="maps"
-class="maps"
-href="#"
-target="_blank"
->
-🗺️ GOOGLE MAPS पर देखें
-</a>
+    <a
+      id="mapsButton"
+      class="maps"
+      href="#"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      🗺️ GOOGLE MAPS पर देखें
+    </a>
 
-</div>
+  </div>
 
 </div>
 
 
 <footer>
-NEXA © 2026
-<br><br>
-Powered by AtoNexa
+
+  NEXA © 2026
+
+  <div class="credit">
+    Powered by AtoNexa
+  </div>
+
 </footer>
 
 </div>
@@ -230,8 +297,13 @@ Powered by AtoNexa
 
 <script>
 
+/* =========================================
+   NEXA DATABASE
+
+   नए Codes आगे इसी database में जुड़ेंगे।
+   पुराने Codes कभी delete नहीं होंगे।
+   ========================================= */
+
 const locations = {
 
-"NEXA583": {
-
-name:"
+  "NEXA
