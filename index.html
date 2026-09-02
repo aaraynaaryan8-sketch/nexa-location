@@ -267,7 +267,15 @@ input:focus {
 
 
   <!-- RESULT ONLY AFTER CODE -->
+  <!-- NEXA CODE LAB BUTTON -->
 
+  <button
+    class="unlock-btn"
+    onclick="openCodeLab()"
+    style="margin-top:15px; background:#7c3aed;"
+  >
+    🧪 NEXA CODE LAB
+  </button>
   <div id="result"></div>
 
 
@@ -590,7 +598,92 @@ document
     this.value.toUpperCase();
 
 });
+function openCodeLab() {
 
+  const result = document.getElementById("result");
+
+  result.style.display = "block";
+
+  result.innerHTML = `
+    <div class="location-card">
+
+      <div class="location-info">
+
+        <h2>🧪 NEXA Code Lab</h2>
+
+        <p class="address">
+          अपना HTML code यहाँ डालो और Run दबाकर preview देखो।
+        </p>
+
+        <textarea
+          id="nexaCode"
+          style="
+            width:100%;
+            height:220px;
+            margin-top:15px;
+            padding:15px;
+            border-radius:12px;
+            border:1px solid #374151;
+            background:#080b12;
+            color:#fff;
+            font-family:monospace;
+            font-size:14px;
+            resize:vertical;
+          "
+          placeholder="<h1>Hello NEXA!</h1>"
+        ></textarea>
+
+        <button
+          class="button maps-button"
+          onclick="runNexaCode()"
+        >
+          ▶️ RUN CODE
+        </button>
+
+        <button
+          class="button back-button"
+          onclick="closeLocation()"
+        >
+          ← Back
+        </button>
+
+        <div
+          style="
+            margin-top:20px;
+            color:#9da5b3;
+            font-weight:bold;
+          "
+        >
+          OUTPUT
+        </div>
+
+        <iframe
+          id="nexaOutput"
+          style="
+            width:100%;
+            height:300px;
+            margin-top:10px;
+            border:none;
+            border-radius:12px;
+            background:white;
+          "
+        ></iframe>
+
+      </div>
+
+    </div>
+  `;
+}
+
+
+function runNexaCode() {
+
+  const code = document.getElementById("nexaCode").value;
+
+  const output = document.getElementById("nexaOutput");
+
+  output.srcdoc = code;
+}
 </script>
 
 </body>
