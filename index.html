@@ -109,7 +109,7 @@ button:active{
   margin-top:15px;
   padding:13px;
   border-radius:10px;
-  background:#05070d;
+  background:#050505;
   word-break:break-word;
   display:none;
 }
@@ -125,7 +125,7 @@ button:active{
 .message-view{
   font-size:20px;
   line-height:1.6;
-  background:#05070d;
+  background:#050505;
   padding:20px;
   border-radius:12px;
   margin-top:15px;
@@ -229,7 +229,9 @@ const SUPABASE_URL =
 "https://crtoxfnqfyhorcxypxem.supabase.co";
 
 /*
-  यहाँ अपनी Supabase Publishable / anon key डालो।
+  अपनी Supabase Publishable / anon key
+  नीचे डालो।
+
   Service Role / Secret key मत डालना।
 */
 
@@ -237,12 +239,9 @@ const SUPABASE_KEY =
 "sb_publishable_8q9uqlafK4f6BctsrRLnjg_0PG3K5lu";
 
 
-/*
-  IMPORTANT:
-  पुराने supabaseClient नाम की जगह
-  unique नाम रखा गया है ताकि
-  initialization error न आए।
-*/
+/* =========================
+   SUPABASE CLIENT
+========================= */
 
 const nexasbClient =
 window.supabase.createClient(
@@ -269,6 +268,7 @@ async function createMessage(){
   linkResult.style.display = "block";
   linkResult.className = "result";
 
+
   if(!message){
 
     linkResult.innerHTML =
@@ -277,32 +277,38 @@ async function createMessage(){
     return;
   }
 
+
   linkResult.innerHTML =
     "⏳ Link बनाया जा रहा है...";
 
 
   try{
 
-    /* Random secure token */
+    /* Random token */
 
     const randomBytes =
       new Uint8Array(24);
 
     crypto.getRandomValues(randomBytes);
 
+
     const token =
       Array.from(randomBytes)
       .map(function(b){
-        return b.toString(16).padStart(2,"0");
+
+        return b
+          .toString(16)
+          .padStart(2,"0");
+
       })
       .join("");
 
 
-    /* Supabase INSERT */
+    /* INSERT INTO Message TABLE */
 
     const response =
       await nexasbClient
-      .from("Messages One Table")
+      .from("Message")
       .insert([
         {
           Message: message,
@@ -313,8 +319,8 @@ async function createMessage(){
       .select();
 
 
-    const data = response.data;
-    const error = response.error;
+    const error =
+      response.error;
 
 
     if(error){
@@ -333,7 +339,7 @@ async function createMessage(){
     }
 
 
-    /* Create URL */
+    /* CREATE LINK */
 
     const link =
       window.location.origin +
@@ -343,6 +349,7 @@ async function createMessage(){
 
 
     linkResult.innerHTML = `
+
       <div class="success">
         ✅ One-Time Link तैयार है!
       </div>
@@ -358,10 +365,12 @@ async function createMessage(){
       <button onclick="copyLink()">
         📋 Link Copy करो
       </button>
+
     `;
 
 
     messageInput.value = "";
+
 
   }
   catch(error){
@@ -372,7 +381,9 @@ async function createMessage(){
       '<span class="error">❌ Error: ' +
       error.message +
       "</span>";
+
   }
+
 }
 
 
@@ -383,9 +394,13 @@ async function createMessage(){
 function copyLink(){
 
   const link =
-    document.getElementById("generatedLink");
+    document.getElementById(
+      "generatedLink"
+    );
+
 
   if(!link) return;
+
 
   link.select();
   link.setSelectionRange(0,99999);
@@ -398,14 +413,18 @@ function copyLink(){
 
     navigator.clipboard
     .writeText(link.value)
+
     .then(function(){
 
       alert("✅ Link Copy हो गया!");
 
     })
+
     .catch(function(){
 
-      alert("Link को manually copy कर लो।");
+      alert(
+        "Link को manually copy कर लो।"
+      );
 
     });
 
@@ -417,6 +436,7 @@ function copyLink(){
     alert("✅ Link Copy हो गया!");
 
   }
+
 }
 
 
@@ -431,6 +451,7 @@ async function openOneTimeMessage(){
       window.location.search
     );
 
+
   const token =
     params.get("token");
 
@@ -438,15 +459,17 @@ async function openOneTimeMessage(){
   if(!token) return;
 
 
-  /* Hide other sections */
+  /* Hide normal sections */
 
   document.getElementById(
     "oneTimeBox"
   ).style.display = "none";
 
+
   document.getElementById(
     "locationBox"
   ).style.display = "none";
+
 
   document.getElementById(
     "viewBox"
@@ -458,25 +481,42 @@ async function openOneTimeMessage(){
       "messageView"
     );
 
+
   messageView.innerHTML =
     "⏳ Message खुल रहा है...";
 
 
   try{
 
-    /* Find unread message */
+    /* FIND MESSAGE */
 
     const response =
       await nexasbClient
-      .from("Messages One Table")
-      .select("id, Message, Viewed")
-      .eq("Token", token)
-      .eq("Viewed", false)
+
+      .from("Message")
+
+      .select(
+        "id, Message, Viewed"
+      )
+
+      .eq(
+        "Token",
+        token
+      )
+
+      .eq(
+        "Viewed",
+        false
+      )
+
       .maybeSingle();
 
 
-    const data = response.data;
-    const error = response.error;
+    const data =
+      response.data;
+
+    const error =
+      response.error;
 
 
     if(error){
@@ -492,6 +532,8 @@ async function openOneTimeMessage(){
     }
 
 
+    /* MESSAGE NOT FOUND */
+
     if(!data){
 
       messageView.innerHTML =
@@ -503,23 +545,27 @@ async function openOneTimeMessage(){
     }
 
 
-    /* Show message */
+    /* SHOW MESSAGE */
 
     messageView.innerText =
       data.Message;
 
 
-    /*
-      Mark as viewed
-    */
+    /* MARK AS VIEWED */
 
     const updateResponse =
       await nexasbClient
-      .from("Messages One Table")
+
+      .from("Message")
+
       .update({
         Viewed: true
       })
-      .eq("id", data.id);
+
+      .eq(
+        "id",
+        data.id
+      );
 
 
     if(updateResponse.error){
@@ -540,7 +586,9 @@ async function openOneTimeMessage(){
       '<span class="error">❌ Error: ' +
       error.message +
       "</span>";
+
   }
+
 }
 
 
@@ -596,6 +644,7 @@ function unlockNexa(){
       '</span>';
 
   }
+
 }
 
 
