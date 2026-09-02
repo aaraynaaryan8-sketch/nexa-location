@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -7,189 +8,230 @@
 <title>NEXA 🌍 | AtoNexa</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#05070d;
+  color:white;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background: #05070d;
-  color: #ffffff;
-  min-height: 100vh;
+.container{
+  max-width:650px;
+  margin:auto;
+  padding:20px;
 }
 
-.container {
-  width: 92%;
-  max-width: 700px;
-  margin: auto;
+header{
+  text-align:center;
+  padding:35px 10px;
 }
 
-header {
-  text-align: center;
-  padding: 55px 10px 30px;
+.logo{
+  font-size:45px;
+  font-weight:bold;
 }
 
-.logo {
-  font-size: 48px;
-  font-weight: 900;
-  letter-spacing: 2px;
+.brand{
+  margin-top:8px;
+  font-size:18px;
 }
 
-.brand {
-  font-size: 18px;
-  margin-top: 8px;
-  opacity: 0.8;
+.tagline{
+  margin-top:18px;
+  color:#ddd;
+  line-height:1.5;
 }
 
-.tagline {
-  margin-top: 18px;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #dddddd;
+.oldline{
+  margin-top:18px;
+  color:#999;
+  font-size:14px;
 }
 
-.old-line {
-  margin-top: 20px;
-  font-size: 14px;
-  color: #aaaaaa;
-  font-style: italic;
-  line-height: 1.5;
+.box{
+  background:#101522;
+  padding:22px;
+  border-radius:18px;
+  border:1px solid #293247;
 }
 
-.box {
-  background: #0d111c;
-  border: 1px solid #252c3d;
-  border-radius: 20px;
-  padding: 25px;
-  margin-top: 25px;
-  box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+h2{
+  margin-top:0;
 }
 
-.box h2 {
-  font-size: 22px;
-  margin-bottom: 8px;
+.description{
+  color:#aaa;
+  line-height:1.5;
 }
 
-.box p {
-  color: #aaaaaa;
-  margin-bottom: 18px;
-  line-height: 1.5;
+input{
+  width:100%;
+  padding:15px;
+  box-sizing:border-box;
+  background:#070a10;
+  color:white;
+  border:1px solid #394258;
+  border-radius:10px;
+  font-size:17px;
+  text-align:center;
+  outline:none;
 }
 
-input {
-  width: 100%;
-  padding: 16px;
-  border-radius: 12px;
-  border: 1px solid #343c50;
-  background: #070a12;
-  color: #ffffff;
-  font-size: 18px;
-  text-align: center;
-  outline: none;
-  text-transform: uppercase;
+button{
+  width:100%;
+  padding:15px;
+  margin-top:12px;
+  border:0;
+  border-radius:10px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-input::placeholder {
-  color: #777777;
-  text-transform: none;
+.result{
+  display:none;
+  margin-top:20px;
 }
 
-input:focus {
-  border-color: #ffffff;
+.result img{
+  width:100%;
+  border-radius:15px;
 }
 
-button {
-  width: 100%;
-  margin-top: 14px;
-  padding: 16px;
-  border: none;
-  border-radius: 12px;
-  background: #ffffff;
-  color: #000000;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
+.code{
+  display:inline-block;
+  margin-top:15px;
+  padding:7px 12px;
+  border-radius:20px;
+  background:#1c2434;
 }
 
-button:active {
-  transform: scale(0.98);
+.info{
+  color:#ccc;
+  line-height:1.7;
 }
 
-.error {
-  display: none;
-  text-align: center;
-  color: #ff6b6b;
-  margin-top: 18px;
-  line-height: 1.5;
+li{
+  margin-bottom:12px;
+  line-height:1.5;
+  color:#ddd;
 }
 
-.location {
-  display: none;
-  margin-top: 25px;
+.maps{
+  display:block;
+  text-align:center;
+  padding:15px;
+  margin-top:20px;
+  background:white;
+  color:black;
+  text-decoration:none;
+  border-radius:10px;
+  font-weight:bold;
 }
 
-.location img {
-  width: 100%;
-  border-radius: 16px;
-  display: block;
-  max-height: 360px;
-  object-fit: cover;
+.error{
+  display:none;
+  color:#ff6666;
+  text-align:center;
+  margin-top:15px;
 }
 
-.code-badge {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 8px 14px;
-  border-radius: 20px;
-  background: #171d2b;
-  border: 1px solid #30384c;
-  font-weight: bold;
-  letter-spacing: 1px;
+footer{
+  text-align:center;
+  color:#666;
+  padding:30px 10px;
+  font-size:13px;
 }
+</style>
+</head>
 
-.location h2 {
-  margin-top: 20px;
-  font-size: 27px;
-  line-height: 1.3;
-}
+<body>
 
-.info {
-  margin-top: 12px;
-  color: #cccccc;
-  line-height: 1.7;
-}
+<div class="container">
 
-.facts-title {
-  margin-top: 25px;
-  margin-bottom: 12px;
-  font-size: 20px;
-}
+<header>
 
-ol {
-  padding-left: 22px;
-}
+<div class="logo">NEXA 🌍</div>
 
-li {
-  margin-bottom: 12px;
-  line-height: 1.5;
-  color: #dddddd;
-}
+<div class="brand">AtoNexa</div>
 
-.maps {
-  display: block;
-  text-align: center;
-  text-decoration: none;
-  background: #ffffff;
-  color: #000000;
-  padding: 15px;
-  border-radius: 12px;
-  margin-top: 22px;
-  font-weight: bold;
-}
+<div class="tagline">
+दुनिया को जानो, हर जानकारी को Verify करो।
+</div>
 
-footer {
-  text-align: center;
-  padding: 35px 10px;
-  color: #666
+<div class="oldline">
+“कुछ जगहें सिर्फ देखने के लिए नहीं… खोजने के लिए होती हैं।”
+</div>
+
+</header>
+
+
+<div class="box">
+
+<h2>🔐 Unlock a Location</h2>
+
+<p class="description">
+अपना NEXA Code डालकर location unlock करें
+</p>
+
+<input
+id="codeInput"
+type="text"
+placeholder="Enter NEXA Code"
+maxlength="7"
+autocomplete="off"
+>
+
+<button onclick="unlock()">
+🔓 UNLOCK LOCATION
+</button>
+
+<div class="error" id="error">
+❌ यह NEXA Code मौजूद नहीं है।
+</div>
+
+
+<div class="result" id="result">
+
+<img id="photo" src="" alt="NEXA Location">
+
+<div class="code" id="showCode"></div>
+
+<h2 id="name"></h2>
+
+<p class="info" id="info"></p>
+
+<h3>🔟 10 खास बातें</h3>
+
+<ol id="facts"></ol>
+
+<a
+id="maps"
+class="maps"
+href="#"
+target="_blank"
+>
+🗺️ GOOGLE MAPS पर देखें
+</a>
+
+</div>
+
+</div>
+
+
+<footer>
+NEXA © 2026
+<br><br>
+Powered by AtoNexa
+</footer>
+
+</div>
+
+
+<script>
+
+const locations = {
+
+"NEXA583": {
+
+name:"
