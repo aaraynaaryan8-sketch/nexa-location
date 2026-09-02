@@ -1,831 +1,577 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NEXA 🌍 | AtoNexa</title>
+  <title>Ataoullah | NEXA</title>
 
-<style>
-*{
-  box-sizing:border-box;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-body{
-  margin:0;
-  background:#05070d;
-  color:white;
-  font-family:Arial,sans-serif;
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #050505, #111827);
+      color: white;
+      display: flex;
+      justify-content: center;
+      padding: 25px 15px;
+    }
 
-.container{
-  width:92%;
-  max-width:700px;
-  margin:auto;
-}
+    .container {
+      width: 100%;
+      max-width: 600px;
+    }
 
-header{
-  text-align:center;
-  padding:45px 10px 30px;
-}
+    h1 {
+      text-align: center;
+      margin-bottom: 5px;
+    }
 
-.logo{
-  font-size:48px;
-  font-weight:bold;
-}
+    .subtitle {
+      text-align: center;
+      color: #aaa;
+      margin-bottom: 25px;
+    }
 
-.brand{
-  margin-top:8px;
-  font-size:18px;
-}
+    .box {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(10px);
+    }
 
-.tagline{
-  margin-top:18px;
-  color:#ddd;
-  line-height:1.5;
-}
+    h2 {
+      margin-top: 0;
+    }
 
-.oldline{
-  margin-top:18px;
-  color:#999;
-  font-size:14px;
-  font-style:italic;
-  line-height:1.5;
-}
+    textarea,
+    input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid #555;
+      background: #111;
+      color: white;
+      font-size: 16px;
+      margin-bottom: 12px;
+      outline: none;
+    }
 
-.box{
-  background:#0d111c;
-  border:1px solid #293247;
-  border-radius:20px;
-  padding:25px;
-  margin-bottom:20px;
-}
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #000;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 5px;
+    }
 
-.box h2{
-  margin-top:0;
-}
+    button:active {
+      transform: scale(0.98);
+    }
 
-.description{
-  color:#aaa;
-  line-height:1.5;
-}
+    .result {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 10px;
+      background: #050505;
+      word-break: break-all;
+      display: none;
+    }
 
-textarea,
-input{
-  width:100%;
-  padding:16px;
-  background:#070a12;
-  color:white;
-  border:1px solid #394258;
-  border-radius:12px;
-  font-size:17px;
-  outline:none;
-}
+    .error {
+      color: #ff6b6b;
+    }
 
-textarea{
-  min-height:130px;
-  resize:vertical;
-}
+    .success {
+      color: #7CFF9B;
+    }
 
-button{
-  width:100%;
-  padding:16px;
-  margin-top:14px;
-  border:0;
-  border-radius:12px;
-  background:white;
-  color:black;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
-}
+    .message-view {
+      font-size: 20px;
+      line-height: 1.6;
+      background: #050505;
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 15px;
+    }
 
-button:disabled{
-  opacity:.5;
-}
-
-.message-result{
-  display:none;
-  margin-top:20px;
-  padding:20px;
-  background:#070a12;
-  border:1px solid #394258;
-  border-radius:15px;
-  word-break:break-word;
-}
-
-.share-link{
-  margin-top:15px;
-  padding:14px;
-  background:#192033;
-  border-radius:12px;
-  word-break:break-all;
-  color:#ddd;
-  font-size:14px;
-}
-
-#error{
-  display:none;
-  color:#ff6666;
-  text-align:center;
-  margin-top:18px;
-}
-
-#success{
-  display:none;
-  color:#66ff99;
-  text-align:center;
-  margin-top:18px;
-}
-
-/* IMPORTANT:
-   One-Time Message अब hidden नहीं है
-*/
-#oneTimeBox{
-  display:block;
-}
-
-#locationBox{
-  display:block;
-}
-
-#viewBox{
-  display:none;
-}
-
-#result{
-  display:none;
-  margin-top:25px;
-}
-
-#result img{
-  width:100%;
-  border-radius:15px;
-}
-
-#locationError{
-  display:none;
-  color:#ff6666;
-  text-align:center;
-  margin-top:18px;
-}
-
-.code{
-  display:inline-block;
-  margin-top:15px;
-  padding:8px 14px;
-  background:#192033;
-  border-radius:20px;
-}
-
-.info{
-  color:#ccc;
-  line-height:1.7;
-}
-
-li{
-  color:#ddd;
-  margin-bottom:12px;
-  line-height:1.5;
-}
-
-.maps{
-  display:block;
-  margin-top:20px;
-  padding:15px;
-  background:white;
-  color:black;
-  text-align:center;
-  text-decoration:none;
-  border-radius:12px;
-  font-weight:bold;
-}
-
-footer{
-  text-align:center;
-  color:#666;
-  padding:35px 10px;
-  font-size:13px;
-}
-
-.expired{
-  text-align:center;
-  padding:30px 10px;
-  color:#ff7777;
-  font-size:18px;
-}
-</style>
+    .small {
+      color: #999;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
+  <div class="container">
 
-<header>
+    <h1>🌐 Ataoullah</h1>
+    <div class="subtitle">NEXA • One-Time Message</div>
 
-<div class="logo">NEXA 🌍</div>
 
-<div class="brand">AtoNexa</div>
+    <!-- ========================= -->
+    <!-- ONE TIME MESSAGE -->
+    <!-- ========================= -->
 
-<div class="tagline">
-दुनिया को जानो, हर जानकारी को Verify करो।
-</div>
+    <div class="box" id="oneTimeBox">
 
-<div class="oldline">
-“कुछ जगहें सिर्फ देखने के लिए नहीं… खोजने के लिए होती हैं।”
-</div>
+      <h2>🔐 One-Time Message</h2>
 
-</header>
+      <p>
+        ऐसा message बनाओ जिसे link खोलने के बाद
+        एक बार देखने पर दोबारा नहीं देखा जा सके।
+      </p>
 
+      <textarea
+        id="messageInput"
+        rows="5"
+        placeholder="अपना secret message यहाँ लिखें..."
+      ></textarea>
 
-<!-- =====================================
-     ONE-TIME MESSAGE
-===================================== -->
+      <button onclick="createMessage()">
+        🔗 One-Time Link बनाओ
+      </button>
 
-<div class="box" id="oneTimeBox">
+      <div id="linkResult" class="result"></div>
 
-<h2>🔐 One-Time Message</h2>
+    </div>
 
-<p class="description">
-ऐसा message बनाओ जिसे सामने वाला सिर्फ एक बार देख सके।
-</p>
 
-<textarea
-id="messageInput"
-placeholder="अपना message या emoji यहाँ लिखें..."
-maxlength="2000"
-></textarea>
+    <!-- ========================= -->
+    <!-- VIEW ONE TIME MESSAGE -->
+    <!-- ========================= -->
 
-<button id="generateBtn" type="button" onclick="createMessage()">
-🔗 ONE-TIME LINK बनाओ
-</button>
+    <div class="box" id="viewBox" style="display:none;">
 
-<div id="success">
-✅ Link successfully बन गया!
-</div>
+      <h2>📩 One-Time Message</h2>
 
-<div id="error"></div>
+      <div id="messageView" class="message-view">
+        Message loading...
+      </div>
 
-<div id="linkResult" class="message-result">
+    </div>
 
-<strong>🔗 आपका One-Time Link:</strong>
 
-<div id="shareLink" class="share-link"></div>
+    <!-- ========================= -->
+    <!-- NEXA LOCATION -->
+    <!-- ========================= -->
 
-<button type="button" onclick="copyLink()">
-📋 COPY LINK
-</button>
+    <div class="box" id="locationBox">
 
-</div>
+      <h2>🌍 NEXA Location</h2>
 
-</div>
+      <p>
+        अपना NEXA access code डालें।
+      </p>
 
+      <input
+        type="text"
+        id="nexaCode"
+        placeholder="Enter NEXA Code"
+      >
 
-<!-- =====================================
-     SECRET MESSAGE VIEW
-===================================== -->
+      <button onclick="unlockNexa()">
+        🔓 Unlock NEXA
+      </button>
 
-<div class="box" id="viewBox">
+      <div id="nexaResult" class="result"></div>
 
-<h2>🔐 Secret Message</h2>
+    </div>
 
-<div
-id="viewMessage"
-class="message-result"
-style="display:block"
->
-Message load हो रहा है...
-</div>
+  </div>
 
-<div id="viewError" class="expired"></div>
 
-</div>
+  <!-- SUPABASE -->
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<!-- =====================================
-     NEXA LOCATION
-===================================== -->
+  <script>
 
-<div class="box" id="locationBox">
+    /* =====================================
+       SUPABASE SETTINGS
+       ===================================== */
 
-<h2>🔐 Unlock a Location</h2>
+    const SUPABASE_URL =
+      "https://crtoxfnqfyhorcxypxem.supabase.co";
 
-<p class="description">
-अपना NEXA Code डालकर location unlock करें
-</p>
+    /*
+      भाई 👇 यहाँ अपनी Supabase
+      Publishable Key डालना।
+    */
 
-<input
-id="code"
-type="text"
-placeholder="Enter NEXA Code"
-maxlength="7"
-autocomplete="off"
->
+    const SUPABASE_KEY =
+      sb_publishable_8q9uqlafK4f6BctsrRLnjg_0PG3K5lu
 
-<button type="button" onclick="unlockLocation()">
-🔓 UNLOCK LOCATION
-</button>
 
-<div id="locationError">
-❌ यह NEXA Code मौजूद नहीं है।
-</div>
-
-<div id="result">
-
-<img
-src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bengaluru_Skyline_from_Tata_Promont.jpg/1280px-Bengaluru_Skyline_from_Tata_Promont.jpg"
-alt="Bengaluru"
->
-
-<div class="code">
-NEXA583
-</div>
-
-<h2>
-Bengaluru, Karnataka, India
-</h2>
-
-<p class="info">
-Bengaluru भारत का एक प्रमुख technology और innovation hub है।
-यह technology sector, gardens, historic landmarks और diverse culture
-के लिए जाना जाता है। इसे अक्सर Garden City भी कहा जाता है।
-</p>
-
-<h3>🔟 10 खास बातें</h3>
-
-<ol>
-
-<li>
-Bengaluru को भारत की technology capital के रूप में जाना जाता है।
-</li>
-
-<li>
-इसे अक्सर Garden City of India कहा जाता है।
-</li>
-
-<li>
-Lalbagh Botanical Garden लगभग 240 acres में फैला हुआ है।
-</li>
-
-<li>
-Lalbagh की शुरुआत लगभग 1760 में Hyder Ali ने करवाई थी।
-</li>
-
-<li>
-बाद में Tipu Sultan ने Lalbagh के विकास को आगे बढ़ाया।
-</li>
-
-<li>
-Cubbon Park लगभग 300 acres में फैला हुआ है।
-</li>
-
-<li>
-Cubbon Park की स्थापना 1870 में हुई थी।
-</li>
-
-<li>
-Vidhana Soudha Karnataka का प्रमुख landmark है।
-</li>
-
-<li>
-Bengaluru Palace एक 19वीं सदी का royal residence है।
-</li>
-
-<li>
-KR Market Bengaluru के प्रमुख wholesale markets में से एक है।
-</li>
-
-</ol>
-
-<a
-class="maps"
-href="https://www.google.com/maps/search/?api=1&query=Bengaluru%2C%20Karnataka%2C%20India"
-target="_blank"
-rel="noopener"
->
-🗺️ GOOGLE MAPS पर देखें
-</a>
-
-</div>
-
-</div>
-
-
-<footer>
-NEXA © 2026
-<br><br>
-Powered by AtoNexa
-</footer>
-
-</div>
-
-
-<!-- =====================================
-     SUPABASE
-===================================== -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-
-const SUPABASE_URL =
-"https://crtoxfnqfyhorcxypxem.supabase.co";
-
-/*
-================================================
-IMPORTANT SECURITY
-================================================
-
-यहाँ केवल Supabase की Publishable/anon key डालें।
-
-service_role / secret key यहाँ कभी न डालें।
-
-*/
-const SUPABASE_KEY =
-sb_publishable_8q9uqlafK4f6BctsrRLnjg_0PG3K5lu
-
-
-const supabaseClient =
-supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-
-
-/* =====================================
-   GENERATE RANDOM TOKEN
-===================================== */
-
-function generateToken(){
-
-  const random =
-  new Uint8Array(24);
-
-  crypto.getRandomValues(random);
-
-  return Array.from(random)
-    .map(function(b){
-      return b.toString(16).padStart(2,"0");
-    })
-    .join("");
-
-}
-
-
-/* =====================================
-   CREATE ONE-TIME MESSAGE
-===================================== */
-
-async function createMessage(){
-
-  const input =
-  document.getElementById("messageInput");
-
-  const message =
-  input.value.trim();
-
-  const errorBox =
-  document.getElementById("error");
-
-  const success =
-  document.getElementById("success");
-
-  const result =
-  document.getElementById("linkResult");
-
-  const button =
-  document.getElementById("generateBtn");
-
-
-  errorBox.style.display="none";
-  success.style.display="none";
-  result.style.display="none";
-
-
-  if(!message){
-
-    errorBox.textContent =
-    "❌ पहले कोई message लिखो।";
-
-    errorBox.style.display="block";
-
-    return;
-  }
-
-
-  if(
-    SUPABASE_KEY ===
-    "YOUR_SUPABASE_PUBLISHABLE_KEY"
-  ){
-
-    errorBox.textContent =
-    "❌ Supabase Publishable Key अभी code में डालनी है।";
-
-    errorBox.style.display="block";
-
-    return;
-  }
-
-
-  button.disabled=true;
-  button.textContent="⏳ LINK बन रहा है...";
-
-
-  try{
-
-    const token =
-    generateToken();
-
-
-    const response =
-    await supabaseClient
-      .from("Message")
-      .insert([
-        {
-          message:message,
-          token:token,
-          viewed:false
-        }
-      ])
-      .select()
-      .single();
-
-
-    const dbError =
-    response.error;
-
-
-    if(dbError){
-
-      console.error(dbError);
-
-      errorBox.textContent =
-      "❌ Link नहीं बन पाया। Supabase table या permissions check करो।";
-
-      errorBox.style.display="block";
-
-      return;
-    }
-
-
-    const link =
-    window.location.origin +
-    window.location.pathname +
-    "?token=" +
-    encodeURIComponent(token);
-
-
-    document.getElementById("shareLink")
-      .textContent=link;
-
-
-    result.style.display="block";
-
-    success.style.display="block";
-
-
-  }catch(err){
-
-    console.error(err);
-
-    errorBox.textContent =
-    "❌ कुछ technical problem हुई।";
-
-    errorBox.style.display="block";
-
-  }finally{
-
-    button.disabled=false;
-
-    button.textContent =
-    "🔗 ONE-TIME LINK बनाओ";
-
-  }
-
-}
-
-
-/* =====================================
-   COPY LINK
-===================================== */
-
-async function copyLink(){
-
-  const link =
-  document.getElementById("shareLink")
-    .textContent;
-
-  try{
-
-    await navigator.clipboard.writeText(link);
-
-    alert("✅ Link copied!");
-
-  }catch(err){
-
-    alert(
-      "❌ Copy नहीं हुआ। Link को manually copy करें।"
+    const db = supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
     );
 
-  }
 
-}
+    /* =====================================
+       ONE TIME MESSAGE CREATE
+       ===================================== */
 
+    async function createMessage() {
 
-/* =====================================
-   OPEN ONE-TIME MESSAGE
-===================================== */
+      const input =
+        document.getElementById("messageInput");
 
-async function openOneTimeMessage(){
+      const result =
+        document.getElementById("linkResult");
 
-  const params =
-  new URLSearchParams(
-    window.location.search
-  );
-
-
-  const token =
-  params.get("token");
+      const message =
+        input.value.trim();
 
 
-  if(!token){
-
-    return;
-  }
+      result.style.display = "block";
+      result.className = "result";
 
 
-  document.getElementById("oneTimeBox")
-    .style.display="none";
+      if (!message) {
 
-  document.getElementById("locationBox")
-    .style.display="none";
+        result.innerHTML =
+          '<span class="error">❌ पहले message लिखो।</span>';
 
-  document.getElementById("viewBox")
-    .style.display="block";
-
-
-  const messageBox =
-  document.getElementById("viewMessage");
-
-  const viewError =
-  document.getElementById("viewError");
+        return;
+      }
 
 
-  if(
-    SUPABASE_KEY ===
-    "YOUR_SUPABASE_PUBLISHABLE_KEY"
-  ){
-
-    messageBox.style.display="none";
-
-    viewError.textContent =
-    "❌ Supabase configuration missing.";
-
-    return;
-  }
+      result.innerHTML =
+        "⏳ Link बनाया जा रहा है...";
 
 
-  try{
+      try {
 
-    const response =
-    await supabaseClient
-      .from("Message")
-      .select("id,message,viewed")
-      .eq("token",token)
-      .eq("viewed",false)
-      .maybeSingle();
+        /*
+          Random token
+        */
 
+        const randomBytes =
+          new Uint8Array(24);
 
-    const data =
-    response.data;
-
-    const error =
-    response.error;
+        crypto.getRandomValues(randomBytes);
 
 
-    if(error){
+        const token =
+          Array.from(randomBytes)
+            .map(
+              b => b.toString(16).padStart(2, "0")
+            )
+            .join("");
 
-      console.error(error);
 
-      messageBox.style.display="none";
+        /*
+          IMPORTANT:
+          तुम्हारी असली table का नाम
+          Messages One Table है।
+        */
 
-      viewError.textContent =
-      "❌ Message load नहीं हो पाया।";
+        const { data, error } =
+          await db
+            .from("Messages One Table")
+            .insert([
+              {
+                Message: message,
+                Token: token,
+                Viewed: false
+              }
+            ])
+            .select();
 
-      return;
+
+        if (error) {
+
+          console.error(error);
+
+          result.innerHTML =
+            '<span class="error">' +
+            "❌ Supabase Error:<br>" +
+            error.message +
+            "</span>";
+
+          return;
+        }
+
+
+        /*
+          Link बनाना
+        */
+
+        const link =
+          window.location.origin +
+          window.location.pathname +
+          "?token=" +
+          token;
+
+
+        result.innerHTML = `
+          <div class="success">
+            ✅ One-Time Link तैयार है!
+          </div>
+
+          <br>
+
+          <input
+            id="generatedLink"
+            value="${link}"
+            readonly
+          >
+
+          <button onclick="copyLink()">
+            📋 Link Copy करो
+          </button>
+        `;
+
+
+        input.value = "";
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+        result.innerHTML =
+          '<span class="error">' +
+          "❌ Error: " +
+          error.message +
+          "</span>";
+      }
+
     }
 
 
-    if(!data){
+    /* =====================================
+       COPY LINK
+       ===================================== */
 
-      messageBox.style.display="none";
+    function copyLink() {
 
-      viewError.textContent =
-      "🚫 यह message पहले ही देखा जा चुका है या link गलत है।";
+      const link =
+        document.getElementById("generatedLink");
 
-      return;
+      link.select();
+
+      navigator.clipboard
+        .writeText(link.value)
+        .then(() => {
+
+          alert("✅ Link Copy हो गया!");
+
+        })
+        .catch(() => {
+
+          alert("Link को manually copy कर लो।");
+
+        });
+
     }
 
 
-    /*
-      Message display
-    */
+    /* =====================================
+       OPEN ONE TIME MESSAGE
+       ===================================== */
 
-    messageBox.textContent =
-    data.message;
+    async function openOneTimeMessage() {
 
+      const params =
+        new URLSearchParams(
+          window.location.search
+        );
 
-    /*
-      Message को viewed mark करें
-    */
-
-    const updateResponse =
-    await supabaseClient
-      .from("Message")
-      .update({
-        viewed:true
-      })
-      .eq("id",data.id)
-      .eq("viewed",false);
+      const token =
+        params.get("token");
 
 
-    if(updateResponse.error){
+      if (!token) {
+        return;
+      }
 
-      console.error(
-        updateResponse.error
-      );
+
+      document.getElementById(
+        "oneTimeBox"
+      ).style.display = "none";
+
+
+      document.getElementById(
+        "locationBox"
+      ).style.display = "none";
+
+
+      document.getElementById(
+        "viewBox"
+      ).style.display = "block";
+
+
+      const messageView =
+        document.getElementById(
+          "messageView"
+        );
+
+
+      messageView.innerHTML =
+        "⏳ Message खुल रहा है...";
+
+
+      try {
+
+        const { data, error } =
+          await db
+            .from("Messages One Table")
+            .select("id,Message,Viewed")
+            .eq("Token", token)
+            .eq("Viewed", false)
+            .maybeSingle();
+
+
+        if (error) {
+
+          console.error(error);
+
+          messageView.innerHTML =
+            '<span class="error">' +
+            "❌ Error: " +
+            error.message +
+            "</span>";
+
+          return;
+        }
+
+
+        if (!data) {
+
+          messageView.innerHTML =
+            '<span class="error">' +
+            "❌ यह message पहले ही देखा जा चुका है या मौजूद नहीं है।" +
+            "</span>";
+
+          return;
+        }
+
+
+        /*
+          पहले message दिखाओ
+        */
+
+        messageView.innerText =
+          data.Message;
+
+
+        /*
+          फिर Viewed = true
+        */
+
+        const { error: updateError } =
+          await db
+            .from("Messages One Table")
+            .update({
+              Viewed: true
+            })
+            .eq("id", data.id);
+
+
+        if (updateError) {
+
+          console.error(updateError);
+
+        }
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+        messageView.innerHTML =
+          '<span class="error">' +
+          "❌ Error: " +
+          error.message +
+          "</span>";
+
+      }
+
+    }
+
+
+    /* =====================================
+       NEXA LOCATION
+       ===================================== */
+
+    function unlockNexa() {
+
+      const code =
+        document.getElementById(
+          "nexaCode"
+        ).value.trim();
+
+
+      const result =
+        document.getElementById(
+          "nexaResult"
+        );
+
+
+      result.style.display = "block";
+      result.className = "result";
+
 
       /*
-        अगर update permission problem हो,
-        तो user को message दिख चुका है।
+        पुराना NEXA CODE
       */
 
-      return;
+      if (code === "NEXA583") {
+
+        result.innerHTML = `
+          <div class="success">
+            <h3>🌍 NEXA Unlocked</h3>
+
+            <p>
+              📍 Bengaluru, Karnataka
+            </p>
+
+            <p>
+              NEXA Location system active.
+            </p>
+          </div>
+        `;
+
+      }
+
+      else {
+
+        result.innerHTML =
+          '<span class="error">' +
+          "❌ गलत NEXA Code" +
+          "</span>";
+
+      }
+
     }
 
 
-  }catch(err){
+    /* =====================================
+       START
+       ===================================== */
 
-    console.error(err);
+    openOneTimeMessage();
 
-    messageBox.style.display="none";
-
-    viewError.textContent =
-    "❌ Message load नहीं हो पाया।";
-
-  }
-
-}
-
-
-/* =====================================
-   NEXA LOCATION
-===================================== */
-
-function unlockLocation(){
-
-  const code =
-  document.getElementById("code")
-    .value
-    .trim()
-    .toUpperCase();
-
-
-  const result =
-  document.getElementById("result");
-
-  const error =
-  document.getElementById("locationError");
-
-
-  if(code === "NEXA583"){
-
-    error.style.display="none";
-
-    result.style.display="block";
-
-    result.scrollIntoView({
-      behavior:"smooth"
-    });
-
-  }else{
-
-    result.style.display="none";
-
-    error.style.display="block";
-
-  }
-
-}
-
-
-/* =====================================
-   START
-===================================== */
-
-openOneTimeMessage();
-
-</script>
+  </script>
 
 </body>
 </html>
