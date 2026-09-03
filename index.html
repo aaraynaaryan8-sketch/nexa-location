@@ -102,7 +102,8 @@ p{
 ========================= */
 
 input,
-textarea{
+textarea,
+select{
   width:100%;
   padding:13px;
   border-radius:9px;
@@ -112,6 +113,10 @@ textarea{
   font-size:16px;
   outline:none;
   margin-bottom:11px;
+}
+
+select{
+  cursor:pointer;
 }
 
 button{
@@ -188,6 +193,116 @@ button:active{
 
 #viewBox{
   display:none;
+}
+
+/* =========================
+   CONTENT OPTIONS
+========================= */
+
+.content-label{
+  font-size:14px;
+  font-weight:bold;
+  margin-bottom:8px;
+  color:#c3c9d5;
+}
+
+#photoPreview,
+#gifPreview{
+  display:none;
+  width:100%;
+  max-height:300px;
+  object-fit:contain;
+  border-radius:12px;
+  margin-top:8px;
+  background:#000;
+}
+
+.file-input{
+  padding:10px;
+  font-size:14px;
+}
+
+/* =========================
+   HEART ANIMATION
+========================= */
+
+.heart-screen{
+  position:fixed;
+  inset:0;
+  background:#05070d;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+.big-heart{
+  font-size:100px;
+  animation:heartBeat 1.1s infinite;
+}
+
+@keyframes heartBeat{
+
+  0%{
+    transform:scale(.7);
+  }
+
+  25%{
+    transform:scale(1.15);
+  }
+
+  45%{
+    transform:scale(.9);
+  }
+
+  65%{
+    transform:scale(1.1);
+  }
+
+  100%{
+    transform:scale(.7);
+  }
+
+}
+
+.popup-heart{
+  position:absolute;
+  bottom:-80px;
+  font-size:35px;
+  animation:heartUp linear forwards;
+  pointer-events:none;
+}
+
+@keyframes heartUp{
+
+  0%{
+    transform:translateY(0) scale(.6);
+    opacity:0;
+  }
+
+  15%{
+    opacity:1;
+  }
+
+  100%{
+    transform:translateY(-110vh) scale(1.3) rotate(25deg);
+    opacity:0;
+  }
+
+}
+
+/* =========================
+   PHOTO / GIF VIEW
+========================= */
+
+.one-time-image{
+  width:100%;
+  max-height:75vh;
+  object-fit:contain;
+  display:block;
+  border-radius:12px;
+  background:#000;
 }
 
 /* =========================
@@ -270,7 +385,6 @@ button:active{
 
   <!-- =========================
        FULL NEXA CONTENT
-       CODE के बाद ही दिखेगा
   ========================== -->
 
   <div id="nexaContent">
@@ -394,15 +508,95 @@ button:active{
     <h2>📩 One-Time Message</h2>
 
     <p>
-      ऐसा message बनाओ जिसे link खोलने के बाद
+      ऐसा content बनाओ जिसे link खोलने के बाद
       एक बार देखने पर दोबारा नहीं देखा जा सके।
     </p>
 
-    <textarea
-      id="messageInput"
-      rows="5"
-      placeholder="अपना message यहाँ लिखें..."
-    ></textarea>
+
+    <!-- CONTENT TYPE -->
+
+    <div class="content-label">
+      क्या दिखाना है?
+    </div>
+
+    <select id="contentType" onchange="changeContentType()">
+
+      <option value="message">
+        📝 Message
+      </option>
+
+      <option value="photo">
+        🖼️ Photo
+      </option>
+
+      <option value="heart">
+        ❤️ Heart Animation
+      </option>
+
+      <option value="gif">
+        🎞️ GIF
+      </option>
+
+    </select>
+
+
+    <!-- MESSAGE -->
+
+    <div id="messageOption">
+
+      <textarea
+        id="messageInput"
+        rows="5"
+        placeholder="अपना message यहाँ लिखें..."
+      ></textarea>
+
+    </div>
+
+
+    <!-- PHOTO -->
+
+    <div id="photoOption" style="display:none;">
+
+      <input
+        class="file-input"
+        type="file"
+        id="photoInput"
+        accept="image/*"
+        onchange="previewPhoto()"
+      >
+
+      <img id="photoPreview">
+
+    </div>
+
+
+    <!-- HEART -->
+
+    <div id="heartOption" style="display:none;">
+
+      <p>
+        ❤️ Link खोलने पर सिर्फ Heart Pop-up Animation दिखाई जाएगी।
+      </p>
+
+    </div>
+
+
+    <!-- GIF -->
+
+    <div id="gifOption" style="display:none;">
+
+      <input
+        class="file-input"
+        type="file"
+        id="gifInput"
+        accept="image/gif"
+        onchange="previewGif()"
+      >
+
+      <img id="gifPreview">
+
+    </div>
+
 
     <button onclick="createMessage()">
       🔗 One-Time Link बनाओ
@@ -419,10 +613,12 @@ button:active{
 
   <div class="box" id="viewBox">
 
-    <h2>📩 One-Time Message</h2>
+    <h2 id="viewTitle">
+      📩 One-Time Content
+    </h2>
 
     <div id="messageView" class="message-view">
-      Message loading...
+      Content loading...
     </div>
 
   </div>
@@ -495,39 +691,253 @@ function unlockNexa(){
 
 
 /* =========================
-   CREATE ONE-TIME MESSAGE
+   CHANGE CONTENT TYPE
+========================= */
+
+function changeContentType(){
+
+  const type =
+    document.getElementById("contentType").value;
+
+  document.getElementById("messageOption").style.display =
+    type === "message" ? "block" : "none";
+
+  document.getElementById("photoOption").style.display =
+    type === "photo" ? "block" : "none";
+
+  document.getElementById("heartOption").style.display =
+    type === "heart" ? "block" : "none";
+
+  document.getElementById("gifOption").style.display =
+    type === "gif" ? "block" : "none";
+
+}
+
+
+/* =========================
+   PHOTO PREVIEW
+========================= */
+
+function previewPhoto(){
+
+  const file =
+    document.getElementById("photoInput").files[0];
+
+  if(!file) return;
+
+  const preview =
+    document.getElementById("photoPreview");
+
+  preview.src =
+    URL.createObjectURL(file);
+
+  preview.style.display =
+    "block";
+
+}
+
+
+/* =========================
+   GIF PREVIEW
+========================= */
+
+function previewGif(){
+
+  const file =
+    document.getElementById("gifInput").files[0];
+
+  if(!file) return;
+
+  const preview =
+    document.getElementById("gifPreview");
+
+  preview.src =
+    URL.createObjectURL(file);
+
+  preview.style.display =
+    "block";
+
+}
+
+
+/* =========================
+   FILE → BASE64
+========================= */
+
+function fileToBase64(file){
+
+  return new Promise(function(resolve,reject){
+
+    const reader =
+      new FileReader();
+
+    reader.onload =
+      function(){
+        resolve(reader.result);
+      };
+
+    reader.onerror =
+      reject;
+
+    reader.readAsDataURL(file);
+
+  });
+
+}
+
+
+/* =========================
+   CREATE ONE-TIME CONTENT
 ========================= */
 
 async function createMessage(){
 
-  const messageInput =
-    document.getElementById("messageInput");
+  const type =
+    document.getElementById("contentType").value;
 
   const linkResult =
     document.getElementById("linkResult");
 
-  const message =
-    messageInput.value.trim();
-
-  linkResult.style.display = "block";
-
-  if(!message){
-
-    linkResult.innerHTML =
-      '<span class="error">❌ पहले message लिखो।</span>';
-
-    return;
-  }
+  linkResult.style.display =
+    "block";
 
   linkResult.innerHTML =
     "⏳ Link बनाया जा रहा है...";
 
+
   try{
+
+    let contentData;
+
+
+    /* =====================
+       MESSAGE
+    ===================== */
+
+    if(type === "message"){
+
+      const message =
+        document
+        .getElementById("messageInput")
+        .value
+        .trim();
+
+      if(!message){
+
+        linkResult.innerHTML =
+          '<span class="error">❌ पहले message लिखो।</span>';
+
+        return;
+      }
+
+      contentData = {
+        type:"message",
+        content:message
+      };
+
+    }
+
+
+    /* =====================
+       PHOTO
+    ===================== */
+
+    else if(type === "photo"){
+
+      const file =
+        document
+        .getElementById("photoInput")
+        .files[0];
+
+      if(!file){
+
+        linkResult.innerHTML =
+          '<span class="error">❌ पहले photo चुनो।</span>';
+
+        return;
+      }
+
+      if(!file.type.startsWith("image/")){
+
+        linkResult.innerHTML =
+          '<span class="error">❌ सही image file चुनो।</span>';
+
+        return;
+      }
+
+      const base64 =
+        await fileToBase64(file);
+
+      contentData = {
+        type:"photo",
+        content:base64
+      };
+
+    }
+
+
+    /* =====================
+       HEART
+    ===================== */
+
+    else if(type === "heart"){
+
+      contentData = {
+        type:"heart",
+        content:"heart"
+      };
+
+    }
+
+
+    /* =====================
+       GIF
+    ===================== */
+
+    else if(type === "gif"){
+
+      const file =
+        document
+        .getElementById("gifInput")
+        .files[0];
+
+      if(!file){
+
+        linkResult.innerHTML =
+          '<span class="error">❌ पहले GIF चुनो।</span>';
+
+        return;
+      }
+
+      if(file.type !== "image/gif"){
+
+        linkResult.innerHTML =
+          '<span class="error">❌ सिर्फ GIF file चुनो।</span>';
+
+        return;
+      }
+
+      const base64 =
+        await fileToBase64(file);
+
+      contentData = {
+        type:"gif",
+        content:base64
+      };
+
+    }
+
+
+    /* =====================
+       RANDOM TOKEN
+    ===================== */
 
     const randomBytes =
       new Uint8Array(24);
 
-    crypto.getRandomValues(randomBytes);
+    crypto.getRandomValues(
+      randomBytes
+    );
 
     const token =
       Array.from(randomBytes)
@@ -540,17 +950,28 @@ async function createMessage(){
       })
       .join("");
 
+
+    /*
+      IMPORTANT:
+      Existing Message column का ही इस्तेमाल हो रहा है।
+    */
+
+    const storedMessage =
+      JSON.stringify(contentData);
+
+
     const response =
       await nexasbClient
       .from("Message")
       .insert([
         {
-          Message: message,
-          Token: token,
-          Viewed: false
+          Message:storedMessage,
+          Token:token,
+          Viewed:false
         }
       ])
       .select();
+
 
     if(response.error){
 
@@ -564,11 +985,13 @@ async function createMessage(){
       return;
     }
 
+
     const link =
       window.location.origin +
       window.location.pathname +
       "?token=" +
       encodeURIComponent(token);
+
 
     linkResult.innerHTML = `
 
@@ -590,7 +1013,27 @@ async function createMessage(){
 
     `;
 
-    messageInput.value = "";
+
+    document
+    .getElementById("messageInput")
+    .value = "";
+
+    document
+    .getElementById("photoInput")
+    .value = "";
+
+    document
+    .getElementById("gifInput")
+    .value = "";
+
+    document
+    .getElementById("photoPreview")
+    .style.display = "none";
+
+    document
+    .getElementById("gifPreview")
+    .style.display = "none";
+
 
   }
   catch(error){
@@ -619,7 +1062,11 @@ function copyLink(){
   if(!link) return;
 
   link.select();
-  link.setSelectionRange(0,99999);
+
+  link.setSelectionRange(
+    0,
+    99999
+  );
 
   if(
     navigator.clipboard &&
@@ -652,7 +1099,221 @@ function copyLink(){
 
 
 /* =========================
-   OPEN ONE-TIME MESSAGE
+   HEART ANIMATION
+========================= */
+
+function showHeartAnimation(){
+
+  const screen =
+    document.createElement("div");
+
+  screen.className =
+    "heart-screen";
+
+  const mainHeart =
+    document.createElement("div");
+
+  mainHeart.className =
+    "big-heart";
+
+  mainHeart.innerText =
+    "❤️";
+
+  screen.appendChild(mainHeart);
+
+  document.body.appendChild(screen);
+
+
+  function createHeart(){
+
+    const heart =
+      document.createElement("div");
+
+    heart.className =
+      "popup-heart";
+
+    heart.innerText =
+      Math.random() > .5
+      ? "❤️"
+      : "💗";
+
+    heart.style.left =
+      Math.random() * 100 + "%";
+
+    heart.style.animationDuration =
+      (2 + Math.random() * 3) + "s";
+
+    screen.appendChild(heart);
+
+
+    setTimeout(function(){
+
+      heart.remove();
+
+    },5000);
+
+  }
+
+
+  for(
+    let i=0;
+    i<25;
+    i++
+  ){
+
+    setTimeout(
+      createHeart,
+      i * 150
+    );
+
+  }
+
+}
+
+
+/* =========================
+   SHOW CONTENT
+========================= */
+
+function showOneTimeContent(rawMessage){
+
+  const messageView =
+    document.getElementById("messageView");
+
+  const title =
+    document.getElementById("viewTitle");
+
+
+  let data;
+
+
+  /*
+    पुराने messages के लिए compatibility
+  */
+
+  try{
+
+    data =
+      JSON.parse(rawMessage);
+
+  }
+  catch(e){
+
+    data = {
+      type:"message",
+      content:rawMessage
+    };
+
+  }
+
+
+  /* =====================
+     MESSAGE
+  ===================== */
+
+  if(data.type === "message"){
+
+    title.innerText =
+      "📩 One-Time Message";
+
+    messageView.style.display =
+      "block";
+
+    messageView.innerText =
+      data.content;
+
+  }
+
+
+  /* =====================
+     PHOTO
+  ===================== */
+
+  else if(data.type === "photo"){
+
+    title.innerText =
+      "🖼️ Photo";
+
+    messageView.style.display =
+      "block";
+
+    messageView.innerHTML =
+      "";
+
+    const image =
+      document.createElement("img");
+
+    image.className =
+      "one-time-image";
+
+    image.src =
+      data.content;
+
+    image.alt =
+      "One-Time Photo";
+
+    messageView.appendChild(
+      image
+    );
+
+  }
+
+
+  /* =====================
+     GIF
+  ===================== */
+
+  else if(data.type === "gif"){
+
+    title.innerText =
+      "🎞️ GIF";
+
+    messageView.style.display =
+      "block";
+
+    messageView.innerHTML =
+      "";
+
+    const gif =
+      document.createElement("img");
+
+    gif.className =
+      "one-time-image";
+
+    gif.src =
+      data.content;
+
+    gif.alt =
+      "One-Time GIF";
+
+    messageView.appendChild(
+      gif
+    );
+
+  }
+
+
+  /* =====================
+     HEART
+  ===================== */
+
+  else if(data.type === "heart"){
+
+    title.innerText =
+      "❤️";
+
+    messageView.style.display =
+      "none";
+
+    showHeartAnimation();
+
+  }
+
+}
+
+
+/* =========================
+   OPEN ONE-TIME CONTENT
 ========================= */
 
 async function openOneTimeMessage(){
@@ -671,34 +1332,50 @@ async function openOneTimeMessage(){
   /*
     IMPORTANT:
     One-Time link खोलने पर
-    NEXA का पूरा page छिपा दो।
+    पूरा NEXA page छिपा दो।
   */
 
-  document.querySelector(".header").style.display =
+  document
+  .querySelector(".header")
+  .style.display =
     "none";
 
-  document.querySelector(".preview").style.display =
+  document
+  .querySelector(".preview")
+  .style.display =
     "none";
 
-  document.getElementById("nexaResult").style.display =
+  document
+  .getElementById("nexaResult")
+  .style.display =
     "none";
 
-  document.querySelectorAll(".box").forEach(function(box){
+
+  document
+  .querySelectorAll(".box")
+  .forEach(function(box){
 
     if(
       box.id !== "viewBox"
     ){
 
-      box.style.display = "none";
+      box.style.display =
+        "none";
 
     }
 
   });
 
-  document.querySelector(".footer").style.display =
+
+  document
+  .querySelector(".footer")
+  .style.display =
     "none";
 
-  document.getElementById("viewBox").style.display =
+
+  document
+  .getElementById("viewBox")
+  .style.display =
     "block";
 
 
@@ -706,7 +1383,7 @@ async function openOneTimeMessage(){
     document.getElementById("messageView");
 
   messageView.innerText =
-    "⏳ Message खुल रहा है...";
+    "⏳ Content खुल रहा है...";
 
 
   try{
@@ -715,9 +1392,10 @@ async function openOneTimeMessage(){
       await nexasbClient.rpc(
         "consume_one_time_message",
         {
-          p_token: token
+          p_token:token
         }
       );
+
 
     if(error){
 
@@ -731,18 +1409,51 @@ async function openOneTimeMessage(){
       return;
     }
 
-    if(!data || data.length === 0){
+
+    if(
+      !data ||
+      data.length === 0
+    ){
 
       messageView.innerHTML =
         '<span class="error">' +
-        '❌ यह One-Time Message पहले ही देखा जा चुका है या मौजूद नहीं है।' +
+        '❌ यह One-Time Content पहले ही देखा जा चुका है या मौजूद नहीं है।' +
         '</span>';
 
       return;
     }
 
-    messageView.innerText =
-      data[0].message;
+
+    /*
+      RPC से आने वाले column को support करने के लिए
+      दोनों possible names check किए गए हैं।
+    */
+
+    const rawMessage =
+      data[0].message ??
+      data[0].Message ??
+      data[0].content ??
+      data[0].Content;
+
+
+    if(
+      rawMessage === null ||
+      rawMessage === undefined
+    ){
+
+      messageView.innerHTML =
+        '<span class="error">' +
+        '❌ Content नहीं मिला।' +
+        '</span>';
+
+      return;
+    }
+
+
+    showOneTimeContent(
+      rawMessage
+    );
+
 
   }
   catch(error){
