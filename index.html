@@ -14,179 +14,112 @@
 body{
   margin:0;
   min-height:100vh;
-  font-family:Arial,sans-serif;
   background:#05070d;
-  color:white;
-  padding:20px 14px;
+  color:#fff;
+  font-family:Arial,sans-serif;
+  padding:18px 14px;
 }
 
 .container{
   width:100%;
-  max-width:600px;
+  max-width:560px;
   margin:auto;
 }
 
 /* =========================
-   NEXA HEADER
+   HEADER
 ========================= */
 
 .header{
   text-align:center;
-  padding:25px 10px 15px;
+  padding:12px 5px 18px;
 }
 
 .logo{
-  font-size:44px;
+  font-size:38px;
   font-weight:bold;
   letter-spacing:2px;
 }
 
 .tagline{
-  color:#aaa;
-  margin-top:8px;
-  font-size:14px;
-}
-
-.quote{
-  text-align:center;
-  color:#b8c0d0;
-  font-size:14px;
-  margin:5px 0 25px;
-  line-height:1.6;
+  color:#9da5b5;
+  font-size:13px;
+  margin-top:7px;
 }
 
 /* =========================
-   CHANNEL
-========================= */
-
-.channel{
-  text-align:center;
-  margin-bottom:20px;
-}
-
-.channel-logo{
-  width:95px;
-  height:95px;
-  border-radius:50%;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#111827;
-  border:2px solid #39445a;
-  font-size:48px;
-}
-
-.channel h2{
-  margin:12px 0 5px;
-}
-
-.channel p{
-  margin:0;
-}
-
-/* =========================
-   BOX
+   COMMON BOX
 ========================= */
 
 .box{
   background:#0d111c;
-  border:1px solid #293247;
-  border-radius:18px;
-  padding:20px;
-  margin-bottom:20px;
+  border:1px solid #273149;
+  border-radius:15px;
+  padding:18px;
+  margin-bottom:16px;
 }
 
-h2{
+h2,h3{
   margin-top:0;
 }
 
-h3{
-  margin-bottom:8px;
-}
-
 p{
-  color:#c4c9d4;
+  color:#c3c9d5;
   line-height:1.6;
 }
 
 /* =========================
-   FACT / MYSTERY
+   NEXA PREVIEW
 ========================= */
 
-.info-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-
-.info-card{
-  background:#080b13;
-  border:1px solid #293247;
-  border-radius:14px;
-  padding:15px;
+.preview{
   text-align:center;
+  padding:12px;
 }
 
-.info-card .icon{
-  font-size:30px;
-  margin-bottom:8px;
-}
-
-.info-card h3{
-  font-size:16px;
-}
-
-.info-card p{
-  font-size:13px;
-  margin:0;
-}
-
-/* =========================
-   PHOTO
-========================= */
-
-.nexa-photo{
+.world-photo{
   width:100%;
-  height:230px;
+  height:190px;
   object-fit:cover;
-  border-radius:14px;
-  border:1px solid #293247;
-  background:#080b13;
+  border-radius:12px;
   display:block;
+  margin-bottom:12px;
+}
+
+.channel-name{
+  font-size:22px;
+  font-weight:bold;
+}
+
+.channel-sub{
+  color:#9da5b5;
+  font-size:13px;
+  margin-top:5px;
 }
 
 /* =========================
-   INPUT
+   CODE BOX
 ========================= */
 
-textarea,
-input{
+input,
+textarea{
   width:100%;
-  padding:14px;
-  border-radius:10px;
+  padding:13px;
+  border-radius:9px;
   border:1px solid #39445a;
   background:#05070d;
-  color:white;
+  color:#fff;
   font-size:16px;
-  margin-bottom:12px;
   outline:none;
+  margin-bottom:11px;
 }
-
-textarea{
-  resize:vertical;
-}
-
-/* =========================
-   BUTTON
-========================= */
 
 button{
   width:100%;
-  padding:14px;
+  padding:13px;
   border:0;
-  border-radius:10px;
-  background:white;
+  border-radius:9px;
+  background:#fff;
   color:#05070d;
   font-size:16px;
   font-weight:bold;
@@ -197,24 +130,12 @@ button:active{
   transform:scale(.98);
 }
 
-button.secondary{
-  margin-top:10px;
-  background:#1b2435;
-  color:white;
-  border:1px solid #39445a;
-}
-
-/* =========================
-   RESULT
-========================= */
-
 .result{
-  margin-top:15px;
-  padding:13px;
-  border-radius:10px;
-  background:#050505;
-  word-break:break-word;
   display:none;
+  margin-top:12px;
+  padding:11px;
+  border-radius:9px;
+  background:#050505;
 }
 
 .success{
@@ -226,8 +147,33 @@ button.secondary{
 }
 
 /* =========================
-   MESSAGE
+   UNLOCKED NEXA
 ========================= */
+
+#nexaContent{
+  display:none;
+}
+
+.fact{
+  background:#080b13;
+  border:1px solid #222b3d;
+  border-radius:11px;
+  padding:13px;
+  margin-top:10px;
+}
+
+.fact-title{
+  font-weight:bold;
+  margin-bottom:5px;
+}
+
+/* =========================
+   ONE TIME MESSAGE
+========================= */
+
+#oneTimeBox{
+  margin-top:16px;
+}
 
 .message-view{
   font-size:20px;
@@ -235,33 +181,13 @@ button.secondary{
   background:#050505;
   padding:20px;
   border-radius:12px;
-  margin-top:15px;
+  margin-top:12px;
   white-space:pre-wrap;
   word-break:break-word;
 }
 
-/* =========================
-   LOCATION
-========================= */
-
-.location-card{
-  background:#080b13;
-  border:1px solid #293247;
-  border-radius:14px;
-  padding:16px;
-}
-
-.map-button{
-  display:block;
-  width:100%;
-  padding:14px;
-  margin-top:10px;
-  border-radius:10px;
-  background:#1b2435;
-  color:white;
-  text-align:center;
-  text-decoration:none;
-  font-weight:bold;
+#viewBox{
+  display:none;
 }
 
 /* =========================
@@ -270,15 +196,9 @@ button.secondary{
 
 .footer{
   text-align:center;
-  color:#777;
+  color:#6f7787;
   font-size:12px;
-  padding:10px 0 25px;
-}
-
-@media(max-width:450px){
-  .info-grid{
-    grid-template-columns:1fr;
-  }
+  padding:15px 0;
 }
 </style>
 </head>
@@ -287,211 +207,180 @@ button.secondary{
 
 <div class="container">
 
-  <!-- =========================
-       NEXA BRANDING
-  ========================== -->
-
+  <!-- NEXA HEADER -->
   <div class="header">
-
-    <div class="logo">
-      🌍 NEXA
-    </div>
+    <div class="logo">🌍 NEXA</div>
 
     <div class="tagline">
       दुनिया को जानो, हर जानकारी को Verify करो।
     </div>
-
-  </div>
-
-  <div class="quote">
-    “कुछ जगहें सिर्फ देखने के लिए नहीं… खोजने के लिए होती हैं।”
   </div>
 
 
   <!-- =========================
-       CHANNEL
+       SIMPLE NEXA PREVIEW
   ========================== -->
 
-  <div class="box channel">
+  <div class="box preview">
 
-    <div class="channel-logo">
-      🌍
+    <img
+      class="world-photo"
+      src="https://images.unsplash.com/photo-1521292270410-a8c4d716d518?auto=format&fit=crop&w=1000&q=80"
+      alt="World"
+    >
+
+    <div class="channel-name">
+      🌍 NEXA Ato NEXA
     </div>
 
-    <h2>
-      NEXA InfoX
-    </h2>
-
-    <p>
-      World Facts • Mystery • Information
-    </p>
-
-  </div>
-
-
-  <!-- =========================
-       WORLD FACTS
-  ========================== -->
-
-  <div class="box">
-
-    <h2>
-      🌎 World Facts
-    </h2>
-
-    <div class="info-grid">
-
-      <div class="info-card">
-
-        <div class="icon">
-          🌍
-        </div>
-
-        <h3>
-          दुनिया
-        </h3>
-
-        <p>
-          दुनिया में हजारों अलग-अलग cultures और languages हैं।
-        </p>
-
-      </div>
-
-
-      <div class="info-card">
-
-        <div class="icon">
-          🌊
-        </div>
-
-        <h3>
-          महासागर
-        </h3>
-
-        <p>
-          पृथ्वी की सतह का बड़ा हिस्सा पानी से ढका हुआ है।
-        </p>
-
-      </div>
-
-
-      <div class="info-card">
-
-        <div class="icon">
-          🏔️
-        </div>
-
-        <h3>
-          Mountains
-        </h3>
-
-        <p>
-          दुनिया में कई विशाल पर्वत श्रृंखलाएँ मौजूद हैं।
-        </p>
-
-      </div>
-
-
-      <div class="info-card">
-
-        <div class="icon">
-          🔭
-        </div>
-
-        <h3>
-          Space
-        </h3>
-
-        <p>
-          हमारा Solar System Milky Way galaxy का हिस्सा है।
-        </p>
-
-      </div>
-
+    <div class="channel-sub">
+      World • Facts • Mystery • Information
     </div>
 
   </div>
 
 
   <!-- =========================
-       MYSTERY
+       NEXA CODE
   ========================== -->
 
   <div class="box">
 
-    <h2>
-      🕵️ Mystery
-    </h2>
+    <h3>🔐 NEXA Access</h3>
 
     <p>
-      दुनिया में आज भी ऐसी कई जगहें और घटनाएँ हैं
-      जिनके बारे में लोगों के बीच रहस्य और सवाल बने हुए हैं।
+      NEXA को खोलने के लिए अपना access code डालें।
     </p>
 
-    <div class="info-card">
+    <input
+      type="password"
+      id="nexaCode"
+      placeholder="Enter NEXA Code"
+      autocomplete="off"
+    >
 
-      <div class="icon">
-        ❓
+    <button onclick="unlockNexa()">
+      🔓 Unlock NEXA
+    </button>
+
+    <div id="nexaResult" class="result"></div>
+
+  </div>
+
+
+  <!-- =========================
+       FULL NEXA CONTENT
+       CODE के बाद ही दिखेगा
+  ========================== -->
+
+  <div id="nexaContent">
+
+    <div class="box">
+
+      <h2>🌎 World Facts</h2>
+
+      <div class="fact">
+        <div class="fact-title">🌍 दुनिया</div>
+        दुनिया में हजारों अलग-अलग cultures और languages हैं।
       </div>
 
-      <h3>
-        क्या आप जानते हैं?
-      </h3>
+      <div class="fact">
+        <div class="fact-title">🌊 महासागर</div>
+        पृथ्वी की सतह का बड़ा हिस्सा पानी से ढका हुआ है।
+      </div>
+
+      <div class="fact">
+        <div class="fact-title">🏔️ Mountains</div>
+        दुनिया में कई विशाल पर्वत श्रृंखलाएँ मौजूद हैं।
+      </div>
+
+      <div class="fact">
+        <div class="fact-title">🔭 Space</div>
+        हमारा Solar System Milky Way galaxy का हिस्सा है।
+      </div>
+
+      <div class="fact">
+        <div class="fact-title">🌋 Nature</div>
+        पृथ्वी पर अलग-अलग प्रकार के प्राकृतिक वातावरण मौजूद हैं।
+      </div>
+
+      <div class="fact">
+        <div class="fact-title">🐋 Ocean Life</div>
+        महासागरों में जीवों की हजारों प्रजातियाँ पाई जाती हैं।
+      </div>
+
+      <div class="fact">
+        <div class="fact-title">🌳 Forests</div>
+        जंगल पृथ्वी के ecosystem का महत्वपूर्ण हिस्सा हैं।
+      </div>
+
+      <div class="fact">
+        <div class="fact-title">🌌 Universe</div>
+        हमारे Solar System के बाहर भी अरबों तारों वाली galaxies मौजूद हैं।
+      </div>
+
+    </div>
+
+
+    <!-- MYSTERY -->
+
+    <div class="box">
+
+      <h2>🕵️ Mystery</h2>
 
       <p>
+        दुनिया में आज भी ऐसी कई जगहें और घटनाएँ हैं
+        जिनके बारे में लोगों के बीच रहस्य और सवाल बने हुए हैं।
+      </p>
+
+      <div class="fact">
+        <div class="fact-title">❓ क्या आप जानते हैं?</div>
+
         हर रहस्यमयी कहानी को सच मानने से पहले
-        उसके evidence और reliable sources को verify करना जरूरी है।
+        उसके evidence और reliable sources को verify
+        करना जरूरी है।
+      </div>
+
+    </div>
+
+
+    <!-- INFORMATION -->
+
+    <div class="box">
+
+      <h2>ℹ️ Information</h2>
+
+      <p>
+        NEXA का उद्देश्य interesting facts,
+        world information, mystery और technology
+        से जुड़ी जानकारी को आसान भाषा में प्रस्तुत करना है।
+      </p>
+
+      <p>
+        किसी भी जानकारी को share करने से पहले
+        उसके source को verify करना बेहतर है।
       </p>
 
     </div>
 
-  </div>
 
+    <!-- PHOTO -->
 
-  <!-- =========================
-       INFORMATION
-  ========================== -->
+    <div class="box">
 
-  <div class="box">
+      <h2>📸 NEXA Photo</h2>
 
-    <h2>
-      ℹ️ Information
-    </h2>
+      <img
+        class="world-photo"
+        src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80"
+        alt="NEXA World"
+      >
 
-    <p>
-      NEXA का उद्देश्य interesting facts, world information,
-      mystery और technology से जुड़ी जानकारी को
-      आसान भाषा में प्रस्तुत करना है।
-    </p>
+      <div class="channel-name">
+        NEXA World
+      </div>
 
-    <p>
-      किसी भी जानकारी को share करने से पहले
-      उसके source को verify करना बेहतर है।
-    </p>
-
-  </div>
-
-
-  <!-- =========================
-       NEXA PHOTO
-  ========================== -->
-
-  <div class="box">
-
-    <h2>
-      📸 NEXA Photo
-    </h2>
-
-    <!--
-      बाद में अपनी photo लगाने के लिए
-      इस URL को बदल सकते हो।
-    -->
-
-    <img
-      class="nexa-photo"
-      src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=80"
-      alt="NEXA World"
-    >
+    </div>
 
   </div>
 
@@ -502,13 +391,11 @@ button.secondary{
 
   <div class="box" id="oneTimeBox">
 
-    <h2>
-      🔐 One-Time Message
-    </h2>
+    <h2>📩 One-Time Message</h2>
 
     <p>
       ऐसा message बनाओ जिसे link खोलने के बाद
-      सिर्फ एक बार देखा जा सके।
+      एक बार देखने पर दोबारा नहीं देखा जा सके।
     </p>
 
     <textarea
@@ -521,116 +408,90 @@ button.secondary{
       🔗 One-Time Link बनाओ
     </button>
 
-    <div
-      id="linkResult"
-      class="result">
-    </div>
+    <div id="linkResult" class="result"></div>
 
   </div>
 
 
   <!-- =========================
-       MESSAGE VIEW
+       ONE TIME MESSAGE VIEW
   ========================== -->
 
-  <div
-    class="box"
-    id="viewBox"
-    style="display:none;">
+  <div class="box" id="viewBox">
 
-    <h2>
-      📩 One-Time Message
-    </h2>
+    <h2>📩 One-Time Message</h2>
 
-    <div
-      id="messageView"
-      class="message-view">
-
+    <div id="messageView" class="message-view">
       Message loading...
-
-    </div>
-
-  </div>
-
-
-  <!-- =========================
-       NEXA LOCATION
-  ========================== -->
-
-  <div
-    class="box"
-    id="locationBox">
-
-    <h2>
-      📍 NEXA Location
-    </h2>
-
-    <p>
-      अपना NEXA access code डालें।
-    </p>
-
-    <input
-      type="text"
-      id="nexaCode"
-      placeholder="Enter NEXA Code"
-    >
-
-    <button onclick="unlockNexa()">
-      🔓 Unlock NEXA
-    </button>
-
-    <div
-      id="nexaResult"
-      class="result">
     </div>
 
   </div>
 
 
   <div class="footer">
-    🌍 NEXA • World Facts • Mystery • Information
+    🌍 NEXA • Verify Before You Share
   </div>
 
 </div>
 
 
-<!-- =========================
-     SUPABASE
-========================= -->
+<!-- SUPABASE -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
 /* =========================
-   SUPABASE SETTINGS
+   SUPABASE
 ========================= */
 
 const SUPABASE_URL =
 "https://crtoxfnqfyhorcxypxem.supabase.co";
 
-
-/*
-  IMPORTANT:
-
-  नीचे अपनी Supabase Publishable / anon key डालो।
-
-  Service Role / Secret key मत डालना।
-*/
-
 const SUPABASE_KEY =
-"sb_publishable_8q9uqlafK4f6BctsrRLnjg_0PG3K5lu ";
-
-
-/* =========================
-   SUPABASE CLIENT
-========================= */
+"sb_publishable_8q9uqlafK4f6BctsrRLnjg_0PG3K5lu";
 
 const nexasbClient =
 window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
+
+
+/* =========================
+   NEXA UNLOCK
+========================= */
+
+function unlockNexa(){
+
+  const code =
+    document.getElementById("nexaCode").value.trim();
+
+  const result =
+    document.getElementById("nexaResult");
+
+  result.style.display = "block";
+
+  if(code === "NEXA583"){
+
+    document.getElementById("nexaContent").style.display =
+      "block";
+
+    result.innerHTML =
+      '<span class="success">✅ NEXA Unlocked</span>';
+
+  }
+  else{
+
+    document.getElementById("nexaContent").style.display =
+      "none";
+
+    result.innerHTML =
+      '<span class="error">❌ गलत NEXA Code</span>';
+
+  }
+
+}
 
 
 /* =========================
@@ -649,50 +510,24 @@ async function createMessage(){
     messageInput.value.trim();
 
   linkResult.style.display = "block";
-  linkResult.className = "result";
-
 
   if(!message){
 
     linkResult.innerHTML =
-      '<span class="error">' +
-      '❌ पहले message लिखो।' +
-      '</span>';
+      '<span class="error">❌ पहले message लिखो।</span>';
 
     return;
   }
-
-
-  if(
-    SUPABASE_KEY.includes(
-      "PASTE_YOUR"
-    )
-  ){
-
-    linkResult.innerHTML =
-      '<span class="error">' +
-      '❌ पहले Supabase Publishable/anon key डालो।' +
-      '</span>';
-
-    return;
-  }
-
 
   linkResult.innerHTML =
     "⏳ Link बनाया जा रहा है...";
 
-
   try{
 
-    /* Random token */
-
     const randomBytes =
-      new Uint8Array(32);
+      new Uint8Array(24);
 
-    crypto.getRandomValues(
-      randomBytes
-    );
-
+    crypto.getRandomValues(randomBytes);
 
     const token =
       Array.from(randomBytes)
@@ -705,9 +540,6 @@ async function createMessage(){
       })
       .join("");
 
-
-    /* INSERT */
-
     const response =
       await nexasbClient
       .from("Message")
@@ -717,36 +549,26 @@ async function createMessage(){
           Token: token,
           Viewed: false
         }
-      ]);
-
+      ])
+      .select();
 
     if(response.error){
 
-      console.error(
-        "Supabase INSERT Error:",
-        response.error
-      );
+      console.error(response.error);
 
       linkResult.innerHTML =
-        '<span class="error">' +
-        '❌ Error: ' +
-        escapeHtml(
-          response.error.message
-        ) +
+        '<span class="error">❌ Error: ' +
+        response.error.message +
         '</span>';
 
       return;
     }
-
-
-    /* CREATE LINK */
 
     const link =
       window.location.origin +
       window.location.pathname +
       "?token=" +
       encodeURIComponent(token);
-
 
     linkResult.innerHTML = `
 
@@ -758,19 +580,15 @@ async function createMessage(){
 
       <input
         id="generatedLink"
-        value="${escapeHtml(link)}"
+        value="${link}"
         readonly
       >
 
-      <button
-        onclick="copyLink()">
-
+      <button onclick="copyLink()">
         📋 Link Copy करो
-
       </button>
 
     `;
-
 
     messageInput.value = "";
 
@@ -780,9 +598,8 @@ async function createMessage(){
     console.error(error);
 
     linkResult.innerHTML =
-      '<span class="error">' +
-      '❌ Error: ' +
-      escapeHtml(error.message) +
+      '<span class="error">❌ Error: ' +
+      error.message +
       '</span>';
 
   }
@@ -797,13 +614,12 @@ async function createMessage(){
 function copyLink(){
 
   const link =
-    document.getElementById(
-      "generatedLink"
-    );
-
+    document.getElementById("generatedLink");
 
   if(!link) return;
 
+  link.select();
+  link.setSelectionRange(0,99999);
 
   if(
     navigator.clipboard &&
@@ -812,53 +628,31 @@ function copyLink(){
 
     navigator.clipboard
     .writeText(link.value)
-
     .then(function(){
 
-      alert(
-        "✅ Link Copy हो गया!"
-      );
+      alert("✅ Link Copy हो गया!");
 
     })
-
     .catch(function(){
 
-      manualCopy(link);
+      alert("Link को manually copy कर लो।");
 
     });
 
   }
   else{
 
-    manualCopy(link);
+    document.execCommand("copy");
+
+    alert("✅ Link Copy हो गया!");
 
   }
 
 }
 
 
-function manualCopy(link){
-
-  link.select();
-  link.setSelectionRange(
-    0,
-    99999
-  );
-
-  document.execCommand(
-    "copy"
-  );
-
-  alert(
-    "✅ Link Copy हो गया!"
-  );
-
-}
-
-
 /* =========================
    OPEN ONE-TIME MESSAGE
-   USING SUPABASE RPC
 ========================= */
 
 async function openOneTimeMessage(){
@@ -868,37 +662,48 @@ async function openOneTimeMessage(){
       window.location.search
     );
 
-
   const token =
     params.get("token");
-
 
   if(!token) return;
 
 
-  /* Hide normal NEXA sections
-     while viewing one-time message */
+  /*
+    IMPORTANT:
+    One-Time link खोलने पर
+    NEXA का पूरा page छिपा दो।
+  */
 
-  document.getElementById(
-    "oneTimeBox"
-  ).style.display = "none";
+  document.querySelector(".header").style.display =
+    "none";
 
+  document.querySelector(".preview").style.display =
+    "none";
 
-  document.getElementById(
-    "locationBox"
-  ).style.display = "none";
+  document.getElementById("nexaResult").style.display =
+    "none";
 
+  document.querySelectorAll(".box").forEach(function(box){
 
-  document.getElementById(
-    "viewBox"
-  ).style.display = "block";
+    if(
+      box.id !== "viewBox"
+    ){
+
+      box.style.display = "none";
+
+    }
+
+  });
+
+  document.querySelector(".footer").style.display =
+    "none";
+
+  document.getElementById("viewBox").style.display =
+    "block";
 
 
   const messageView =
-    document.getElementById(
-      "messageView"
-    );
-
+    document.getElementById("messageView");
 
   messageView.innerText =
     "⏳ Message खुल रहा है...";
@@ -906,18 +711,7 @@ async function openOneTimeMessage(){
 
   try{
 
-    /*
-      IMPORTANT:
-
-      RPC एक ही database operation में
-      message को Viewed=true करता है
-      और message वापस करता है।
-
-      इससे SELECT -> SHOW -> UPDATE
-      वाली problem नहीं होगी।
-    */
-
-    const response =
+    const { data, error } =
       await nexasbClient.rpc(
         "consume_one_time_message",
         {
@@ -925,42 +719,19 @@ async function openOneTimeMessage(){
         }
       );
 
-
-    const data =
-      response.data;
-
-    const error =
-      response.error;
-
-
     if(error){
 
-      console.error(
-        "RPC Error:",
-        error
-      );
+      console.error(error);
 
       messageView.innerHTML =
-        '<span class="error">' +
-        '❌ Message open नहीं हो सका।<br><br>' +
-        escapeHtml(
-          error.message
-        ) +
+        '<span class="error">❌ Error: ' +
+        error.message +
         '</span>';
 
       return;
     }
 
-
-    /*
-      अगर data empty है,
-      तो message पहले ही consume हो चुका है।
-    */
-
-    if(
-      !data ||
-      data.length === 0
-    ){
+    if(!data || data.length === 0){
 
       messageView.innerHTML =
         '<span class="error">' +
@@ -970,32 +741,8 @@ async function openOneTimeMessage(){
       return;
     }
 
-
-    /* SHOW MESSAGE */
-
     messageView.innerText =
       data[0].message;
-
-
-    /*
-      URL से token हटाना optional है।
-      इससे refresh पर नया request नहीं बनेगा।
-    */
-
-    try{
-
-      window.history.replaceState(
-        {},
-        document.title,
-        window.location.pathname
-      );
-
-    }
-    catch(e){
-
-      console.log(e);
-
-    }
 
   }
   catch(error){
@@ -1003,111 +750,11 @@ async function openOneTimeMessage(){
     console.error(error);
 
     messageView.innerHTML =
-      '<span class="error">' +
-      '❌ Error: ' +
-      escapeHtml(error.message) +
+      '<span class="error">❌ Error: ' +
+      error.message +
       '</span>';
 
   }
-
-}
-
-
-/* =========================
-   NEXA UNLOCK
-========================= */
-
-function unlockNexa(){
-
-  const code =
-    document
-    .getElementById(
-      "nexaCode"
-    )
-    .value
-    .trim();
-
-
-  const result =
-    document.getElementById(
-      "nexaResult"
-    );
-
-
-  result.style.display = "block";
-  result.className = "result";
-
-
-  if(
-    code === "NEXA583"
-  ){
-
-    result.innerHTML = `
-
-      <div class="success">
-
-        <h3>
-          🌍 NEXA Unlocked
-        </h3>
-
-        <div class="location-card">
-
-          <p>
-            📍 <strong>
-            Bengaluru, Karnataka
-            </strong>
-          </p>
-
-          <p>
-            🌍 NEXA Location system active.
-          </p>
-
-          <p>
-            📌 Bengaluru is the capital city
-            of Karnataka, India.
-          </p>
-
-          <a
-            class="map-button"
-            href="https://www.google.com/maps/search/?api=1&query=Bengaluru,Karnataka"
-            target="_blank"
-            rel="noopener">
-
-            🗺️ Bengaluru Map खोलो
-
-          </a>
-
-        </div>
-
-      </div>
-
-    `;
-
-  }
-  else{
-
-    result.innerHTML =
-      '<span class="error">' +
-      '❌ गलत NEXA Code' +
-      '</span>';
-
-  }
-
-}
-
-
-/* =========================
-   HTML ESCAPE
-========================= */
-
-function escapeHtml(value){
-
-  return String(value)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
 
 }
 
